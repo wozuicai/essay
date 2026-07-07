@@ -90,14 +90,16 @@ CUDA_VISIBLE_DEVICES=0,1 bash scripts/launch_layerwise.sh stage2
 普通 HF model 或 PEFT adapter：
 
 ```bash
-python scripts/eval_required.py --model_path results/phase2_v2/lis_Qwen3.5-9B-Base_train_en --languages en,yo,so,ha --output /tmp/eval.json
+python scripts/eval_required.py --model_path results/phase2_v2/lis_Qwen3.5-9B-Base_train_en --languages en,yo,so,ha --batch_size 32 --generation_batch_size 4 --output /tmp/eval.json
 ```
 
 MoE-LoRA：
 
 ```bash
-python scripts/eval_required.py --moe_dir results/moe_lora/moe_lora_Qwen3.5-9B-Base --languages en,yo,so,ha --output /tmp/moe_eval.json
+python scripts/eval_required.py --moe_dir results/moe_lora/moe_lora_Qwen3.5-9B-Base --languages en,yo,so,ha --batch_size 16 --generation_batch_size 4 --output /tmp/moe_eval.json
 ```
+
+`--batch_size` 会用于 English lm-eval、Belebele、AfriMMLU、AfriXNLI 的批量 forward；`--generation_batch_size` 只用于 AfriMGSM 批量生成。显存足够时可逐步加大。
 
 ## 产物清理
 

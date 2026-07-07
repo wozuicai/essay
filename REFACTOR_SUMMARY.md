@@ -46,6 +46,7 @@ src/data/dataset_loader.py
 ```text
 scripts/eval_required.py
 src/evaluation/irokobench_eval.py
+src/evaluation/batched_scoring.py
 ```
 
 现在主实验评测只跑用户指定的数据集：
@@ -57,6 +58,17 @@ IrokoBench: AfriMMLU MCQ + AfriXNLI + AfriMGSM
 ```
 
 已把主 launcher 的旧 eval 调用替换为 `eval_required.py`，避免继续跑 SIB200、FLORES、AfriQA、Aya、LCB 等这次没要求的数据集。
+
+评测速度优化：
+
+```text
+Belebele: 批量 next-token MCQ scoring
+AfriMMLU: 批量 next-token MCQ scoring
+AfriXNLI: 批量 next-token MCQ scoring
+AfriMGSM: 批量 greedy generate
+```
+
+这些优化走普通 Transformers forward/generate，对 PEFT LoRA 和自定义 MoE-LoRA 都可用，不依赖 vLLM。
 
 ## 数据和长度检查
 

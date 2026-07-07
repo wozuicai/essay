@@ -11,9 +11,14 @@ import ast
 import re
 from typing import Any
 
-import torch
 from datasets import load_dataset
 from tqdm import tqdm
+
+from .batched_scoring import (
+    batched_generate_text,
+    batched_next_token_predictions,
+    letter_token_ids,
+)
 
 
 IROKO_LANGS = ["yo", "ha", "so"]
@@ -21,26 +26,6 @@ AFRIMMLU_CONFIGS = {"yo": "yor", "ha": "hau"}
 AFRIXNLI_CONFIGS = {"yo": "yor", "ha": "hau"}
 AFRIMGSM_CONFIGS = {"yo": "yor", "ha": "hau"}
 XNLI_CHOICES = ["entailment", "neutral", "contradiction"]
-
-
-def _score_next_token_choice(model, tokenizer, prompt: str, choices: list[str]) -> int:
-    device = next(model.parameters()).device
-    enc = tokenizer(prompt, return_tensors="pt").to(device)
-    with torch.no_grad():
-        logits_next = model(**enc).logits[0, -1]
-
-    best_idx, best_score = 0, float("-inf")
-    for idx, _choice in enumerate(choices):
-        letter = chr(65 + idx)
-        for surface in (f" {letter}", letter, f"{letter}."):
-            token_ids = tokenizer.encode(surface, add_special_tokens=False)
-            if not token_ids:
-                continue
-            score = logits_next[token_ids[0]].item()
-            if score > best_score:
-                best_idx, best_score = idx, score
-            break
-    return best_idx
 
 
 def _correct_idx(answer_key: Any, n_choices: int) -> int | None:
@@ -67,8 +52,9 @@ def _parse_choices(raw) -> list[str]:
     return list(raw) if isinstance(raw, (list, tuple)) else []
 
 
-def eval_afrimmlu(model, tokenizer, inject_lang_tag: bool = False) -> dict:
+def eval_afrimmlu(model, tokenizer, inject_lang_tag: bool = False, batch_size: int = 16) -> dict:
     results = {}
+    answer_token_ids = letter_token_ids(tokenizer, 5)
     for lang in IROKO_LANGS:
         if lang not in AFRIMMLU_CONFIGS:
             results[lang] = {
@@ -86,7 +72,9 @@ def eval_afrimmlu(model, tokenizer, inject_lang_tag: bool = False) -> dict:
             results[lang] = {"mcq_accuracy": None, "gen_score": None, "n_mcq": 0, "error": str(exc)}
             continue
 
-        correct = []
+        prompts = []
+        labels = []
+        n_choices_per_prompt = []
         for item in tqdm(ds, desc=f"IrokoBench-AfriMMLU-{lang}", leave=False):
             question = item.get("question") or ""
             choices = _parse_choices(item.get("choices"))
@@ -95,11 +83,21 @@ def eval_afrimmlu(model, tokenizer, inject_lang_tag: bool = False) -> dict:
                 continue
             choice_str = "\n".join(f"{chr(65+i)}. {choice}" for i, choice in enumerate(choices))
             tag_prefix = f"<|tgt_lang:{lang}|> " if inject_lang_tag else ""
-            prompt = f"{tag_prefix}{question}\n{choice_str}\nAnswer:"
-            pred_idx = _score_next_token_choice(model, tokenizer, prompt, choices)
             gold_idx = _correct_idx(answer, len(choices))
             if gold_idx is not None:
-                correct.append(int(pred_idx == gold_idx))
+                prompts.append(f"{tag_prefix}{question}\n{choice_str}\nAnswer:")
+                labels.append(gold_idx)
+                n_choices_per_prompt.append(len(choices))
+
+        preds = batched_next_token_predictions(
+            model,
+            tokenizer,
+            prompts,
+            answer_token_ids,
+            batch_size=batch_size,
+            num_choices_per_prompt=n_choices_per_prompt,
+        )
+        correct = [int(pred == label) for pred, label in zip(preds, labels)]
 
         results[lang] = {
             "mcq_accuracy": round(sum(correct) / len(correct), 4) if correct else None,
@@ -109,9 +107,10 @@ def eval_afrimmlu(model, tokenizer, inject_lang_tag: bool = False) -> dict:
     return results
 
 
-def eval_afrixnli(model, tokenizer, inject_lang_tag: bool = False) -> dict:
+def eval_afrixnli(model, tokenizer, inject_lang_tag: bool = False, batch_size: int = 16) -> dict:
     results = {}
     choice_str = "\n".join(f"{chr(65+i)}. {choice}" for i, choice in enumerate(XNLI_CHOICES))
+    answer_token_ids = letter_token_ids(tokenizer, len(XNLI_CHOICES))
     for lang in IROKO_LANGS:
         if lang not in AFRIXNLI_CONFIGS:
             results[lang] = {"afrixnli_accuracy": None, "n_afrixnli": 0, "note": "not in afrixnli"}
@@ -124,7 +123,8 @@ def eval_afrixnli(model, tokenizer, inject_lang_tag: bool = False) -> dict:
             results[lang] = {"afrixnli_accuracy": None, "n_afrixnli": 0, "error": str(exc)}
             continue
 
-        correct = []
+        prompts = []
+        labels = []
         for item in tqdm(ds, desc=f"IrokoBench-AfriXNLI-{lang}", leave=False):
             premise = item.get("premise") or ""
             hypothesis = item.get("hypothesis") or ""
@@ -137,8 +137,17 @@ def eval_afrixnli(model, tokenizer, inject_lang_tag: bool = False) -> dict:
                 f"Question: What is the relationship between the premise and the hypothesis?\n"
                 f"{choice_str}\nAnswer:"
             )
-            pred_idx = _score_next_token_choice(model, tokenizer, prompt, XNLI_CHOICES)
-            correct.append(int(pred_idx == int(label)))
+            prompts.append(prompt)
+            labels.append(int(label))
+
+        preds = batched_next_token_predictions(
+            model,
+            tokenizer,
+            prompts,
+            answer_token_ids,
+            batch_size=batch_size,
+        )
+        correct = [int(pred == label) for pred, label in zip(preds, labels)]
 
         results[lang] = {
             "afrixnli_accuracy": round(sum(correct) / len(correct), 4) if correct else None,
@@ -157,9 +166,8 @@ def _extract_number(text: str) -> float | None:
         return None
 
 
-def eval_afrimgsm(model, tokenizer) -> dict:
+def eval_afrimgsm(model, tokenizer, batch_size: int = 4) -> dict:
     results = {}
-    device = next(model.parameters()).device
     for lang in IROKO_LANGS:
         if lang not in AFRIMGSM_CONFIGS:
             results[lang] = {"afrimgsm_accuracy": None, "n_afrimgsm": 0, "note": "not in afrimgsm"}
@@ -172,25 +180,28 @@ def eval_afrimgsm(model, tokenizer) -> dict:
             results[lang] = {"afrimgsm_accuracy": None, "n_afrimgsm": 0, "error": str(exc)}
             continue
 
-        correct = []
+        prompts = []
+        golds = []
         for item in tqdm(ds, desc=f"IrokoBench-AfriMGSM-{lang}", leave=False):
             question = item.get("question") or ""
             answer_number = item.get("answer_number")
             if not question or answer_number is None:
                 continue
-            prompt = f"{question}\nAnswer with the final numeric answer only.\nAnswer:"
-            enc = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=1024).to(device)
-            with torch.no_grad():
-                out = model.generate(
-                    **enc,
-                    max_new_tokens=64,
-                    do_sample=False,
-                    pad_token_id=tokenizer.eos_token_id,
-                )
-            gen_ids = out[0, enc["input_ids"].shape[1]:]
-            response = tokenizer.decode(gen_ids, skip_special_tokens=True)
+            prompts.append(f"{question}\nAnswer with the final numeric answer only.\nAnswer:")
+            golds.append(float(answer_number))
+
+        responses = batched_generate_text(
+            model,
+            tokenizer,
+            prompts,
+            batch_size=batch_size,
+            max_new_tokens=64,
+            max_length=1024,
+        )
+        correct = []
+        for response, answer_number in zip(responses, golds):
             pred_num = _extract_number(response)
-            correct.append(int(pred_num is not None and abs(pred_num - float(answer_number)) < 1e-4))
+            correct.append(int(pred_num is not None and abs(pred_num - answer_number) < 1e-4))
 
         results[lang] = {
             "afrimgsm_accuracy": round(sum(correct) / len(correct), 4) if correct else None,
@@ -199,10 +210,16 @@ def eval_afrimgsm(model, tokenizer) -> dict:
     return results
 
 
-def run_irokobench_eval(model, tokenizer, inject_lang_tag: bool = False) -> dict:
-    mcq = eval_afrimmlu(model, tokenizer, inject_lang_tag=inject_lang_tag)
-    xnli = eval_afrixnli(model, tokenizer, inject_lang_tag=inject_lang_tag)
-    mgsm = eval_afrimgsm(model, tokenizer)
+def run_irokobench_eval(
+    model,
+    tokenizer,
+    inject_lang_tag: bool = False,
+    batch_size: int = 16,
+    generation_batch_size: int = 4,
+) -> dict:
+    mcq = eval_afrimmlu(model, tokenizer, inject_lang_tag=inject_lang_tag, batch_size=batch_size)
+    xnli = eval_afrixnli(model, tokenizer, inject_lang_tag=inject_lang_tag, batch_size=batch_size)
+    mgsm = eval_afrimgsm(model, tokenizer, batch_size=generation_batch_size)
 
     merged = {}
     for lang in IROKO_LANGS:

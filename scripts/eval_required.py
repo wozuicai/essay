@@ -31,6 +31,12 @@ def parse_args():
     p.add_argument("--output", required=True)
     p.add_argument("--languages", default="en,yo,so,ha")
     p.add_argument("--batch_size", type=int, default=16)
+    p.add_argument(
+        "--generation_batch_size",
+        type=int,
+        default=4,
+        help="Batch size for generation-style eval such as AfriMGSM.",
+    )
     p.add_argument("--inject_lang_tag", action="store_true")
     return p.parse_args()
 
@@ -104,7 +110,11 @@ def main():
 
     print("=== IrokoBench eval ===")
     results["scores"]["multilingual"]["irokobench"] = run_irokobench_eval(
-        model, tokenizer, inject_lang_tag=args.inject_lang_tag
+        model,
+        tokenizer,
+        inject_lang_tag=args.inject_lang_tag,
+        batch_size=args.batch_size,
+        generation_batch_size=args.generation_batch_size,
     )
 
     os.makedirs(os.path.dirname(os.path.abspath(args.output)) or ".", exist_ok=True)
