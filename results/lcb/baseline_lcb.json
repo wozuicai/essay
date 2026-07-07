@@ -1,0 +1,20 @@
+{
+  "model_path": "/root/project/models/Qwen3.5-9B-Base",
+  "scores": {
+    "yo": {
+      "lc_rate": 0.985,
+      "en_leak": 0.0,
+      "n": 200
+    },
+    "so": {
+      "lc_rate": 0.9848,
+      "en_leak": 0.0,
+      "n": 198
+    },
+    "ha": {
+      "lc_rate": 0.995,
+      "en_leak": 0.0,
+      "n": 200
+    }
+  }
+}

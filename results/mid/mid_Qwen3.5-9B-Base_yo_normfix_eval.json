@@ -1,0 +1,26 @@
+{
+  "model_path": "results/mid/mid_Qwen3.5-9B-Base_yo_normfix",
+  "scores": {
+    "english": {
+      "mmlu": 0.7716137302378578,
+      "hellaswag": 0.796355307707628,
+      "arc_challenge": 0.5853242320819113,
+      "truthfulqa_mc1": 0.3537331701346389,
+      "english_avg": 0.626756610040509
+    },
+    "multilingual": {
+      "sib200": {
+        "en": 0.495,
+        "yo": 0.345,
+        "so": 0.335,
+        "ha": 0.0
+      },
+      "belebele": {
+        "en": 0.9322222222222222,
+        "yo": 0.4622222222222222,
+        "so": 0.48444444444444446,
+        "ha": 0.48777777777777775
+      }
+    }
+  }
+}

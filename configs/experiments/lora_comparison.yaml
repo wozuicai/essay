@@ -1,0 +1,67 @@
+data:
+  prompt_template: '### Instruction:
+
+    <|tgt_lang:{language}|> {instruction}
+
+
+    ### Response:
+
+    {response}'
+methods:
+  full_ft:
+    description: Full parameter fine-tuning
+    train_samples: 500
+  isolated_lora:
+    lang_r: 8
+    lora_alpha: 16
+    lora_dropout: 0.05
+    shared_r: 8
+    step1_epochs: 2
+    step2_epochs: 1
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  mixed_lora:
+    lora_alpha: 32
+    lora_dropout: 0.05
+    r: 16
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+    total_samples: 4000
+  standard_lora:
+    lora_alpha: 32
+    lora_dropout: 0.05
+    r: 16
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+    train_samples: 500
+training:
+  eval_steps: 500
+  gradient_accumulation_steps: 8
+  learning_rate: 2e-4
+  logging_steps: 100
+  lr_scheduler: cosine
+  max_seq_length: 2048
+  num_epochs: 3
+  per_device_train_batch_size: 2
+  save_steps: 500
+  save_total_limit: 1
+  seed: 42
+  warmup_ratio: 0.03

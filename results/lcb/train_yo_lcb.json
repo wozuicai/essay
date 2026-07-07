@@ -1,0 +1,20 @@
+{
+  "model_path": "/root/project/results/phase2_v2/lis_Qwen3.5-9B-Base_train_yo",
+  "scores": {
+    "yo": {
+      "lc_rate": 1.0,
+      "en_leak": 0.0,
+      "n": 200
+    },
+    "so": {
+      "lc_rate": 0.9747,
+      "en_leak": 0.0051,
+      "n": 198
+    },
+    "ha": {
+      "lc_rate": 0.9592,
+      "en_leak": 0.0,
+      "n": 196
+    }
+  }
+}

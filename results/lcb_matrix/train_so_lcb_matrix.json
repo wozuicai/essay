@@ -1,0 +1,93 @@
+{
+  "model_path": "/root/project/results/phase2_v2/lis_Qwen3.5-9B-Base_train_so",
+  "matrix": {
+    "en": {
+      "en": {
+        "lc_rate": 1.0,
+        "en_leak": 1.0,
+        "n": 50
+      },
+      "yo": {
+        "lc_rate": 0.0,
+        "en_leak": 0.98,
+        "n": 50
+      },
+      "so": {
+        "lc_rate": 0.0,
+        "en_leak": 1.0,
+        "n": 50
+      },
+      "ha": {
+        "lc_rate": 0.04,
+        "en_leak": 0.96,
+        "n": 50
+      }
+    },
+    "yo": {
+      "en": {
+        "lc_rate": 0.0,
+        "en_leak": 0.0,
+        "n": 50
+      },
+      "yo": {
+        "lc_rate": 1.0,
+        "en_leak": 0.0,
+        "n": 50
+      },
+      "so": {
+        "lc_rate": 0.02,
+        "en_leak": 0.0,
+        "n": 50
+      },
+      "ha": {
+        "lc_rate": 0.0,
+        "en_leak": 0.0,
+        "n": 50
+      }
+    },
+    "so": {
+      "en": {
+        "lc_rate": 0.0,
+        "en_leak": 0.0,
+        "n": 50
+      },
+      "yo": {
+        "lc_rate": 0.0,
+        "en_leak": 0.02,
+        "n": 50
+      },
+      "so": {
+        "lc_rate": 0.98,
+        "en_leak": 0.02,
+        "n": 50
+      },
+      "ha": {
+        "lc_rate": 0.0,
+        "en_leak": 0.02,
+        "n": 50
+      }
+    },
+    "ha": {
+      "en": {
+        "lc_rate": 0.02,
+        "en_leak": 0.02,
+        "n": 50
+      },
+      "yo": {
+        "lc_rate": 0.0,
+        "en_leak": 0.0,
+        "n": 50
+      },
+      "so": {
+        "lc_rate": 0.78,
+        "en_leak": 0.0,
+        "n": 50
+      },
+      "ha": {
+        "lc_rate": 0.56,
+        "en_leak": 0.0,
+        "n": 50
+      }
+    }
+  }
+}

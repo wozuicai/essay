@@ -1,0 +1,94 @@
+{
+  "model_path": "results/phase2_v2/lis_Qwen3.5-9B-Base_train_en",
+  "scores": {
+    "english": {
+      "mmlu": 0.773678963110668,
+      "hellaswag": 0.799044015136427,
+      "arc_challenge": 0.6092150170648464,
+      "truthfulqa_mc1": 0.3684210526315789,
+      "english_avg": 0.6216778892808617
+    },
+    "multilingual": {
+      "sib200": {
+        "en": 0.56,
+        "yo": 0.39,
+        "so": 0.395,
+        "ha": 0.41
+      },
+      "belebele": {
+        "en": 0.922,
+        "yo": 0.45666666666666667,
+        "so": 0.48333333333333334,
+        "ha": 0.4922222222222222
+      },
+      "afriqa": {
+        "yo": {
+          "f1": 0.1109,
+          "exact_match": 0.0491,
+          "n": 326
+        },
+        "ha": {
+          "f1": 0.1262,
+          "exact_match": 0.09,
+          "n": 300
+        },
+        "so": null
+      },
+      "aya_evaluation": {
+        "en": {
+          "gpt_score": 4.635,
+          "n": 200
+        },
+        "yo": {
+          "gpt_score": 1.65,
+          "n": 200
+        },
+        "so": {
+          "gpt_score": 2.11,
+          "n": 200
+        },
+        "ha": {
+          "gpt_score": 2.17,
+          "n": 200
+        }
+      },
+      "irokobench": {
+        "yo": {
+          "mcq_accuracy": 0.476,
+          "gen_score": null,
+          "n_mcq": 500,
+          "afrixnli_accuracy": 0.6,
+          "n_afrixnli": 600,
+          "afrimgsm_accuracy": 0.072,
+          "n_afrimgsm": 250
+        },
+        "ha": {
+          "mcq_accuracy": 0.438,
+          "gen_score": null,
+          "n_mcq": 500,
+          "afrixnli_accuracy": 0.5933,
+          "n_afrixnli": 600,
+          "afrimgsm_accuracy": 0.096,
+          "n_afrimgsm": 250
+        },
+        "so": {
+          "mcq_accuracy": null,
+          "gen_score": null,
+          "note": "not in afrimgsm",
+          "afrixnli_accuracy": null,
+          "afrimgsm_accuracy": null
+        }
+      },
+      "uhura_truthfulqa": {
+        "yo": {
+          "mc1_accuracy": 0.4091,
+          "n": 809
+        },
+        "ha": {
+          "mc1_accuracy": 0.3626,
+          "n": 808
+        }
+      }
+    }
+  }
+}

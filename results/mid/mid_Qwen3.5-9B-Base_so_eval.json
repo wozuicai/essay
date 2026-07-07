@@ -1,0 +1,36 @@
+{
+  "model_path": "results/mid/mid_Qwen3.5-9B-Base_so",
+  "scores": {
+    "english": {
+      "truthfulqa_mc1": 0.3268053855569155,
+      "english_avg": 0.6199629695867395,
+      "mmlu": 0.7674832644922376,
+      "hellaswag": 0.8002389962158932,
+      "arc_challenge": 0.5853242320819113
+    },
+    "multilingual": {
+      "sib200": {
+        "en": 0.54,
+        "yo": 0.27,
+        "so": 0.315,
+        "ha": 0.3
+      },
+      "belebele": {
+        "en": 0.94,
+        "yo": 0.41888888888888887,
+        "so": 0.49333333333333335,
+        "ha": 0.4911111111111111
+      },
+      "irokobench": {
+        "yo": {
+          "mcq_accuracy": 0.448,
+          "n_mcq": 500
+        },
+        "ha": {
+          "mcq_accuracy": 0.464,
+          "n_mcq": 500
+        }
+      }
+    }
+  }
+}

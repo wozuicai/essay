@@ -1,0 +1,36 @@
+{
+  "model_path": "results/tag_routing/tag_routing_Qwen3.5-9B-Base",
+  "scores": {
+    "english": {
+      "mmlu": 0.765702891326022,
+      "hellaswag": 0.7868950408285202,
+      "arc_challenge": 0.5511945392491467,
+      "truthfulqa_mc1": 0.375436964504284,
+      "english_avg": 0.6208073589769932
+    },
+    "multilingual": {
+      "sib200": {
+        "en": 0.43,
+        "yo": 0.22,
+        "so": 0.195,
+        "ha": 0.25
+      },
+      "belebele": {
+        "en": 0.9355555555555556,
+        "yo": 0.4855555555555556,
+        "so": 0.4688888888888889,
+        "ha": 0.5
+      },
+      "irokobench": {
+        "yo": {
+          "mcq_accuracy": 0.422,
+          "n_mcq": 500
+        },
+        "ha": {
+          "mcq_accuracy": 0.398,
+          "n_mcq": 500
+        }
+      }
+    }
+  }
+}

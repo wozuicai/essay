@@ -1,0 +1,24 @@
+{
+  "method": "MoE-LoRA",
+  "base_model": "/root/project/models/Qwen3.5-9B-Base",
+  "n_experts": 4,
+  "r": 8,
+  "lora_alpha": 16.0,
+  "dropout_p": 0.05,
+  "target_modules": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj",
+    "gate_proj",
+    "up_proj",
+    "down_proj"
+  ],
+  "train_langs": [
+    "en",
+    "yo",
+    "so",
+    "ha"
+  ],
+  "train_samples": 47900
+}

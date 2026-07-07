@@ -1,0 +1,32 @@
+{
+  "model_path": "results/phase2_lis_matrix/lis_Qwen3.5-9B-Base_train_bn",
+  "scores": {
+    "english": {
+      "mmlu": 0.7718273750178037,
+      "hellaswag": 0.7900816570404302,
+      "arc_challenge": 0.5733788395904437,
+      "truthfulqa_mc1": 0.3329253365973072,
+      "english_avg": 0.6170533020614962
+    },
+    "multilingual": {
+      "sib200": {
+        "en": 0.58,
+        "fr": 0.41,
+        "zh": 0.575,
+        "sw": 0.475,
+        "th": 0.51,
+        "bn": 0.525,
+        "yo": 0.425
+      },
+      "belebele": {
+        "en": 0.92,
+        "fr": 0.88,
+        "zh": 0.8777777777777778,
+        "sw": 0.7133333333333334,
+        "th": 0.7,
+        "bn": 0.66,
+        "yo": 0.43555555555555553
+      }
+    }
+  }
+}

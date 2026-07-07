@@ -1,0 +1,19 @@
+{
+  "zero_optimization": {
+    "stage": 2,
+    "allgather_partitions": true,
+    "reduce_scatter": true,
+    "overlap_comm": true,
+    "contiguous_gradients": true
+  },
+  "fp16": {
+    "enabled": false
+  },
+  "bf16": {
+    "enabled": true
+  },
+  "gradient_clipping": 1.0,
+  "train_micro_batch_size_per_gpu": 4,
+  "gradient_accumulation_steps": 4,
+  "wall_clock_breakdown": false
+}

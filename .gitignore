@@ -1,0 +1,33 @@
+# Keep source/config/docs/small metadata only.
+# Do not commit model weights, adapters, checkpoints, caches, logs, or large datasets.
+
+__pycache__/
+*.py[cod]
+*.pyo
+
+logs/
+hf_cache/
+.cache/
+
+*.safetensors
+*.pt
+*.pth
+*.bin
+*.arrow
+*.parquet
+*.ckpt
+*.onnx
+*.gguf
+*.npy
+*.npz
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.log
+*.lock
+
+models/**/model-*
+models/**/pytorch_model*
+models/**/optimizer*
+results/**/checkpoint-*/
