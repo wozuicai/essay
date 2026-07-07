@@ -96,7 +96,7 @@ def translate_supplement(target_lang: str, n_needed: int, seed: int = 42) -> Dat
     print(f"[NLLB] Loading {NLLB_MODEL}...")
     tokenizer = AutoTokenizer.from_pretrained(NLLB_MODEL)
     model = AutoModelForSeq2SeqLM.from_pretrained(
-        NLLB_MODEL, dtype=torch.bfloat16, device_map="auto"
+        NLLB_MODEL, torch_dtype=torch.bfloat16, device_map="auto"
     )
     model.eval()
     tgt_lang_id = tokenizer.convert_tokens_to_ids(nllb_tgt)

@@ -1,22 +1,29 @@
 # Core ML
-torch==2.3.0
+torch>=2.7.1
 torchvision
 torchaudio
-transformers==4.44.0
-peft==0.12.0
-accelerate==0.33.0
-deepspeed==0.14.4
-trl==0.9.6
+transformers>=4.57.0,<5.0.0
+peft>=0.17.1,<0.18.0
+accelerate>=1.0.0
+deepspeed>=0.14.4
+trl>=0.24.0,<0.25.0
+liger-kernel
+safetensors
+tqdm
 
 # Evaluation
 lm-eval                # EleutherAI harness (MMLU, HellaSwag, ARC, TruthfulQA, SIB-200, Belebele)
 sacrebleu              # FLORES BLEU / chrF
 unbabel-comet          # COMET translation quality
 langdetect             # LCB language confusion detection
+fasttext               # GlotLID / LCB language ID
+huggingface_hub
+openai                 # Azure/OpenAI judge client used by eval_extended.py
 
 # Data
-datasets==2.20.0
+datasets>=4.5.0,<5.0.0
 sentencepiece
+tokenizers>=0.22.2
 
 # Claude judge (MT-Bench)
 anthropic

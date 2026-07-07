@@ -21,33 +21,55 @@ from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from tqdm import tqdm
 
-sys.path.insert(0, "/root")
-from config import MODEL_CONFIG
-
 BASE_MODEL_PATH = "/root/project/models/Qwen3.5-9B-Base"
 
 # ── GPT-5.4 judge client ──────────────────────────────────────────────────────
 
 GPT_MODEL_ID = "gpt-5.4-2026-03-05"
-_gpt_cfg = MODEL_CONFIG[GPT_MODEL_ID]
-
-try:
-    from openai import AzureOpenAI
-    _gpt_client = AzureOpenAI(
-        api_key=_gpt_cfg["api_key"],
-        azure_endpoint=_gpt_cfg["BASE_URL"],
-        api_version=_gpt_cfg["API_VERSION"],
-    )
-except Exception as _e:
-    print(f"[warn] AzureOpenAI init failed ({_e}), falling back to OpenAI client")
-    from openai import OpenAI
-    _gpt_client = OpenAI(
-        api_key=_gpt_cfg["api_key"],
-        base_url=_gpt_cfg["BASE_URL"],
-    )
-
 _N_PARALLEL_WORKERS = int(os.environ.get("EVAL_PARALLEL_WORKERS", "1"))
-_QPM_DELAY = 60.0 / _gpt_cfg["qpm"] * _N_PARALLEL_WORKERS   # split shared QPM budget across concurrent processes
+_gpt_cfg = None
+_gpt_client = None
+
+
+def _load_gpt_config():
+    sys.path.insert(0, "/root")
+    try:
+        from config import MODEL_CONFIG
+    except Exception as exc:
+        raise RuntimeError(
+            "Aya GPT judge requires /root/config.py with MODEL_CONFIG. "
+            "Use --skip_aya or provide the judge config."
+        ) from exc
+    if GPT_MODEL_ID not in MODEL_CONFIG:
+        raise RuntimeError(f"MODEL_CONFIG missing {GPT_MODEL_ID}")
+    return MODEL_CONFIG[GPT_MODEL_ID]
+
+
+def _get_gpt_client():
+    global _gpt_cfg, _gpt_client
+    if _gpt_client is not None:
+        return _gpt_client, _gpt_cfg
+    _gpt_cfg = _load_gpt_config()
+    try:
+        from openai import AzureOpenAI
+        _gpt_client = AzureOpenAI(
+            api_key=_gpt_cfg["api_key"],
+            azure_endpoint=_gpt_cfg["BASE_URL"],
+            api_version=_gpt_cfg["API_VERSION"],
+        )
+    except Exception as exc:
+        print(f"[warn] AzureOpenAI init failed ({exc}), falling back to OpenAI client")
+        from openai import OpenAI
+        _gpt_client = OpenAI(
+            api_key=_gpt_cfg["api_key"],
+            base_url=_gpt_cfg["BASE_URL"],
+        )
+    return _gpt_client, _gpt_cfg
+
+
+def _qpm_delay():
+    _, cfg = _get_gpt_client()
+    return 60.0 / cfg["qpm"] * _N_PARALLEL_WORKERS
 
 
 # ── Model loading ─────────────────────────────────────────────────────────────
@@ -64,7 +86,7 @@ def load_model_and_tokenizer(model_path: str):
         base_name = adapter_cfg.get("base_model_name_or_path", BASE_MODEL_PATH)
         tokenizer = AutoTokenizer.from_pretrained(base_name, trust_remote_code=True)
         base_model = AutoModelForCausalLM.from_pretrained(
-            base_name, dtype=torch.bfloat16, trust_remote_code=True, device_map="auto"
+            base_name, torch_dtype=torch.bfloat16, trust_remote_code=True, device_map="auto"
         )
         donor = _get_donor_adapter(model_path)
         if donor:
@@ -74,7 +96,7 @@ def load_model_and_tokenizer(model_path: str):
     else:
         tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
         model = AutoModelForCausalLM.from_pretrained(
-            model_path, dtype=torch.bfloat16, trust_remote_code=True, device_map="auto"
+            model_path, torch_dtype=torch.bfloat16, trust_remote_code=True, device_map="auto"
         )
     model.eval()
     return model, tokenizer
@@ -107,9 +129,10 @@ _JUDGE_SYSTEM = (
 
 def gpt_judge(question: str, answer: str, retries: int = 3) -> float | None:
     user_msg = f"[Question]\n{question}\n\n[Assistant's Answer]\n{answer}"
+    client, _ = _get_gpt_client()
     for attempt in range(retries):
         try:
-            resp = _gpt_client.chat.completions.create(
+            resp = client.chat.completions.create(
                 model=GPT_MODEL_ID,
                 messages=[
                     {"role": "system", "content": _JUDGE_SYSTEM},
@@ -275,7 +298,7 @@ def eval_aya(model, tokenizer) -> dict:
             score = gpt_judge(instruction, pred)
             if score is not None:
                 scores.append(score)
-            time.sleep(_QPM_DELAY)
+            time.sleep(_qpm_delay())
 
         res = {
             "gpt_score": round(sum(scores) / len(scores), 4) if scores else None,

@@ -1377,9 +1377,9 @@ NFS 文件系统总容量 125GB。Layerwise + SSO-LoRA 各自 merge 三个语言
 取而代之的 `merge_eval` 流程：
 1. 加载 base 模型 + PEFT adapters（stage1_shared + stage2_lang）
 2. 调用 `model.merge_and_unload()`，在内存中完成 adapter 融合
-3. `merged.eval(); merged.cuda()`，直接在 GPU 上评测
+3. `merged.eval()` 后移动到可用设备（优先 CUDA，否则 CPU 预检可继续）
 4. 评测结束后只写入 JSON 结果文件（< 10KB）
-5. `del merged; torch.cuda.empty_cache()`
+5. `del merged`，如 CUDA 可用则 `torch.cuda.empty_cache()`
 
 ### 实现细节
 

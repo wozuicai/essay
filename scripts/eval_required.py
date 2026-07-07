@@ -67,7 +67,8 @@ def _load_moe_model(moe_dir: str):
     freeze_base(model)
     load_moe(model, moe_dir)
     model.eval()
-    model = model.cuda()
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model = model.to(device)
     return model, tokenizer, cfg
 
 

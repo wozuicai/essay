@@ -36,11 +36,13 @@ class MoELoRALinear(nn.Module):
             nn.init.kaiming_uniform_(self.lora_A[i].weight, a=math.sqrt(5))
             nn.init.zeros_(self.lora_B[i].weight)
         nn.init.zeros_(self.router.weight)  # start uniform gate
-        # match dtype of base layer (typically bfloat16)
+        # Match dtype/device of the wrapped layer. This keeps eval robust if the
+        # base model was loaded directly onto GPU or with a non-default device.
         target_dtype = base_layer.weight.dtype
-        self.lora_A.to(target_dtype)
-        self.lora_B.to(target_dtype)
-        self.router.to(target_dtype)
+        target_device = base_layer.weight.device
+        self.lora_A.to(device=target_device, dtype=target_dtype)
+        self.lora_B.to(device=target_device, dtype=target_dtype)
+        self.router.to(device=target_device, dtype=target_dtype)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         base = self.base_layer(x)

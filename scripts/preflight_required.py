@@ -69,7 +69,8 @@ def read_text_for_length(ex: dict) -> str:
     if "text" in ex:
         return ex.get("text") or ""
     lang = ex.get("language") or ex.get("lang") or "unknown"
-    return f"### Instruction:\n<|tgt_lang:{lang}|> {ex.get('instruction','')}\n\n### Response:\n{ex.get('response','')}"
+    response = ex.get("response") or ex.get("output") or ex.get("target") or ""
+    return f"### Instruction:\n<|tgt_lang:{lang}|> {ex.get('instruction','')}\n\n### Response:\n{response}"
 
 
 def check_data_file(path: Path, max_train_chars: int) -> tuple[list[str], dict]:

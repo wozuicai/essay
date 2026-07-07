@@ -287,8 +287,9 @@ def run_merge_eval(args):
     )
     merged = merged1_peft.merge_and_unload()
     merged.eval()
-    merged = merged.cuda()
-    print(f"[{lang}] Merge complete (shared→base, {lang}→base), model on GPU.")
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    merged = merged.to(device)
+    print(f"[{lang}] Merge complete (shared→base, {lang}→base), model on {device}.")
 
     sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from src.evaluation.english_eval import run_english_eval
@@ -323,7 +324,8 @@ def run_merge_eval(args):
     print(f"[{lang}] Eval saved → {eval_out}")
 
     del merged
-    torch.cuda.empty_cache()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
 
 def main():

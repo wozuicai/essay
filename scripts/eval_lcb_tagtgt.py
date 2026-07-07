@@ -117,7 +117,7 @@ def load_model_and_tokenizer(model_path):
         tokenizer.pad_token = tokenizer.eos_token
     base = AutoModelForCausalLM.from_pretrained(
         BASE_MODEL if is_peft else model_path,
-        dtype=torch.bfloat16,
+        torch_dtype=torch.bfloat16,
         device_map="auto",
         trust_remote_code=True,
     )

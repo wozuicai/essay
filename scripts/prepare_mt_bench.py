@@ -172,7 +172,7 @@ def main():
     print(f"\nLoading NLLB model: {NLLB_MODEL}")
     tokenizer = AutoTokenizer.from_pretrained(NLLB_MODEL)
     model = AutoModelForSeq2SeqLM.from_pretrained(
-        NLLB_MODEL, dtype=torch.bfloat16, device_map="auto"
+        NLLB_MODEL, torch_dtype=torch.bfloat16, device_map="auto"
     )
     model.eval()
     print("NLLB model loaded.\n")

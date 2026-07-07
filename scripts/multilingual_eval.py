@@ -10,12 +10,15 @@ Multilingual evaluation:
 import json
 import os
 import re
+import sys
 from typing import Optional, Tuple
 
 import lm_eval
 from datasets import load_dataset
 from sacrebleu.metrics import BLEU, CHRF
-from .english_eval import _lm_eval_model_args
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from src.evaluation.english_eval import _lm_eval_model_args
 
 
 def _load_model_and_tokenizer(model_path: str):
@@ -33,14 +36,14 @@ def _load_model_and_tokenizer(model_path: str):
         base_name = adapter_cfg.get("base_model_name_or_path", model_path)
         tokenizer = AutoTokenizer.from_pretrained(base_name, trust_remote_code=True)
         base_model = AutoModelForCausalLM.from_pretrained(
-            base_name, dtype=torch.bfloat16, trust_remote_code=True, device_map="auto"
+            base_name, torch_dtype=torch.bfloat16, trust_remote_code=True, device_map="auto"
         )
         from peft import PeftModel
         model = PeftModel.from_pretrained(base_model, model_path)
     else:
         tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
         model = AutoModelForCausalLM.from_pretrained(
-            model_path, dtype=torch.bfloat16, trust_remote_code=True, device_map="auto"
+            model_path, torch_dtype=torch.bfloat16, trust_remote_code=True, device_map="auto"
         )
 
     model.eval()
