@@ -24,7 +24,12 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.data.dataset_loader import load_sft_dataset
 from src.models.layerwise_lora import add_lang_top, setup_shared_bottom
-from src.training.trainer import build_sft_config
+from src.training.trainer import (
+    build_sft_config,
+    load_causal_lm,
+    load_tokenizer,
+    setup_training_environment,
+)
 
 N_LAYERS = 32  # Qwen3.5-9B has 32 transformer layers
 SPLIT = 16  # bottom 0-15 = shared, top 16-31 = lang-specific
@@ -78,14 +83,9 @@ def run_stage1(args, cfg):
             f"r={args.r}) ===\n"
         )
 
-    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = load_tokenizer(args.model)
 
-    base = AutoModelForCausalLM.from_pretrained(
-        args.model, torch_dtype=torch.bfloat16, trust_remote_code=True
-    )
-    base.config.use_cache = False
+    base = load_causal_lm(args.model, dtype=torch.bfloat16, use_cache=False)
 
     model = setup_shared_bottom(
         base,
@@ -145,16 +145,11 @@ def run_stage2(args, cfg):
             f"r={args.r}, 1 epoch) ===\n"
         )
 
-    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = load_tokenizer(args.model)
 
     from peft import PeftModel
 
-    base = AutoModelForCausalLM.from_pretrained(
-        args.model, torch_dtype=torch.bfloat16, trust_remote_code=True
-    )
-    base.config.use_cache = False
+    base = load_causal_lm(args.model, dtype=torch.bfloat16, use_cache=False)
     model = PeftModel.from_pretrained(
         base, os.path.join(stage1_dir, "shared"), adapter_name="shared"
     )
@@ -212,15 +207,11 @@ def run_merge(args):
         f"\n=== Merging [{lang}]: shared (layers 0-{SPLIT-1}) + lang (layers {SPLIT}-{N_LAYERS-1}) ==="
     )
 
-    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = load_tokenizer(args.model)
 
     from peft import PeftModel
 
-    base = AutoModelForCausalLM.from_pretrained(
-        args.model, torch_dtype=torch.bfloat16, trust_remote_code=True
-    )
+    base = load_causal_lm(args.model, dtype=torch.bfloat16, use_cache=False)
 
     # Step 1: merge shared adapter (layers 0-15) into base
     model = PeftModel.from_pretrained(
@@ -269,15 +260,11 @@ def run_merge_eval(args):
 
     print(f"\n=== Merge+Eval [{lang}] in memory (no disk save) ===")
 
-    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = load_tokenizer(args.model)
 
     from peft import PeftModel
 
-    base = AutoModelForCausalLM.from_pretrained(
-        args.model, torch_dtype=torch.bfloat16, trust_remote_code=True
-    )
+    base = load_causal_lm(args.model, dtype=torch.bfloat16, use_cache=False)
     # Step 1: merge shared adapter (layers 0-15) into base
     model = PeftModel.from_pretrained(
         base, os.path.join(stage1_dir, "shared"), adapter_name="shared"
@@ -324,6 +311,7 @@ def run_merge_eval(args):
 
 
 def main():
+    setup_training_environment()
     args = parse_args()
     cfg = OmegaConf.load(args.config)
 

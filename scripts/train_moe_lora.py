@@ -25,7 +25,12 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.data.dataset_loader import load_sft_dataset
 from src.models.moe_lora import freeze_base, save_moe, setup_moe_lora
-from src.training.trainer import build_sft_config
+from src.training.trainer import (
+    build_sft_config,
+    load_causal_lm,
+    load_tokenizer,
+    setup_training_environment,
+)
 
 TARGET_MODULES = [
     "q_proj",
@@ -57,6 +62,7 @@ def parse_args():
 
 
 def main():
+    setup_training_environment()
     args = parse_args()
     cfg = OmegaConf.load(args.config)
     local_rank = int(os.environ.get("LOCAL_RANK", 0))
@@ -67,14 +73,9 @@ def main():
             f"alpha={args.lora_alpha} ===\n"
         )
 
-    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = load_tokenizer(args.model)
 
-    model = AutoModelForCausalLM.from_pretrained(
-        args.model, torch_dtype=torch.bfloat16, trust_remote_code=True
-    )
-    model.config.use_cache = False
+    model = load_causal_lm(args.model, dtype=torch.bfloat16, use_cache=False)
 
     replaced = setup_moe_lora(
         model,

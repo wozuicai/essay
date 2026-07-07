@@ -27,7 +27,12 @@ from trl import SFTTrainer
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.data.dataset_loader import load_sft_dataset
 from src.models.lora_standard import setup_standard_lora
-from src.training.trainer import build_sft_config
+from src.training.trainer import (
+    build_sft_config,
+    load_causal_lm,
+    load_tokenizer,
+    setup_training_environment,
+)
 
 # ---------------------------------------------------------------------------
 # CLI
@@ -75,11 +80,7 @@ def parse_args():
 def load_teacher(base_path: str, adapter_path: str, device: torch.device):
     """Merge LoRA_en into base model → single frozen inference model."""
     print(f"  [teacher] loading base from {base_path} ...")
-    t = AutoModelForCausalLM.from_pretrained(
-        base_path,
-        torch_dtype=torch.bfloat16,
-        trust_remote_code=True,
-    )
+    t = load_causal_lm(base_path, dtype=torch.bfloat16, use_cache=False)
     print(f"  [teacher] loading adapter from {adapter_path} ...")
     t = PeftModel.from_pretrained(t, adapter_path)
     t = t.merge_and_unload()
@@ -289,12 +290,13 @@ class MIDTrainer(SFTTrainer):
 
 
 def main():
+    setup_training_environment()
     args = parse_args()
 
     # ── Probe-only mode (single GPU, no distributed) ────────────────────────
     if args.probe_only:
         device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-        tok = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
+        tok = load_tokenizer(args.model)
         tea = load_teacher(args.model, args.teacher_adapter, device)
         langs = args.probe_langs.split(",") if args.probe_langs else [args.train_lang]
         for lang in langs:
@@ -314,9 +316,7 @@ def main():
             f"α={args.alpha} β={args.beta} K={args.top_n_layers} P2={args.n_pos2} ==="
         )
 
-    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = load_tokenizer(args.model)
 
     # Each GPU process loads its own copy of the teacher (not DeepSpeed-wrapped)
     teacher = load_teacher(args.model, args.teacher_adapter, device)
@@ -334,11 +334,7 @@ def main():
 
     if local_rank == 0:
         print(f"\n[rank {local_rank}] Loading student base model ...")
-    student = AutoModelForCausalLM.from_pretrained(
-        args.model,
-        torch_dtype=torch.bfloat16,
-        trust_remote_code=True,
-    )
+    student = load_causal_lm(args.model, dtype=torch.bfloat16, use_cache=False)
     student.config.use_cache = False
     student = setup_standard_lora(student, cfg.peft)
 

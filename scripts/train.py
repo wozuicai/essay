@@ -21,7 +21,12 @@ from src.data.dataset_loader import load_sft_dataset
 from src.data.data_mixer import create_mixed_dataset
 from src.models.lora_standard import setup_standard_lora
 from src.models.lora_isolated import setup_isolated_lora, train_isolated_lora
-from src.training.trainer import build_sft_config
+from src.training.trainer import (
+    build_sft_config,
+    load_causal_lm,
+    load_tokenizer,
+    setup_training_environment,
+)
 
 SUPPORTED_METHODS = ["standard_lora", "full_ft", "mixed_lora", "isolated_lora"]
 
@@ -76,20 +81,17 @@ def _init_wandb(args, cfg):
 
 
 def main():
+    setup_training_environment()
     args = parse_args()
     cfg = OmegaConf.load(args.config)
 
     _init_wandb(args, cfg)
 
     print(f"Loading tokenizer from {args.model}...")
-    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = load_tokenizer(args.model)
 
     print(f"Loading base model from {args.model}...")
-    model_kwargs = {"dtype": torch.bfloat16, "trust_remote_code": True}
-    model = AutoModelForCausalLM.from_pretrained(args.model, **model_kwargs)
-    model.config.use_cache = False  # required for gradient checkpointing
+    model = load_causal_lm(args.model, dtype=torch.bfloat16, use_cache=False)
 
     # Prepare dataset (not needed for isolated_lora — it loads its own data internally)
     train_dataset = None

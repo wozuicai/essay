@@ -34,7 +34,12 @@ from trl import SFTTrainer
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.data.dataset_loader import load_sft_dataset
-from src.training.trainer import build_sft_config
+from src.training.trainer import (
+    build_sft_config,
+    load_causal_lm,
+    load_tokenizer,
+    setup_training_environment,
+)
 
 # ---------------------------------------------------------------------------
 # CLI
@@ -73,11 +78,7 @@ def parse_args():
 def load_teacher(base_path: str, adapter_path: str, device: torch.device):
     """Merge LoRA_donor into base → frozen teacher. Identical to MID."""
     print(f"  [teacher] loading base ...")
-    t = AutoModelForCausalLM.from_pretrained(
-        base_path,
-        torch_dtype=torch.bfloat16,
-        trust_remote_code=True,
-    )
+    t = load_causal_lm(base_path, dtype=torch.bfloat16, use_cache=False)
     print(f"  [teacher] merging donor adapter ...")
     t = PeftModel.from_pretrained(t, adapter_path)
     t = t.merge_and_unload()
@@ -101,11 +102,7 @@ def load_student(
     then merge_and_unload — no disk write.
     """
     print(f"  [student] loading base + donor adapter ...")
-    base = AutoModelForCausalLM.from_pretrained(
-        base_path,
-        torch_dtype=torch.bfloat16,
-        trust_remote_code=True,
-    )
+    base = load_causal_lm(base_path, dtype=torch.bfloat16, use_cache=False)
     peft_donor = PeftModel.from_pretrained(
         base, donor_adapter_path, adapter_name="donor"
     )
@@ -344,6 +341,7 @@ def _cos_sq(M1: torch.Tensor, M2: torch.Tensor) -> torch.Tensor:
 
 
 def main():
+    setup_training_environment()
     args = parse_args()
 
     local_rank = int(os.environ.get("LOCAL_RANK", 0))
@@ -357,9 +355,7 @@ def main():
             f"K={args.top_n_layers} P2={args.n_pos2} ===\n"
         )
 
-    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = load_tokenizer(args.model)
 
     # Teacher (same as MID)
     if local_rank == 0:

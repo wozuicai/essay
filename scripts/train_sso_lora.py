@@ -27,7 +27,12 @@ from src.models.sso_lora import (
     set_trainable_for_stage2,
     setup_shared,
 )
-from src.training.trainer import build_sft_config
+from src.training.trainer import (
+    build_sft_config,
+    load_causal_lm,
+    load_tokenizer,
+    setup_training_environment,
+)
 
 
 def parse_args():
@@ -107,14 +112,9 @@ def run_stage1(args, cfg):
             f"\n=== SSO-LoRA Stage 1: Shared LoRA (all layers, r={args.r_shared}, 4-lang) ===\n"
         )
 
-    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = load_tokenizer(args.model)
 
-    base = AutoModelForCausalLM.from_pretrained(
-        args.model, torch_dtype=torch.bfloat16, trust_remote_code=True
-    )
-    base.config.use_cache = False
+    base = load_causal_lm(args.model, dtype=torch.bfloat16, use_cache=False)
 
     model = setup_shared(
         base,
@@ -171,16 +171,11 @@ def run_stage2(args, cfg):
             f"(r={args.r_lang}, orth_weight={args.orth_weight}) ===\n"
         )
 
-    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = load_tokenizer(args.model)
 
     from peft import PeftModel
 
-    base = AutoModelForCausalLM.from_pretrained(
-        args.model, torch_dtype=torch.bfloat16, trust_remote_code=True
-    )
-    base.config.use_cache = False
+    base = load_causal_lm(args.model, dtype=torch.bfloat16, use_cache=False)
     model = PeftModel.from_pretrained(
         base, os.path.join(stage1_dir, "shared"), adapter_name="shared"
     )
@@ -246,15 +241,11 @@ def run_merge(args):
 
     print(f"\n=== SSO-LoRA Merge [{lang}]: shared (all layers) + lang (all layers) ===")
 
-    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = load_tokenizer(args.model)
 
     from peft import PeftModel
 
-    base = AutoModelForCausalLM.from_pretrained(
-        args.model, torch_dtype=torch.bfloat16, trust_remote_code=True
-    )
+    base = load_causal_lm(args.model, dtype=torch.bfloat16, use_cache=False)
 
     # Step 1: merge shared adapter into base
     model = PeftModel.from_pretrained(
@@ -304,15 +295,11 @@ def run_merge_eval(args):
 
     print(f"\n=== SSO-LoRA Merge+Eval [{lang}] in memory (no disk save) ===")
 
-    tokenizer = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = load_tokenizer(args.model)
 
     from peft import PeftModel
 
-    base = AutoModelForCausalLM.from_pretrained(
-        args.model, torch_dtype=torch.bfloat16, trust_remote_code=True
-    )
+    base = load_causal_lm(args.model, dtype=torch.bfloat16, use_cache=False)
     # Step 1: merge shared adapter into base
     model = PeftModel.from_pretrained(
         base, os.path.join(stage1_dir, "shared"), adapter_name="shared"
@@ -360,6 +347,7 @@ def run_merge_eval(args):
 
 
 def main():
+    setup_training_environment()
     args = parse_args()
     cfg = OmegaConf.load(args.config)
     os.makedirs(args.output_dir, exist_ok=True)
