@@ -22,8 +22,10 @@ set -euo pipefail
 export PATH=/home/tiger/.local/bin:$PATH
 export HF_HOME=/root/project/hf_cache
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
-export HF_DATASETS_OFFLINE=0
-export HF_HUB_OFFLINE=0
+export MAX_SEQ_LENGTH="${MAX_SEQ_LENGTH:-4096}"
+export MAX_TRAIN_CHARS="${MAX_TRAIN_CHARS:-12000}"
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-0}"
+export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-0}"
 
 cd /root/project
 mkdir -p logs results/tag_routing
@@ -39,8 +41,13 @@ EVAL_OUT="${RESULTS}/${EXP_NAME}_eval.json"
 LCB_OUT="${RESULTS}/${EXP_NAME}_lcb_chat.json"
 
 bash scripts/setup_accelerate.sh
+python scripts/preflight_required.py \
+    --model "$MODEL" \
+    --data_dir data/processed \
+    --langs en,yo,so,ha \
+    --max_train_chars "$MAX_TRAIN_CHARS"
 
-if [[ -f "$EVAL_OUT" && -f "$LCB_OUT" ]]; then
+if [[ -f "$EVAL_OUT" ]]; then
     echo "[$(date)] Tag routing eval already exists, skipping training."
 else
     # ── 训练 ──────────────────────────────────────────────────────────────────
@@ -57,34 +64,16 @@ else
         --no_wandb \
         2>&1 | tee "logs/tag_routing_train.log"
 
-    # ── 评测：Belebele + TruthfulQA MC1 ──────────────────────────────────────
-    echo "[$(date)] === Evaluating: tag_routing — Belebele + TruthfulQA ==="
-    python scripts/evaluate.py \
+    # ── 评测：English + Belebele + IrokoBench ───────────────────────────────
+    echo "[$(date)] === Evaluating: tag_routing — required suite ==="
+    python scripts/eval_required.py \
         --model_path  "$OUT_DIR" \
-        --tasks       all \
-        --en_tasks    truthfulqa_mc1 \
         --languages   en,yo,so,ha \
-        --skip_flores \
         --inject_lang_tag \
         --output      "$EVAL_OUT" \
         2>&1 | tee "logs/tag_routing_eval.log"
 
-    # ── 评测：IrokoBench MCQ ──────────────────────────────────────────────────
-    echo "[$(date)] === Evaluating: tag_routing — IrokoBench MCQ ==="
-    python scripts/eval_extended.py \
-        --model_path  "$OUT_DIR" \
-        --result_json "$EVAL_OUT" \
-        --only_iroko_mcq \
-        --inject_lang_tag \
-        2>&1 | tee "logs/tag_routing_iroko.log"
-
-    # ── 评测：LCB-chat ───────────────────────────────────────────────────────
-    echo "[$(date)] === Evaluating: tag_routing — LCB-chat ==="
-    python scripts/eval_lcb_chat.py \
-        --model_path  "$OUT_DIR" \
-        --langs       yo,so,ha \
-        --output      "$LCB_OUT" \
-        2>&1 | tee "logs/tag_routing_lcb_chat.log"
+    bash scripts/cleanup_large_artifacts.sh "$OUT_DIR"
 fi
 
 # ── 汇总（与其他实验对比）────────────────────────────────────────────────────

@@ -15,8 +15,10 @@ set -euo pipefail
 export PATH=/home/tiger/.local/bin:$PATH
 export HF_HOME=/root/project/hf_cache
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
-export HF_DATASETS_OFFLINE=0
-export HF_HUB_OFFLINE=0
+export MAX_SEQ_LENGTH="${MAX_SEQ_LENGTH:-4096}"
+export MAX_TRAIN_CHARS="${MAX_TRAIN_CHARS:-12000}"
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-0}"
+export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-0}"
 
 cd /root/project
 mkdir -p logs results/mix_en
@@ -28,6 +30,11 @@ EXP_CFG="configs/experiments/lis_matrix.yaml"
 RESULTS="results/mix_en"
 
 bash scripts/setup_accelerate.sh
+python scripts/preflight_required.py \
+    --model "$MODEL" \
+    --data_dir data/processed \
+    --langs en,yo,so,ha \
+    --max_train_chars "$MAX_TRAIN_CHARS"
 
 for LANG in yo so ha; do
     EXP_NAME="mix_${MODEL_SHORT}_en_${LANG}"
@@ -53,24 +60,15 @@ for LANG in yo so ha; do
         --no_wandb \
         2>&1 | tee "logs/mix_en_${LANG}_train.log"
 
-    # ── 评测：Belebele + TruthfulQA MC1 ──────────────────────────────────────
-    echo "[$(date)] === Evaluating: mix(en+${LANG}) — Belebele + TruthfulQA ==="
-    python scripts/evaluate.py \
+    # ── 评测：English + Belebele + IrokoBench ───────────────────────────────
+    echo "[$(date)] === Evaluating: mix(en+${LANG}) — required suite ==="
+    python scripts/eval_required.py \
         --model_path  "$OUT_DIR" \
-        --tasks       all \
-        --en_tasks    truthfulqa_mc1 \
         --languages   en,yo,so,ha \
-        --skip_flores \
         --output      "$EVAL_OUT" \
         2>&1 | tee "logs/mix_en_${LANG}_eval.log"
 
-    # ── 评测：IrokoBench MCQ ──────────────────────────────────────────────────
-    echo "[$(date)] === Evaluating: mix(en+${LANG}) — IrokoBench MCQ ==="
-    python scripts/eval_extended.py \
-        --model_path  "$OUT_DIR" \
-        --result_json "$EVAL_OUT" \
-        --only_iroko_mcq \
-        2>&1 | tee "logs/mix_en_${LANG}_iroko.log"
+    bash scripts/cleanup_large_artifacts.sh "$OUT_DIR"
 
     echo "[$(date)] === Done: mix(en+${LANG}) ==="
 done

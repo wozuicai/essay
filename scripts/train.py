@@ -12,19 +12,23 @@ import sys
 
 import torch
 from omegaconf import OmegaConf
-from transformers import AutoModelForCausalLM, AutoTokenizer
 from trl import SFTTrainer
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.data.dataset_loader import load_sft_dataset
 from src.data.data_mixer import create_mixed_dataset
+from src.data.trl_dataset_utils import prepare_dataset_for_trl
 from src.models.lora_standard import setup_standard_lora
 from src.models.lora_isolated import setup_isolated_lora, train_isolated_lora
 from src.training.trainer import (
     build_sft_config,
+    build_trainer_kwargs,
     load_causal_lm,
     load_tokenizer,
+    require_full_model_save_allowed,
+    save_run_config,
+    save_training_metadata,
     setup_training_environment,
 )
 
@@ -93,7 +97,7 @@ def main():
     print(f"Loading base model from {args.model}...")
     model = load_causal_lm(args.model, dtype=torch.bfloat16, use_cache=False)
 
-    # Prepare dataset (not needed for isolated_lora — it loads its own data internally)
+    # Prepare dataset (isolated_lora has two internal stages, prepared below).
     train_dataset = None
     if args.method != "isolated_lora":
         if args.mix_all_langs:
@@ -124,39 +128,52 @@ def main():
             train_dataset = load_sft_dataset(
                 args.data_dir, args.train_lang, n_samples=n_samples
             )
+        train_dataset = prepare_dataset_for_trl(
+            train_dataset, name=f"{args.method}_{args.train_lang}"
+        )
         print(f"Training dataset size: {len(train_dataset)}")
 
     sft_cfg = build_sft_config(cfg, args.output_dir)
 
     if args.method == "full_ft":
+        require_full_model_save_allowed("train.py --method full_ft")
         for param in model.parameters():
             param.requires_grad = True
 
-        trainer = SFTTrainer(
+        trainer = SFTTrainer(**build_trainer_kwargs(
+            SFTTrainer,
             model=model,
             processing_class=tokenizer,
             train_dataset=train_dataset,
             args=sft_cfg,
-        )
-        trainer.train()
+        ))
+        train_result = trainer.train()
+        trainer.save_model(args.output_dir)
 
     elif args.method in ("standard_lora", "mixed_lora"):
         peft_cfg_node = cfg.peft if "peft" in cfg else cfg.methods.standard_lora
         model = setup_standard_lora(model, peft_cfg_node)
 
-        trainer = SFTTrainer(
+        trainer = SFTTrainer(**build_trainer_kwargs(
+            SFTTrainer,
             model=model,
             processing_class=tokenizer,
             train_dataset=train_dataset,
             args=sft_cfg,
-        )
-        trainer.train()
+        ))
+        train_result = trainer.train()
+        trainer.save_model(args.output_dir)
 
     elif args.method == "isolated_lora":
+        require_full_model_save_allowed("train.py --method isolated_lora final merge")
         isolated_cfg = cfg.methods.isolated_lora
         lang = args.train_lang
-        en_data = load_sft_dataset(args.data_dir, "en")
-        lang_data = load_sft_dataset(args.data_dir, lang)
+        en_data = prepare_dataset_for_trl(
+            load_sft_dataset(args.data_dir, "en"), name="isolated_stage1_en"
+        )
+        lang_data = prepare_dataset_for_trl(
+            load_sft_dataset(args.data_dir, lang), name=f"isolated_{lang}"
+        )
 
         model = setup_isolated_lora(
             model, lang, isolated_cfg.shared_r, isolated_cfg.lang_r
@@ -172,10 +189,12 @@ def main():
         )  # PeftModel.set_adapter rejects list in 0.19.1
         model = model.merge_and_unload()
         print("Merge complete.")
+        train_result = None
 
     # Save final model and tokenizer
     os.makedirs(args.output_dir, exist_ok=True)
-    model.save_pretrained(args.output_dir)
+    if args.method == "isolated_lora":
+        model.save_pretrained(args.output_dir)
     tokenizer.save_pretrained(args.output_dir)
 
     n_samples_meta = (
@@ -190,9 +209,14 @@ def main():
         "train_samples": n_samples_meta,
         "english_ratio": args.english_ratio,
         "config": str(args.config),
+        "trainer_backend": "trl_prompt_completion",
+        "completion_only_loss": True,
+        "packing": bool(getattr(sft_cfg, "packing", False)),
     }
-    with open(os.path.join(args.output_dir, "training_metadata.json"), "w") as f:
-        json.dump(metadata, f, indent=2)
+    if train_result is not None:
+        metadata["train_metrics"] = getattr(train_result, "metrics", {})
+    save_training_metadata(args.output_dir, metadata)
+    save_run_config(args.output_dir, args)
 
     print(f"\nTraining complete. Model saved to {args.output_dir}")
 

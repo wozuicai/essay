@@ -1,21 +1,17 @@
-"""
-Shared training utilities for all experiment scripts.
+"""Shared training utilities for all experiment scripts.
 
-The project has several experiment-specific trainers (standard LoRA, MID, DSCT,
-MoE-LoRA, SSO-LoRA, layerwise LoRA).  This module centralizes the common TRL SFT
-settings so every trainer consistently uses the B200 worker setup requested in
-/root/action plan:
+The train scripts now follow the World20K TRL LoRA SFT contract:
 
-- FlashAttention 2 via attn_implementation="flash_attention_2"
-- Liger kernel when the installed TRL version exposes use_liger_kernel
-- bf16 + gradient checkpointing
-- safe local scratch/cache directories on /mnt/local/localcache00 when present
-- no answer-weighted loss customization
+- datasets are prompt/completion rows;
+- TRL masks prompt tokens with `completion_only_loss=True`;
+- long samples use `truncation_mode="keep_end"`;
+- intermediate checkpoints are disabled by default to avoid large files.
 """
 
 from __future__ import annotations
 
 import inspect
+import json
 import os
 from typing import Any, Dict, Optional
 
@@ -105,6 +101,7 @@ def load_tokenizer(model_path: str):
     tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "right"
     return tokenizer
 
 
@@ -150,57 +147,154 @@ def load_causal_lm(
             raise
     if use_cache is not None and hasattr(model, "config"):
         model.config.use_cache = use_cache
+    if use_cache is False:
+        if hasattr(model, "gradient_checkpointing_enable"):
+            model.gradient_checkpointing_enable()
+        if hasattr(model, "enable_input_require_grads"):
+            model.enable_input_require_grads()
     return model
 
 
-def build_sft_config(cfg, output_dir: str, max_seq_length: int = None) -> SFTConfig:
+def build_sft_config(
+    cfg,
+    output_dir: str,
+    max_seq_length: int = None,
+    *,
+    no_eval: bool = True,
+    packing: Optional[bool] = None,
+    completion_only_loss: bool = True,
+    truncation_mode: str = "keep_end",
+) -> SFTConfig:
     """
-    Build a TRL SFTConfig while filtering arguments for the installed TRL version.
+    Build a TRL SFTConfig aligned with `world20k_lora_sft/scripts/trl_lora_sft.py`.
 
-    Different workers have used different TRL releases; inspect the constructor so
-    newer options such as use_liger_kernel are enabled when available but do not
-    break older installs.
+    We intentionally fail fast when the installed TRL lacks prompt-completion
+    loss or keep-end truncation; silently falling back would change the loss.
     """
     t = cfg.training
-    seq_len = max_seq_length or t.get("max_seq_length", 2048)
+    env_seq_len = os.environ.get("MAX_SEQ_LENGTH", "").strip()
+    seq_len = int(env_seq_len) if env_seq_len else (max_seq_length or t.get("max_seq_length", 2048))
     report_to = _get_report_to()
+    sft_params = inspect.signature(SFTConfig.__init__).parameters
+    use_packing = strtobool_env("PACKING", True) if packing is None else packing
+    requested_save_strategy = os.environ.get("SAVE_STRATEGY", "no")
+    save_strategy = (
+        requested_save_strategy
+        if strtobool_env("ALLOW_TRAIN_CHECKPOINTS", False)
+        else "no"
+    )
+    if requested_save_strategy != "no" and save_strategy == "no":
+        print(
+            f"[trainer] Ignoring SAVE_STRATEGY={requested_save_strategy!r}; "
+            "export ALLOW_TRAIN_CHECKPOINTS=1 to enable intermediate checkpoints."
+        )
 
     kwargs: Dict[str, Any] = {
         "output_dir": output_dir,
         "num_train_epochs": t.num_epochs,
         "per_device_train_batch_size": t.per_device_train_batch_size,
+        "per_device_eval_batch_size": t.get("per_device_eval_batch_size", 1),
         "gradient_accumulation_steps": t.gradient_accumulation_steps,
         "learning_rate": t.learning_rate,
         "lr_scheduler_type": t.lr_scheduler,
         "warmup_ratio": t.warmup_ratio,
+        "warmup_steps": t.get("warmup_steps", 0),
+        "weight_decay": t.get("weight_decay", 0.0),
         "bf16": True,
         "fp16": False,
         "logging_steps": t.get("logging_steps", 100),
         "save_steps": t.get("save_steps", 500),
-        "save_total_limit": t.get("save_total_limit", 1),
+        "eval_steps": t.get("eval_steps", 500),
+        "save_total_limit": 1,
+        "save_strategy": save_strategy,
         "gradient_checkpointing": True,
         "dataloader_num_workers": int(os.environ.get("DATALOADER_NUM_WORKERS", "4")),
-        "remove_unused_columns": False,
+        "remove_unused_columns": True,
         "report_to": report_to,
         "seed": t.get("seed", 42),
+        "ddp_find_unused_parameters": False,
+        "group_by_length": strtobool_env("GROUP_BY_LENGTH", True),
+        "deepspeed": os.environ.get("DEEPSPEED_CONFIG") or None,
         "max_length": seq_len,
         "max_seq_length": seq_len,
-        "dataset_text_field": "text",
-        "packing": strtobool_env("PACKING", False),
+        "packing": use_packing,
+        "completion_only_loss": completion_only_loss,
+        "truncation_mode": truncation_mode,
         "use_liger_kernel": get_use_liger_kernel(),
     }
 
-    sig = inspect.signature(SFTConfig.__init__)
-    params = sig.parameters
-    if "eval_strategy" in params:
-        kwargs["eval_strategy"] = "no"
-    elif "evaluation_strategy" in params:
-        kwargs["evaluation_strategy"] = "no"
+    if "eval_strategy" in sft_params:
+        kwargs["eval_strategy"] = "no" if no_eval else "steps"
+    elif "evaluation_strategy" in sft_params:
+        kwargs["evaluation_strategy"] = "no" if no_eval else "steps"
 
-    # Some TRL versions support completion_only_loss only for prompt-completion
-    # datasets. Our current processed data uses a single text field, so do not set it.
+    if "completion_only_loss" not in sft_params:
+        raise RuntimeError(
+            "Installed TRL does not expose SFTConfig.completion_only_loss. "
+            "Install/upgrade TRL before running these prompt-completion jobs."
+        )
+    if "truncation_mode" not in sft_params:
+        raise RuntimeError(
+            "Installed TRL does not expose SFTConfig.truncation_mode. "
+            "Install/upgrade TRL or this refactor would not match World20K."
+        )
+    if "max_length" not in sft_params and "max_seq_length" not in sft_params:
+        raise RuntimeError("Installed TRL SFTConfig has no max_length/max_seq_length parameter.")
+    if use_packing and "packing" not in sft_params:
+        raise RuntimeError("Installed TRL SFTConfig has no packing parameter, but packing is enabled.")
+    if get_use_liger_kernel() and "use_liger_kernel" not in sft_params and "use_liger" not in sft_params:
+        raise RuntimeError(
+            "Installed TRL SFTConfig has no use_liger_kernel/use_liger parameter. "
+            "Install liger-kernel + recent TRL, or export USE_LIGER_KERNEL=0."
+        )
+
+    if "use_liger_kernel" not in sft_params and "use_liger" in sft_params:
+        kwargs["use_liger"] = kwargs.pop("use_liger_kernel")
+    elif "use_liger_kernel" not in sft_params:
+        kwargs.pop("use_liger_kernel", None)
+
+    if "max_length" not in sft_params:
+        kwargs.pop("max_length", None)
+    if "max_seq_length" not in sft_params:
+        kwargs.pop("max_seq_length", None)
+    if "packing" not in sft_params:
+        kwargs.pop("packing", None)
+
     filtered = _filter_kwargs(SFTConfig, kwargs)
     return SFTConfig(**filtered)
+
+
+def build_trainer_kwargs(trainer_cls, **kwargs) -> Dict[str, Any]:
+    """Filter trainer kwargs for TRL versions that use tokenizer or processing_class."""
+    params = inspect.signature(trainer_cls.__init__).parameters
+    if "processing_class" in kwargs and "tokenizer" not in kwargs and "tokenizer" in params:
+        kwargs["tokenizer"] = kwargs["processing_class"]
+    return _filter_kwargs(trainer_cls, kwargs)
+
+
+def save_training_metadata(output_dir: str, metadata: Dict[str, Any]) -> None:
+    os.makedirs(output_dir, exist_ok=True)
+    with open(os.path.join(output_dir, "training_metadata.json"), "w", encoding="utf-8") as f:
+        json.dump(metadata, f, indent=2, ensure_ascii=False)
+
+
+def save_run_config(output_dir: str, args: Any) -> None:
+    os.makedirs(output_dir, exist_ok=True)
+    data = vars(args) if hasattr(args, "__dict__") else dict(args)
+    with open(os.path.join(output_dir, "run_config.json"), "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+
+def require_full_model_save_allowed(context: str) -> None:
+    """Guard paths that would write a merged/full base model to disk."""
+    if strtobool_env("ALLOW_FULL_MODEL_SAVE", False):
+        return
+    raise RuntimeError(
+        f"{context} would save a merged/full model checkpoint. This is disabled by "
+        "default to avoid writing huge weights. Use the LoRA adapter path or "
+        "merge_eval in-memory path instead. To override intentionally, export "
+        "ALLOW_FULL_MODEL_SAVE=1."
+    )
 
 
 def _filter_kwargs(cls, kwargs: Dict[str, Any]) -> Dict[str, Any]:

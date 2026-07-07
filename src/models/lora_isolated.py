@@ -20,7 +20,7 @@ from omegaconf import OmegaConf
 from peft import LoraConfig, TaskType, get_peft_model
 from trl import SFTTrainer
 
-from src.training.trainer import build_sft_config
+from src.training.trainer import build_sft_config, build_trainer_kwargs
 
 
 def setup_isolated_lora(base_model, lang_name: str, shared_r: int = 8, lang_r: int = 8):
@@ -117,12 +117,13 @@ def train_isolated_lora(model, tokenizer, en_data, lang_data, lang_name: str, cf
         cfg_s1 = OmegaConf.create(cfg_s1)
         stage1_sft_cfg = build_sft_config(cfg_s1, stage1_output)
 
-        SFTTrainer(
+        SFTTrainer(**build_trainer_kwargs(
+            SFTTrainer,
             model=model,
             processing_class=tokenizer,
             train_dataset=stage1_data,
             args=stage1_sft_cfg,
-        ).train()
+        )).train()
         print("Stage 1 complete.")
 
     # -------- Stage 2: lang-specific adapter on lang only --------
@@ -136,10 +137,11 @@ def train_isolated_lora(model, tokenizer, en_data, lang_data, lang_name: str, cf
     cfg_s2 = OmegaConf.create(cfg_s2)
     stage2_sft_cfg = build_sft_config(cfg_s2, os.path.join(output_dir, f"stage2_{lang_name}"))
 
-    SFTTrainer(
+    SFTTrainer(**build_trainer_kwargs(
+        SFTTrainer,
         model=model,
         processing_class=tokenizer,
         train_dataset=lang_data,
         args=stage2_sft_cfg,
-    ).train()
+    )).train()
     print(f"Stage 2 [{lang_name}] complete.")

@@ -24,9 +24,11 @@ from trl import SFTTrainer
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.data.dataset_loader import load_sft_dataset
+from src.data.trl_dataset_utils import prepare_dataset_for_trl
 from src.models.moe_lora import freeze_base, save_moe, setup_moe_lora
 from src.training.trainer import (
     build_sft_config,
+    build_trainer_kwargs,
     load_causal_lm,
     load_tokenizer,
     setup_training_environment,
@@ -92,7 +94,10 @@ def main():
 
     all_langs = ["en", "yo", "so", "ha"]
     parts = [load_sft_dataset(args.data_dir, l) for l in all_langs]
-    train_dataset = concatenate_datasets(parts).shuffle(seed=42)
+    train_dataset = prepare_dataset_for_trl(
+        concatenate_datasets(parts).shuffle(seed=42),
+        name="moe_lora_all_langs",
+    )
     if local_rank == 0:
         sizes = " + ".join(f"{len(p)} {l}" for l, p in zip(all_langs, parts))
         print(f"Dataset: {sizes} = {len(train_dataset)} total")
@@ -101,12 +106,13 @@ def main():
     # Disable mid-training checkpoint saves — we save MoE weights manually after training
     sft_cfg.save_strategy = "no"
 
-    trainer = SFTTrainer(
+    trainer = SFTTrainer(**build_trainer_kwargs(
+        SFTTrainer,
         model=model,
         processing_class=tokenizer,
         train_dataset=train_dataset,
         args=sft_cfg,
-    )
+    ))
     trainer.train()
 
     # Save only the MoE-LoRA weights (not the full frozen base)

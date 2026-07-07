@@ -4,10 +4,18 @@
 __pycache__/
 *.py[cod]
 *.pyo
+.DS_Store
+
+# Local runtime mirror for /root/project. Do not commit this workspace copy.
+root/
+world20k_lora_sft/
 
 logs/
 hf_cache/
 .cache/
+/data/**/*.jsonl
+/data/**/*.arrow
+/models/
 
 *.safetensors
 *.pt

@@ -18,8 +18,10 @@ set -euo pipefail
 
 export PATH=/home/tiger/.local/bin:$PATH
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
-export HF_DATASETS_OFFLINE=1
-export HF_HUB_OFFLINE=1
+export MAX_SEQ_LENGTH="${MAX_SEQ_LENGTH:-4096}"
+export MAX_TRAIN_CHARS="${MAX_TRAIN_CHARS:-12000}"
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-0}"
+export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-0}"
 # Fix CUDA 803: compat dir (575.x) in ldconfig overrides the real driver (580.x)
 export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libcuda.so.580.105.08
 export TRITON_CACHE_DIR=/tmp/triton_cache
@@ -44,6 +46,11 @@ else
     ACCEL_CFG_STAGE2="configs/accelerate_2gpu_ddp.yaml"
 fi
 echo "[$(date -u '+%H:%M:%S UTC')] CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-all}, accel=${ACCEL_CFG}, step=${STEP}"
+python scripts/preflight_required.py \
+    --model "$MODEL" \
+    --data_dir data/processed \
+    --langs en,yo,so,ha \
+    --max_train_chars "$MAX_TRAIN_CHARS"
 
 # ── Stage 1: 共享 LoRA（全层，4-lang，2 epoch）────────────────────────────
 if [[ "$STEP" == "stage1" ]]; then
@@ -111,6 +118,7 @@ if [[ "$STEP" == "stage2" ]]; then
                 --stage1_dir  "$STAGE1_DIR" \
                 --eval_output "$EVAL_OUT" \
                 2>&1 | tee "logs/sso_lora_eval_${LANG}.log"
+            bash scripts/cleanup_large_artifacts.sh "$STAGE2_DIR"
             echo "[$(date -u '+%H:%M:%S UTC')] ${LANG} eval done → ${EVAL_OUT}"
         fi
     done

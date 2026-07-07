@@ -10,6 +10,8 @@ set -euo pipefail
 export PATH=/home/tiger/.local/bin:$PATH
 export HF_HOME=/root/project/hf_cache
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+export MAX_SEQ_LENGTH="${MAX_SEQ_LENGTH:-4096}"
+export MAX_TRAIN_CHARS="${MAX_TRAIN_CHARS:-12000}"
 
 cd /root/project
 mkdir -p logs results/phase2_v2
@@ -22,6 +24,11 @@ BASELINE_OUT="results/phase2_v2/${MODEL_SHORT}_baseline.json"
 
 echo "[$(date)] Setting up accelerate config..."
 bash scripts/setup_accelerate.sh
+python scripts/preflight_required.py \
+    --model "$MODEL" \
+    --data_dir data/processed \
+    --langs en,yo,so,ha \
+    --max_train_chars "$MAX_TRAIN_CHARS"
 
 # ── Step 1: Baseline (base model, no SFT) ─────────────────────────────────────
 
@@ -29,20 +36,18 @@ if [[ -f "$BASELINE_OUT" ]]; then
     echo "[$(date)] Baseline already exists, skipping."
 else
     echo "[$(date)] === Baseline: base model on en+yo+so+ha ==="
-    python scripts/evaluate.py \
+    python scripts/eval_required.py \
         --model_path "$MODEL" \
-        --tasks all \
-        --languages en,yo,so,ha \
-        --skip_flores \
-        --output "$BASELINE_OUT" \
+        --languages  en,yo,so,ha \
+        --output     "$BASELINE_OUT" \
         2>&1 | tee logs/phase2_v2_baseline.log
     echo "[$(date)] Baseline done."
 fi
 
 # ── Step 2: SFT + eval for each language (sequential, 4 GPUs each) ────────────
 
-export HF_DATASETS_OFFLINE=1
-export HF_HUB_OFFLINE=1
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-0}"
+export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-0}"
 
 for LANG in en yo so ha; do
     EXP_NAME="lis_${MODEL_SHORT}_train_${LANG}"
@@ -67,13 +72,13 @@ for LANG in en yo so ha; do
         2>&1 | tee "logs/phase2_v2_${LANG}_train.log"
 
     echo "[$(date)] === Evaluating: $LANG ==="
-    python scripts/evaluate.py \
+    python scripts/eval_required.py \
         --model_path "$OUT_DIR" \
-        --tasks all \
-        --languages en,yo,so,ha \
-        --skip_flores \
-        --output "$EVAL_OUT" \
+        --languages  en,yo,so,ha \
+        --output     "$EVAL_OUT" \
         2>&1 | tee "logs/phase2_v2_${LANG}_eval.log"
+
+    bash scripts/cleanup_large_artifacts.sh "$OUT_DIR"
 
     echo "[$(date)] === Done: $LANG ==="
 done

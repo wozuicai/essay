@@ -1,112 +1,154 @@
 #!/usr/bin/env python3
+"""Dataset utilities for TRL prompt-completion SFT.
+
+The World20K reference script trains with TRL prompt/completion examples and
+`completion_only_loss=True`.  This module makes the project datasets follow the
+same contract while still accepting the older local JSONL shape:
+
+- `messages`: OpenAI-style chat rows, last message must be assistant.
+- `instruction` + `response`: converted to the project SFT prompt template.
+- `text`: split at `### Response:` as a compatibility fallback.
+- `prompt` + `completion`: kept as-is.
 """
-Dataset utilities for TRL SFT training.
 
-Converts datasets to prompt-completion format for TRL SFTTrainer.
-"""
+from __future__ import annotations
 
-from typing import Optional
+import re
+import os
+from typing import Any, Iterable
 
 
-def convert_to_prompt_completion(dataset, thinking_mode: str = "original"):
+MODE_SUFFIX_RE = re.compile(r"/(no_think|think)\s*$")
+RESPONSE_MARKERS = ("### Response:\n", "### Response:", "### 回答：\n", "### 回答：")
+
+
+def set_last_user_mode(messages: Iterable[dict[str, Any]], mode: str):
+    """Apply `/think` or `/no_think` to the last user turn, matching World20K."""
+    if mode == "original":
+        return [dict(m) for m in messages]
+    rows = [dict(m) for m in messages]
+    for message in reversed(rows):
+        if message.get("role") != "user":
+            continue
+        content = message.get("content", "")
+        base = MODE_SUFFIX_RE.sub("", content).rstrip()
+        message["content"] = f"{base}/{mode}"
+        break
+    return rows
+
+
+def split_prompt_completion_messages(messages, thinking_mode: str = "original"):
+    rows = set_last_user_mode(messages, thinking_mode)
+    if not rows or rows[-1].get("role") != "assistant":
+        raise ValueError("Prompt-completion SFT expects the last message to be assistant.")
+    return rows[:-1], [rows[-1]]
+
+
+def split_prompt_completion_text(text: str):
+    for marker in RESPONSE_MARKERS:
+        if marker in text:
+            head, tail = text.split(marker, 1)
+            return head + marker, tail
+    raise ValueError("Could not split text sample: missing a supported response marker.")
+
+
+def prompt_from_instruction(example: dict[str, Any]) -> tuple[str, str]:
+    instruction = example.get("instruction") or example.get("input") or ""
+    response = example.get("response") or example.get("output") or example.get("target") or ""
+    language = example.get("language") or example.get("lang") or example.get("lang_code") or "unknown"
+    prompt = f"### Instruction:\n<|tgt_lang:{language}|> {instruction}\n\n### Response:\n"
+    return prompt, response
+
+
+def prepare_dataset_for_trl(dataset, thinking_mode: str = "original", name: str = "train"):
+    """Return a TRL-ready dataset with exactly `prompt` and `completion` columns."""
+    columns = set(dataset.column_names)
+
+    if {"prompt", "completion"}.issubset(columns):
+        drop = [col for col in dataset.column_names if col not in ("prompt", "completion")]
+        result = dataset.remove_columns(drop) if drop else dataset
+        return filter_by_char_length(result, name)
+
+    if "messages" in columns:
+        def _map_messages(batch):
+            prompts, completions = [], []
+            for messages in batch["messages"]:
+                prompt, completion = split_prompt_completion_messages(messages, thinking_mode)
+                prompts.append(prompt)
+                completions.append(completion)
+            return {"prompt": prompts, "completion": completions}
+
+        result = dataset.map(
+            _map_messages,
+            batched=True,
+            remove_columns=dataset.column_names,
+            desc=f"format_{name}_messages_prompt_completion",
+        )
+        return filter_by_char_length(result, name)
+
+    if "instruction" in columns and ({"response", "output", "target"} & columns):
+        def _map_instruction(batch):
+            prompts, completions = [], []
+            batch_size = len(batch["instruction"])
+            for idx in range(batch_size):
+                row = {col: batch[col][idx] for col in batch.keys()}
+                prompt, completion = prompt_from_instruction(row)
+                prompts.append(prompt)
+                completions.append(completion)
+            return {"prompt": prompts, "completion": completions}
+
+        result = dataset.map(
+            _map_instruction,
+            batched=True,
+            remove_columns=dataset.column_names,
+            desc=f"format_{name}_instruction_prompt_completion",
+        )
+        return filter_by_char_length(result, name)
+
+    if "text" in columns:
+        def _map_text(batch):
+            prompts, completions = [], []
+            for text in batch["text"]:
+                prompt, completion = split_prompt_completion_text(text)
+                prompts.append(prompt)
+                completions.append(completion)
+            return {"prompt": prompts, "completion": completions}
+
+        result = dataset.map(
+            _map_text,
+            batched=True,
+            remove_columns=dataset.column_names,
+            desc=f"format_{name}_text_prompt_completion",
+        )
+        return filter_by_char_length(result, name)
+
+    raise ValueError(
+        "Unsupported SFT dataset schema. Expected messages, prompt/completion, "
+        "instruction/response, or text columns; got "
+        f"{dataset.column_names}"
+    )
+
+
+def filter_by_char_length(dataset, name: str = "train"):
+    """Drop pathological long samples before TRL tokenization.
+
+    Exact token filtering needs the runtime tokenizer, but a character cap catches
+    data corruption and multi-megabyte rows early. Set `MAX_TRAIN_CHARS<=0` to
+    disable; launchers default it to 12000 based on the current yo/so/ha tails.
     """
-    Convert a dataset with 'text' field to prompt-completion format.
+    raw = os.environ.get("MAX_TRAIN_CHARS", "").strip()
+    if not raw:
+        return dataset
+    max_chars = int(raw)
+    if max_chars <= 0:
+        return dataset
 
-    Assumes the dataset has a 'text' field with full conversation.
-    For SFT datasets, typically splits at the last assistant response.
-
-    Args:
-        dataset: HuggingFace dataset with 'text' field
-        thinking_mode: Mode for thinking tags (not used in our case, kept for compatibility)
-
-    Returns:
-        Dataset with 'prompt' and 'completion' fields
-    """
-    def split_text(example):
-        text = example["text"]
-
-        # Try to split at common markers
-        if "### Response:" in text:
-            parts = text.split("### Response:", 1)
-            prompt = parts[0] + "### Response:"
-            completion = parts[1] if len(parts) > 1 else ""
-        elif "### 回答：" in text:
-            parts = text.split("### 回答：", 1)
-            prompt = parts[0] + "### 回答："
-            completion = parts[1] if len(parts) > 1 else ""
-        else:
-            # Fallback: use the whole text as completion with empty prompt
-            # This shouldn't happen with proper SFT data
-            prompt = ""
-            completion = text
-
-        return {
-            "prompt": prompt.strip(),
-            "completion": completion.strip()
-        }
-
-    return dataset.map(split_text, desc="Converting to prompt-completion format")
-
-
-def convert_messages_to_prompt_completion(dataset, thinking_mode: str = "original"):
-    """
-    Convert a dataset with 'messages' field to prompt-completion format.
-
-    Based on /root/sft_lora/trl_lora_sft.py implementation.
-
-    Args:
-        dataset: HuggingFace dataset with 'messages' field (list of dicts with role/content)
-        thinking_mode: Mode for thinking tags (not used in our case)
-
-    Returns:
-        Dataset with 'prompt' and 'completion' fields
-    """
-    def _map(batch):
-        prompts = []
-        completions = []
-
-        for messages in batch["messages"]:
-            # Extract prompt (all messages except last) and completion (last message)
-            if not messages or messages[-1].get("role") != "assistant":
-                # Skip invalid samples
-                prompts.append([])
-                completions.append([])
-                continue
-
-            prompt = messages[:-1]  # All except last
-            completion = [messages[-1]]  # Last message only
-
-            prompts.append(prompt)
-            completions.append(completion)
-
-        return {"prompt": prompts, "completion": completions}
-
-    # Determine which columns to keep
-    keep_cols = dataset.column_names
-    result = dataset.map(_map, batched=True, remove_columns=keep_cols,
-                        desc="Converting messages to prompt-completion")
-
+    before = len(dataset)
+    result = dataset.filter(
+        lambda ex: len((ex.get("prompt") or "")) + len((ex.get("completion") or "")) <= max_chars,
+        desc=f"filter_{name}_max_chars_{max_chars}",
+    )
+    dropped = before - len(result)
+    if dropped:
+        print(f"[data] {name}: dropped {dropped}/{before} samples over {max_chars} chars")
     return result
-
-
-def prepare_dataset_for_trl(dataset, format_type: str = "text"):
-    """
-    Prepare dataset for TRL SFTTrainer.
-
-    Args:
-        dataset: Input dataset
-        format_type: Either "text" or "messages" depending on dataset structure
-
-    Returns:
-        Dataset ready for TRL SFTTrainer
-    """
-    if format_type == "text":
-        # Dataset has 'text' field with full conversation
-        # For TRL with dataset_text_field="text", we can use it directly
-        # But for completion_only_loss, we need prompt-completion format
-        return convert_to_prompt_completion(dataset)
-    elif format_type == "messages":
-        # Dataset has 'messages' field (OpenAI format)
-        return convert_messages_to_prompt_completion(dataset)
-    else:
-        raise ValueError(f"Unknown format_type: {format_type}")

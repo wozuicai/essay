@@ -17,8 +17,10 @@ set -euo pipefail
 export PATH=/home/tiger/.local/bin:$PATH
 export HF_HOME=/root/project/hf_cache
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
-export HF_DATASETS_OFFLINE=0
-export HF_HUB_OFFLINE=0
+export MAX_SEQ_LENGTH="${MAX_SEQ_LENGTH:-2048}"
+export MAX_TRAIN_CHARS="${MAX_TRAIN_CHARS:-12000}"
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-0}"
+export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-0}"
 
 cd /root/project
 mkdir -p logs results/mid
@@ -31,6 +33,11 @@ EXP_CFG="configs/experiments/lis_matrix.yaml"
 RESULTS="results/mid"
 
 bash scripts/setup_accelerate.sh
+python scripts/preflight_required.py \
+    --model "$MODEL" \
+    --data_dir data/processed \
+    --langs yo,so,ha \
+    --max_train_chars "$MAX_TRAIN_CHARS"
 
 # ── Step 0: Probe（单 GPU 快速验证 teacher 信号质量）──────────────────────────
 echo "[$(date)] === Probe: teacher hidden-state consistency on yo/so/ha ==="
@@ -50,8 +57,6 @@ for LANG in yo so ha; do
     EXP_NAME="mid_${MODEL_SHORT}_${LANG}"
     OUT_DIR="${RESULTS}/${EXP_NAME}"
     EVAL_OUT="${RESULTS}/${EXP_NAME}_eval.json"
-    LCB_OUT="${RESULTS}/${EXP_NAME}_lcb_matrix.json"
-
     echo ""
     echo "[$(date)] =================================================="
     echo "[$(date)] === MID Training: ${LANG} (no English data) ==="
@@ -74,39 +79,19 @@ for LANG in yo so ha; do
             2>&1 | tee "logs/mid_${LANG}_train.log"
     fi
 
-    # ── 评测：TruthfulQA MC1 + Belebele + SIB200 ──────────────────────────
+    # ── 评测：English + Belebele + IrokoBench ────────────────────────────
     if [[ -f "$EVAL_OUT" ]]; then
-        echo "[$(date)] Skipping standard eval — ${EVAL_OUT} already exists."
+        echo "[$(date)] Skipping eval — ${EVAL_OUT} already exists."
     else
-        echo "[$(date)] === Eval: MID-${LANG} — TruthfulQA + Belebele + SIB200 ==="
-        python scripts/evaluate.py \
+        echo "[$(date)] === Eval: MID-${LANG} — required suite ==="
+        python scripts/eval_required.py \
             --model_path  "$OUT_DIR" \
-            --tasks       all \
-            --en_tasks    truthfulqa_mc1 \
             --languages   en,yo,so,ha \
-            --skip_flores \
             --output      "$EVAL_OUT" \
             2>&1 | tee "logs/mid_${LANG}_eval.log"
     fi
 
-    # ── 评测：IrokoBench MCQ ───────────────────────────────────────────────
-    echo "[$(date)] === Eval: MID-${LANG} — IrokoBench MCQ ==="
-    python scripts/eval_extended.py \
-        --model_path  "$OUT_DIR" \
-        --result_json "$EVAL_OUT" \
-        --only_iroko_mcq \
-        2>&1 | tee "logs/mid_${LANG}_iroko.log"
-
-    # ── 评测：LCB-chat 4×4 矩阵（v1: tag=input_lang）─────────────────────
-    if [[ -f "$LCB_OUT" ]]; then
-        echo "[$(date)] Skipping LCB matrix — ${LCB_OUT} already exists."
-    else
-        echo "[$(date)] === Eval: MID-${LANG} — LCB-chat 4×4 matrix ==="
-        python scripts/eval_lcb_matrix.py \
-            --model_path  "$OUT_DIR" \
-            --output      "$LCB_OUT" \
-            2>&1 | tee "logs/mid_${LANG}_lcb.log"
-    fi
+    bash scripts/cleanup_large_artifacts.sh "$OUT_DIR"
 
     echo "[$(date)] === Done: MID-${LANG} ==="
 done
@@ -169,21 +154,6 @@ for lang in LANGS:
 for lang in LANGS:
     print_row(f"MID_{lang}",    f"{RESULTS}/mid_{MODEL_SHORT}_{lang}_eval.json")
 
-print("\n=== LCB-chat 4×4 矩阵关键格（lc_rate） ===")
-print(f"  比较对象：mix_en_yo 和 train_en 的 lc_rate（来自 results/lcb_chat/）")
-print()
-for lang in LANGS:
-    lp = f"{RESULTS}/mid_{MODEL_SHORT}_{lang}_lcb_matrix.json"
-    if not os.path.exists(lp):
-        print(f"  MID_{lang}: N/A")
-        continue
-    with open(lp) as f:
-        d = json.load(f)
-    mat = d.get("matrix", {})
-    # Key cells: en→lang (cross-lingual instruction following) and lang→lang (monolingual)
-    en_to_lang   = mat.get("en",   {}).get(lang, {}).get("lc_rate", "N/A")
-    lang_to_lang = mat.get(lang,   {}).get(lang, {}).get("lc_rate", "N/A")
-    print(f"  MID_{lang}: en→{lang}={en_to_lang}  {lang}→{lang}={lang_to_lang}")
 PYEOF
 
 echo "[$(date)] launch_mid.sh complete."

@@ -24,6 +24,11 @@ def load_sft_dataset(data_dir: str, lang_code: str, n_samples: int = None) -> Da
                     samples.append(json.loads(line))
         dataset = Dataset.from_list(samples)
     else:
+        if _offline_mode():
+            raise FileNotFoundError(
+                f"Local data not found for [{lang_code}] at {local_path}, and "
+                "HF_DATASETS_OFFLINE/HF_HUB_OFFLINE is enabled."
+            )
         print(f"Local data not found for [{lang_code}], loading from HuggingFace...")
         dataset = _load_from_hf(lang_code)
 
@@ -38,6 +43,7 @@ def _load_from_hf(lang_code: str) -> Dataset:
     LANG_NAMES = {
         'fr': 'French', 'zh': 'Chinese Simplified', 'sw': 'Swahili',
         'th': 'Thai', 'bn': 'Bengali', 'yo': 'Yoruba',
+        'so': 'Somali', 'ha': 'Hausa',
     }
 
     if lang_code == "en":
@@ -57,4 +63,11 @@ def _load_from_hf(lang_code: str) -> Dataset:
                    "language": lang_code, "source": "aya",
                    "text": f"### Instruction:\n<|tgt_lang:{lang_code}|> {x.get('inputs','')}\n\n### Response:\n{x.get('targets','')}"},
         remove_columns=ds.column_names,
+    )
+
+
+def _offline_mode() -> bool:
+    return any(
+        os.environ.get(name, "").strip().lower() in {"1", "true", "yes", "on"}
+        for name in ("HF_DATASETS_OFFLINE", "HF_HUB_OFFLINE", "TRANSFORMERS_OFFLINE")
     )

@@ -29,15 +29,18 @@ import torch
 import torch.nn.functional as F
 from omegaconf import OmegaConf
 from peft import LoraConfig, PeftModel, get_peft_model
-from transformers import AutoModelForCausalLM, AutoTokenizer
 from trl import SFTTrainer
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.data.dataset_loader import load_sft_dataset
+from src.data.trl_dataset_utils import prepare_dataset_for_trl
 from src.training.trainer import (
     build_sft_config,
+    build_trainer_kwargs,
     load_causal_lm,
     load_tokenizer,
+    save_run_config,
+    save_training_metadata,
     setup_training_environment,
 )
 
@@ -179,7 +182,7 @@ class DSCTTrainer(SFTTrainer):
             f"[DSCT] α={alpha}  β={beta}  λ_ortho={lambda_ortho}  "
             f"top-K={top_n_layers}  Pos2={n_pos2}"
         )
-        print(f"[DSCT] sep_str={repr(sep_str)} => ids {self._sep_ids}")
+        print(f"[DSCT] response start: labels!=-100, fallback sep_str={repr(sep_str)}")
         print(f"[DSCT] donor_ref layers: {len(donor_ref)}")
 
     # ------------------------------------------------------------------ #
@@ -204,7 +207,10 @@ class DSCTTrainer(SFTTrainer):
             )
 
         mid_loss = self._mid_loss(
-            stu_out.hidden_states, tea_out.hidden_states, inputs["input_ids"]
+            stu_out.hidden_states,
+            tea_out.hidden_states,
+            inputs["input_ids"],
+            inputs.get("labels"),
         )
         ortho_loss = self._ortho_loss(model)
 
@@ -224,11 +230,12 @@ class DSCTTrainer(SFTTrainer):
     #  MID loss  (identical to MIDTrainer)                                #
     # ------------------------------------------------------------------ #
 
-    def _mid_loss(self, stu_hs, tea_hs, input_ids: torch.Tensor) -> torch.Tensor:
+    def _mid_loss(self, stu_hs, tea_hs, input_ids: torch.Tensor, labels=None) -> torch.Tensor:
         top_idxs = list(range(len(stu_hs) - self._K, len(stu_hs)))
         sep = self._sep_ids
         slen = self._sep_len
         ids_cpu = input_ids.cpu().tolist()
+        labels_cpu = labels.detach().cpu().tolist() if labels is not None else None
 
         total = torch.zeros((), device=input_ids.device, dtype=torch.float32)
         n = 0
@@ -237,10 +244,16 @@ class DSCTTrainer(SFTTrainer):
         for b, ids in enumerate(ids_cpu):
             T = len(ids)
             resp_start = -1
-            for i in range(T - slen + 1):
-                if ids[i : i + slen] == sep:
-                    resp_start = i + slen
-                    break
+            if labels_cpu is not None:
+                for i, label_id in enumerate(labels_cpu[b]):
+                    if label_id != -100:
+                        resp_start = i
+                        break
+            if resp_start < 0:
+                for i in range(T - slen + 1):
+                    if ids[i : i + slen] == sep:
+                        resp_start = i + slen
+                        break
 
             if resp_start <= 0 or resp_start >= T:
                 self._n_sep_miss += 1
@@ -368,18 +381,23 @@ def main():
     student, donor_ref = load_student(args.model, args.donor_adapter, cfg.peft, device)
 
     # Dataset: pure target language, no English
-    dataset = load_sft_dataset(args.data_dir, args.train_lang)
+    dataset = prepare_dataset_for_trl(
+        load_sft_dataset(args.data_dir, args.train_lang),
+        name=f"dsct_{args.train_lang}",
+    )
     if local_rank == 0:
         print(f"[DSCT] Dataset: {len(dataset)} × [{args.train_lang}]  (NO English)")
 
-    sft_cfg = build_sft_config(cfg, args.output_dir)
+    # DSCT has sample-local MID positions, so do not pack multiple examples.
+    sft_cfg = build_sft_config(cfg, args.output_dir, packing=False)
 
-    trainer = DSCTTrainer(
+    trainer = DSCTTrainer(**build_trainer_kwargs(
+        DSCTTrainer,
         model=student,
         processing_class=tokenizer,
         train_dataset=dataset,
         args=sft_cfg,
-    )
+    ))
     trainer.set_dsct_config(
         teacher=teacher,
         donor_ref=donor_ref,
@@ -410,8 +428,13 @@ def main():
         "top_n_layers": args.top_n_layers,
         "n_pos2": args.n_pos2,
     }
-    with open(os.path.join(args.output_dir, "training_metadata.json"), "w") as f:
-        json.dump(meta, f, indent=2)
+    meta.update({
+        "trainer_backend": "trl_prompt_completion",
+        "completion_only_loss": True,
+        "packing": False,
+    })
+    save_training_metadata(args.output_dir, meta)
+    save_run_config(args.output_dir, args)
 
     if local_rank == 0:
         print(f"\n[DSCT] Done. Adapter saved to {args.output_dir}")

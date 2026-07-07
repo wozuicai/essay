@@ -33,7 +33,7 @@ def _load_model_and_tokenizer(model_path: str):
         base_name = adapter_cfg.get("base_model_name_or_path", model_path)
         tokenizer = AutoTokenizer.from_pretrained(base_name, trust_remote_code=True)
         base_model = AutoModelForCausalLM.from_pretrained(
-            base_name, dtype=torch.bfloat16, trust_remote_code=True, device_map="auto"
+            base_name, torch_dtype=torch.bfloat16, trust_remote_code=True, device_map="auto"
         )
         donor = _get_donor_adapter(model_path)
         if donor:
@@ -43,7 +43,7 @@ def _load_model_and_tokenizer(model_path: str):
     else:
         tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
         model = AutoModelForCausalLM.from_pretrained(
-            model_path, dtype=torch.bfloat16, trust_remote_code=True, device_map="auto"
+            model_path, torch_dtype=torch.bfloat16, trust_remote_code=True, device_map="auto"
         )
 
     model.eval()

@@ -17,8 +17,10 @@ set -euo pipefail
 
 export PATH=/home/tiger/.local/bin:$PATH
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
-export HF_DATASETS_OFFLINE=1
-export HF_HUB_OFFLINE=1
+export MAX_SEQ_LENGTH="${MAX_SEQ_LENGTH:-4096}"
+export MAX_TRAIN_CHARS="${MAX_TRAIN_CHARS:-12000}"
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-0}"
+export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-0}"
 # Fix CUDA 803: compat dir (575.x) in ldconfig overrides the real driver (580.x)
 export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libcuda.so.580.105.08
 
@@ -38,6 +40,11 @@ EVAL_OUT="results/moe_lora/moe_lora_${MODEL_SHORT}_eval.json"
 echo "[$(date -u '+%Y-%m-%d %H:%M:%S UTC')] === MoE-LoRA Launch ==="
 echo "[$(date -u '+%H:%M:%S UTC')] GPU: $CUDA_VISIBLE_DEVICES"
 echo "[$(date -u '+%H:%M:%S UTC')] Output: $OUT_DIR"
+python scripts/preflight_required.py \
+    --model "$MODEL" \
+    --data_dir data/processed \
+    --langs en,yo,so,ha \
+    --max_train_chars "$MAX_TRAIN_CHARS"
 
 # ── Training ──────────────────────────────────────────────────────────────
 if [[ -f "${OUT_DIR}/moe_config.json" ]]; then
@@ -63,11 +70,12 @@ else
     echo "[$(date -u '+%H:%M:%S UTC')] Starting MoE-LoRA evaluation ..."
     # 单 GPU 评测（使用第一张可见 GPU）
     CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES%%,*}" \
-    python scripts/eval_moe_lora.py \
-        --moe_dir "$OUT_DIR" \
-        --output  "$EVAL_OUT" \
-        --device  cuda \
+    python scripts/eval_required.py \
+        --moe_dir   "$OUT_DIR" \
+        --languages en,yo,so,ha \
+        --output    "$EVAL_OUT" \
         2>&1 | tee logs/moe_lora_eval.log
+    bash scripts/cleanup_large_artifacts.sh "$OUT_DIR"
     echo "[$(date -u '+%H:%M:%S UTC')] Evaluation done → $EVAL_OUT"
 fi
 

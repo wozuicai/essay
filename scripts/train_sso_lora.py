@@ -21,6 +21,7 @@ from trl import SFTTrainer
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.data.dataset_loader import load_sft_dataset
+from src.data.trl_dataset_utils import prepare_dataset_for_trl
 from src.models.sso_lora import (
     add_lang_adapter,
     orthogonal_loss,
@@ -29,8 +30,10 @@ from src.models.sso_lora import (
 )
 from src.training.trainer import (
     build_sft_config,
+    build_trainer_kwargs,
     load_causal_lm,
     load_tokenizer,
+    require_full_model_save_allowed,
     setup_training_environment,
 )
 
@@ -99,9 +102,8 @@ def run_stage1(args, cfg):
     local_rank = int(os.environ.get("LOCAL_RANK", 0))
     stage1_dir = os.path.join(args.output_dir, "stage1_shared")
 
-    if os.path.exists(
-        os.path.join(stage1_dir, "adapter_config.json")
-        or os.path.exists(os.path.join(stage1_dir, "shared", "adapter_config.json"))
+    if os.path.exists(os.path.join(stage1_dir, "adapter_config.json")) or os.path.exists(
+        os.path.join(stage1_dir, "shared", "adapter_config.json")
     ):
         if local_rank == 0:
             print(f"Stage 1 adapter found at {stage1_dir}, skipping.")
@@ -125,22 +127,26 @@ def run_stage1(args, cfg):
 
     all_langs = ["en", "yo", "so", "ha"]
     parts = [load_sft_dataset(args.data_dir, l) for l in all_langs]
-    train_dataset = concatenate_datasets(parts).shuffle(seed=42)
+    train_dataset = prepare_dataset_for_trl(
+        concatenate_datasets(parts).shuffle(seed=42),
+        name="sso_stage1_all_langs",
+    )
     if local_rank == 0:
         sizes = " + ".join(f"{len(p)} {l}" for l, p in zip(all_langs, parts))
         print(f"Dataset: {sizes} = {len(train_dataset)}")
 
     sft_cfg = build_sft_config(cfg, stage1_dir)
-    trainer = SFTTrainer(
+    trainer = SFTTrainer(**build_trainer_kwargs(
+        SFTTrainer,
         model=model,
         processing_class=tokenizer,
         train_dataset=train_dataset,
         args=sft_cfg,
-    )
+    ))
     trainer.train()
 
     if local_rank == 0:
-        model.save_pretrained(stage1_dir)
+        model.save_pretrained(stage1_dir, selected_adapters=["shared"])
         tokenizer.save_pretrained(stage1_dir)
         print(f"Stage 1 shared adapter saved → {stage1_dir}")
 
@@ -193,7 +199,10 @@ def run_stage2(args, cfg):
         model.set_adapter(lang)
     set_trainable_for_stage2(model, lang)
 
-    lang_data = load_sft_dataset(args.data_dir, lang)
+    lang_data = prepare_dataset_for_trl(
+        load_sft_dataset(args.data_dir, lang),
+        name=f"sso_stage2_{lang}",
+    )
     if local_rank == 0:
         print(f"[{lang}] dataset: {len(lang_data)} samples")
         trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
@@ -205,25 +214,27 @@ def run_stage2(args, cfg):
     cfg_s2 = OmegaConf.create(cfg_s2)
     sft_cfg = build_sft_config(cfg_s2, stage2_dir)
 
-    trainer = SSOTrainer(
+    trainer = SSOTrainer(**build_trainer_kwargs(
+        SSOTrainer,
         model=model,
         processing_class=tokenizer,
         train_dataset=lang_data,
         args=sft_cfg,
         lang=lang,
         orth_weight=args.orth_weight,
-    )
+    ))
     trainer.train()
 
     if local_rank == 0:
         # Save only the lang adapter
         model.set_adapter(lang)
-        model.save_pretrained(stage2_dir)
+        model.save_pretrained(stage2_dir, selected_adapters=[lang])
         tokenizer.save_pretrained(stage2_dir)
         print(f"[{lang}] Stage 2 adapter saved → {stage2_dir}")
 
 
 def run_merge(args):
+    require_full_model_save_allowed("train_sso_lora.py --mode merge")
     lang = args.train_lang
     assert lang, "--train_lang required for merge"
 
@@ -315,6 +326,7 @@ def run_merge_eval(args):
     print(f"[{lang}] Merge complete (shared→base, {lang}→base), model on GPU.")
 
     from src.evaluation.english_eval import run_english_eval
+    from src.evaluation.irokobench_eval import run_irokobench_eval
     from src.evaluation.multilingual_eval import run_multilingual_eval
 
     results = {"model_path": f"sso_{lang}_in_memory", "scores": {}}
@@ -331,8 +343,12 @@ def run_merge_eval(args):
         tokenizer=tokenizer,
         languages=["en", "yo", "so", "ha"],
         run_flores=False,
-        run_sib200=True,
+        run_sib200=False,
         run_belebele=True,
+    )
+    print("=== IrokoBench eval ===")
+    results["scores"]["multilingual"]["irokobench"] = run_irokobench_eval(
+        merged, tokenizer
     )
 
     os.makedirs(os.path.dirname(os.path.abspath(eval_out)) or ".", exist_ok=True)

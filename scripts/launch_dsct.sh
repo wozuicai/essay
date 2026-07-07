@@ -16,8 +16,10 @@ set -euo pipefail
 
 export PATH=/home/tiger/.local/bin:$PATH
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
-export HF_DATASETS_OFFLINE=1
-export HF_HUB_OFFLINE=1
+export MAX_SEQ_LENGTH="${MAX_SEQ_LENGTH:-2048}"
+export MAX_TRAIN_CHARS="${MAX_TRAIN_CHARS:-12000}"
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-0}"
+export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-0}"
 
 cd /root/project
 mkdir -p logs results/dsct
@@ -30,6 +32,11 @@ EXP_CFG="configs/experiments/lis_matrix.yaml"
 RESULTS="results/dsct"
 
 bash scripts/setup_accelerate.sh
+python scripts/preflight_required.py \
+    --model "$MODEL" \
+    --data_dir data/processed \
+    --langs yo,so,ha \
+    --max_train_chars "$MAX_TRAIN_CHARS"
 
 for LANG in yo so ha; do
     EXP_NAME="dsct_${MODEL_SHORT}_${LANG}"
@@ -64,21 +71,14 @@ for LANG in yo so ha; do
         echo "[$(date -u '+%H:%M:%S UTC')] === Eval: DSCT-${LANG} ==="
         # 注意：model_path 指向 spec adapter；eval 脚本从 training_metadata.json
         # 读取 donor_adapter，在加载时自动 merge donor + spec。
-        python scripts/evaluate.py \
+        python scripts/eval_required.py \
             --model_path  "$OUT_DIR" \
-            --tasks       all \
             --languages   en,yo,so,ha \
-            --skip_flores \
             --output      "$EVAL_OUT" \
             2>&1 | tee "logs/dsct_${LANG}_eval.log"
-
-        echo "[$(date -u '+%H:%M:%S UTC')] === IrokoBench MCQ: DSCT-${LANG} ==="
-        python scripts/eval_extended.py \
-            --model_path  "$OUT_DIR" \
-            --result_json "$EVAL_OUT" \
-            --only_iroko_mcq \
-            2>&1 | tee "logs/dsct_${LANG}_iroko.log"
     fi
+
+    bash scripts/cleanup_large_artifacts.sh "$OUT_DIR"
 
     echo "[$(date -u '+%H:%M:%S UTC')] === Done: DSCT-${LANG} ==="
 done
