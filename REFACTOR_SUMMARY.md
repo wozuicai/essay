@@ -62,13 +62,16 @@ IrokoBench: AfriMMLU MCQ + AfriXNLI + AfriMGSM
 评测速度优化：
 
 ```text
-Belebele: 保持第一次拉取版本的逐样本 next-token MCQ scoring
+English: lm-eval harness
+Belebele: lm-eval harness task definitions
 AfriMMLU: 批量 next-token MCQ scoring
 AfriXNLI: 批量 next-token MCQ scoring
 AfriMGSM: 批量 greedy generate
 ```
 
-AfriMMLU/AfriXNLI/AfriMGSM 的优化走普通 Transformers forward/generate，对 PEFT LoRA 和自定义 MoE-LoRA 都可用，不依赖 vLLM。Belebele 已回到第一次拉取版本的逐样本口径，避免与历史 Belebele 分数产生额外口径差异。
+Belebele 已改为 lm-eval 口径，普通 HF/PEFT、DSCT donor+spec、Layerwise/SSO 内存 merge、MoE-LoRA live model 都通过 lm-eval HFLM 路径评测。`--inject_lang_tag` 不会改写 Belebele 的 lm-eval 模板。
+
+AfriMMLU/AfriXNLI/AfriMGSM 当前没有走 lm-eval；它们使用项目内 open/local evaluator，普通 Transformers forward/generate，对 PEFT LoRA 和自定义 MoE-LoRA 都可用，不依赖 vLLM。
 
 ## 数据和长度检查
 

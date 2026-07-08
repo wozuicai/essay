@@ -12,9 +12,10 @@ import os
 import re
 from typing import Optional, Tuple
 
+import lm_eval
 from datasets import load_dataset
 from sacrebleu.metrics import BLEU, CHRF
-from .english_eval import _get_donor_adapter, _apply_donor_adapter
+from .english_eval import _lm_eval_model_args, _get_donor_adapter, _apply_donor_adapter
 
 
 def _load_model_and_tokenizer(model_path: str):
@@ -192,75 +193,74 @@ def _run_sib200(model_path: str, languages: list, batch_size: int, inject_lang_t
 
 def _run_belebele(model_path: str, languages: list, batch_size: int, inject_lang_tag: bool = False,
                   model=None, tokenizer=None) -> dict:
-    """Run Belebele reading comprehension via direct MCQ scoring.
+    """Run Belebele through lm-eval harness task definitions.
 
-    This keeps the first-pulled project behavior: one forward pass per example,
-    scoring the next-token logits for A/B/C/D. `batch_size` is accepted for the
-    shared eval API but intentionally unused here to preserve the original
-    Belebele prompt/scoring path.
+    This uses the same task names as the standalone evaluator from the original
+    project. If a live model is provided (MoE-LoRA or in-memory merged adapters),
+    wrap it with lm-eval's HFLM so the scoring template still comes from lm-eval.
     """
-    import torch
-    from tqdm import tqdm
-
-    BELEBELE_CODES = {
-        "en": "eng_Latn",
-        "yo": "yor_Latn", "so": "som_Latn", "ha": "hau_Latn",
+    BELEBELE_TASK_MAP = {
+        "en": "belebele_eng_Latn",
+        "yo": "belebele_yor_Latn",
+        "so": "belebele_som_Latn",
+        "ha": "belebele_hau_Latn",
     }
+    tasks = [BELEBELE_TASK_MAP[lang] for lang in languages if lang in BELEBELE_TASK_MAP]
+    if not tasks:
+        return {}
 
-    _owner = model is None
-    if _owner:
+    if inject_lang_tag:
+        print("[Belebele] --inject_lang_tag ignored: lm-eval task templates are used unchanged.")
+
+    owner = False
+    if model is None and _get_donor_adapter(model_path):
         model, tokenizer = _load_model_and_tokenizer(model_path)
-    dev = next(model.parameters()).device
+        owner = True
 
-    # Pre-encode letter tokens for A/B/C/D, matching the first-pulled version.
-    letter_token_ids = []
-    for i in range(4):
-        letter = chr(65 + i)
-        for surface in [f" {letter}", letter, f"{letter}."]:
-            tids = tokenizer.encode(surface, add_special_tokens=False)
-            if tids:
-                letter_token_ids.append(tids[0])
-                break
+    # Temporarily allow HF/lm-eval task downloads so missing language configs can
+    # be fetched even when training launchers use offline mode by default.
+    prev_ds_offline = os.environ.pop("HF_DATASETS_OFFLINE", None)
+    prev_hub_offline = os.environ.pop("HF_HUB_OFFLINE", None)
+    try:
+        if model is not None:
+            from lm_eval.models.huggingface import HFLM
+
+            lm_model = HFLM(pretrained=model, tokenizer=tokenizer, batch_size=batch_size)
+            results = lm_eval.simple_evaluate(
+                model=lm_model,
+                tasks=tasks,
+                num_fewshot=0,
+                batch_size=batch_size,
+            )
+        else:
+            results = lm_eval.simple_evaluate(
+                model="hf",
+                model_args=_lm_eval_model_args(model_path, batch_size),
+                tasks=tasks,
+                num_fewshot=0,
+                batch_size=batch_size,
+                device="cuda",
+            )
+    finally:
+        if prev_ds_offline is not None:
+            os.environ["HF_DATASETS_OFFLINE"] = prev_ds_offline
+        if prev_hub_offline is not None:
+            os.environ["HF_HUB_OFFLINE"] = prev_hub_offline
 
     scores = {}
-    for lang in languages:
-        code = BELEBELE_CODES.get(lang)
-        if not code:
+    for lang, task in BELEBELE_TASK_MAP.items():
+        if lang not in languages:
             continue
-        try:
-            ds = load_dataset("facebook/belebele", code, split="test")
-        except Exception as e:
-            print(f"  [Belebele] Cannot load {lang}/{code}: {e}")
+        task_results = results["results"].get(task, {})
+        if "acc,none" in task_results:
+            scores[lang] = task_results["acc,none"]
+        elif "acc_norm,none" in task_results:
+            scores[lang] = task_results["acc_norm,none"]
+        else:
             scores[lang] = 0.0
-            continue
+    if owner:
+        import torch
 
-        correct = 0
-        total = 0
-        for ex in tqdm(ds, desc=f"  [Belebele] {lang}", leave=False):
-            passage  = ex.get("flores_passage", "")
-            question = ex.get("question", "")
-            choices  = [ex.get(f"mc_answer{i}", "") for i in range(1, 5)]
-            label    = int(ex.get("correct_answer_num", 1)) - 1  # 0-indexed
-
-            choice_str = "\n".join(f"{chr(65+i)}. {c}" for i, c in enumerate(choices))
-            tag_prefix = f"<|tgt_lang:{lang}|> " if inject_lang_tag else ""
-            prompt = f"{tag_prefix}{passage}\n{question}\n{choice_str}\nAnswer:"
-
-            prompt_ids = tokenizer.encode(prompt, return_tensors="pt").to(dev)
-            with torch.no_grad():
-                logits_next = model(prompt_ids).logits[0, -1]
-
-            pred = int(torch.tensor(
-                [logits_next[tid].item() for tid in letter_token_ids]
-            ).argmax())
-            if pred == label:
-                correct += 1
-            total += 1
-
-        scores[lang] = correct / total if total > 0 else 0.0
-        print(f"  [Belebele] {lang}: {correct}/{total} = {scores[lang]:.3f}")
-
-    if _owner:
         del model
         if torch.cuda.is_available():
             torch.cuda.empty_cache()

@@ -99,7 +99,15 @@ MoE-LoRA：
 python scripts/eval_required.py --moe_dir results/moe_lora/moe_lora_Qwen3.5-9B-Base --languages en,yo,so,ha --batch_size 16 --generation_batch_size 4 --output /tmp/moe_eval.json
 ```
 
-`--batch_size` 会用于 English lm-eval、AfriMMLU、AfriXNLI 的批量 forward；`--generation_batch_size` 只用于 AfriMGSM 批量生成。Belebele 保持第一次拉取版本的逐样本 next-token MCQ scoring，`--batch_size` 不改变其口径。
+`--batch_size` 会用于 English lm-eval、Belebele lm-eval、AfriMMLU、AfriXNLI 的批量 forward；`--generation_batch_size` 只用于 AfriMGSM 批量生成。Belebele 使用 lm-eval 官方 task 模板；即使传入 `--inject_lang_tag`，Belebele 也不会改写 lm-eval 模板。
+
+当前 eval 口径：
+
+```text
+English: lm-eval harness
+Belebele: lm-eval harness
+AfriMMLU/AfriXNLI/AfriMGSM: 项目内 open/local evaluator，不是 lm-eval
+```
 
 ## 产物清理
 
