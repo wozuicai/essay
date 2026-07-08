@@ -62,13 +62,13 @@ IrokoBench: AfriMMLU MCQ + AfriXNLI + AfriMGSM
 评测速度优化：
 
 ```text
-Belebele: 批量 next-token MCQ scoring
+Belebele: 保持第一次拉取版本的逐样本 next-token MCQ scoring
 AfriMMLU: 批量 next-token MCQ scoring
 AfriXNLI: 批量 next-token MCQ scoring
 AfriMGSM: 批量 greedy generate
 ```
 
-这些优化走普通 Transformers forward/generate，对 PEFT LoRA 和自定义 MoE-LoRA 都可用，不依赖 vLLM。
+AfriMMLU/AfriXNLI/AfriMGSM 的优化走普通 Transformers forward/generate，对 PEFT LoRA 和自定义 MoE-LoRA 都可用，不依赖 vLLM。Belebele 已回到第一次拉取版本的逐样本口径，避免与历史 Belebele 分数产生额外口径差异。
 
 ## 数据和长度检查
 

@@ -12,11 +12,9 @@ import os
 import re
 from typing import Optional, Tuple
 
-import lm_eval
 from datasets import load_dataset
 from sacrebleu.metrics import BLEU, CHRF
-from .batched_scoring import batched_next_token_predictions, letter_token_ids
-from .english_eval import _lm_eval_model_args, _get_donor_adapter, _apply_donor_adapter
+from .english_eval import _get_donor_adapter, _apply_donor_adapter
 
 
 def _load_model_and_tokenizer(model_path: str):
@@ -196,9 +194,12 @@ def _run_belebele(model_path: str, languages: list, batch_size: int, inject_lang
                   model=None, tokenizer=None) -> dict:
     """Run Belebele reading comprehension via direct MCQ scoring.
 
-    Scores next-token log-prob over letters A/B/C/D instead of relying on lm-eval,
-    so inject_lang_tag can prepend <|tgt_lang:xx|> to each prompt.
+    This keeps the first-pulled project behavior: one forward pass per example,
+    scoring the next-token logits for A/B/C/D. `batch_size` is accepted for the
+    shared eval API but intentionally unused here to preserve the original
+    Belebele prompt/scoring path.
     """
+    import torch
     from tqdm import tqdm
 
     BELEBELE_CODES = {
@@ -209,8 +210,17 @@ def _run_belebele(model_path: str, languages: list, batch_size: int, inject_lang
     _owner = model is None
     if _owner:
         model, tokenizer = _load_model_and_tokenizer(model_path)
+    dev = next(model.parameters()).device
 
-    answer_token_ids = letter_token_ids(tokenizer, 4)
+    # Pre-encode letter tokens for A/B/C/D, matching the first-pulled version.
+    letter_token_ids = []
+    for i in range(4):
+        letter = chr(65 + i)
+        for surface in [f" {letter}", letter, f"{letter}."]:
+            tids = tokenizer.encode(surface, add_special_tokens=False)
+            if tids:
+                letter_token_ids.append(tids[0])
+                break
 
     scores = {}
     for lang in languages:
@@ -224,8 +234,8 @@ def _run_belebele(model_path: str, languages: list, batch_size: int, inject_lang
             scores[lang] = 0.0
             continue
 
-        prompts = []
-        labels = []
+        correct = 0
+        total = 0
         for ex in tqdm(ds, desc=f"  [Belebele] {lang}", leave=False):
             passage  = ex.get("flores_passage", "")
             question = ex.get("question", "")
@@ -234,25 +244,26 @@ def _run_belebele(model_path: str, languages: list, batch_size: int, inject_lang
 
             choice_str = "\n".join(f"{chr(65+i)}. {c}" for i, c in enumerate(choices))
             tag_prefix = f"<|tgt_lang:{lang}|> " if inject_lang_tag else ""
-            prompts.append(f"{tag_prefix}{passage}\n{question}\n{choice_str}\nAnswer:")
-            labels.append(label)
+            prompt = f"{tag_prefix}{passage}\n{question}\n{choice_str}\nAnswer:"
 
-        preds = batched_next_token_predictions(
-            model,
-            tokenizer,
-            prompts,
-            answer_token_ids,
-            batch_size=batch_size,
-        )
-        correct = sum(int(pred == label) for pred, label in zip(preds, labels))
-        total = len(labels)
+            prompt_ids = tokenizer.encode(prompt, return_tensors="pt").to(dev)
+            with torch.no_grad():
+                logits_next = model(prompt_ids).logits[0, -1]
+
+            pred = int(torch.tensor(
+                [logits_next[tid].item() for tid in letter_token_ids]
+            ).argmax())
+            if pred == label:
+                correct += 1
+            total += 1
 
         scores[lang] = correct / total if total > 0 else 0.0
         print(f"  [Belebele] {lang}: {correct}/{total} = {scores[lang]:.3f}")
 
     if _owner:
         del model
-        torch.cuda.empty_cache()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
     return scores
 
 
