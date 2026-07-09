@@ -1,0 +1,58 @@
+{
+  "model_path": "results/moe_lora/moe_lora_Qwen3.5-9B-Base",
+  "method": "MoE-LoRA",
+  "moe_config": {
+    "base_model": "/root/project/models/Qwen3.5-9B-Base",
+    "n_experts": 4,
+    "r": 8,
+    "lora_alpha": 16.0,
+    "dropout_p": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "train_langs": [
+      "en",
+      "yo",
+      "so",
+      "ha"
+    ],
+    "train_samples": 47900
+  },
+  "scores": {
+    "english": {
+      "truthfulqa_mc1": 0.3598531211750306
+    },
+    "multilingual": {
+      "belebele": {
+        "en": 0.9411111111111111,
+        "yo": 0.5177777777777778,
+        "so": 0.6111111111111112,
+        "ha": 0.6088888888888889
+      },
+      "irokobench": {
+        "yo": null,
+        "ha": null
+      },
+      "lcb_chat": {
+        "yo": {
+          "lc_rate": 0.0,
+          "n_prompts": 50
+        },
+        "so": {
+          "lc_rate": 0.02,
+          "n_prompts": 50
+        },
+        "ha": {
+          "lc_rate": 0.0,
+          "n_prompts": 50
+        }
+      }
+    }
+  }
+}

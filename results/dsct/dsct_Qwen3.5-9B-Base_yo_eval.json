@@ -1,0 +1,36 @@
+{
+  "model_path": "results/dsct/dsct_Qwen3.5-9B-Base_yo",
+  "scores": {
+    "english": {
+      "mmlu": 0.7718985899444524,
+      "hellaswag": 0.7952599083847839,
+      "arc_challenge": 0.5776450511945392,
+      "truthfulqa_mc1": 0.35006119951040393,
+      "english_avg": 0.6237161872585448
+    },
+    "multilingual": {
+      "sib200": {
+        "en": 0.58,
+        "yo": 0.395,
+        "so": 0.35,
+        "ha": 0.375
+      },
+      "belebele": {
+        "en": 0.9322222222222222,
+        "yo": 0.45555555555555555,
+        "so": 0.47888888888888886,
+        "ha": 0.49666666666666665
+      },
+      "irokobench": {
+        "yo": {
+          "mcq_accuracy": 0.444,
+          "n_mcq": 500
+        },
+        "ha": {
+          "mcq_accuracy": 0.372,
+          "n_mcq": 500
+        }
+      }
+    }
+  }
+}

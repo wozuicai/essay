@@ -1,0 +1,93 @@
+{
+  "model_path": "results/mid/mid_Qwen3.5-9B-Base_so",
+  "matrix": {
+    "en": {
+      "en": {
+        "lc_rate": 0.98,
+        "en_leak": 0.98,
+        "n": 50
+      },
+      "yo": {
+        "lc_rate": 0.0,
+        "en_leak": 0.98,
+        "n": 50
+      },
+      "so": {
+        "lc_rate": 0.0,
+        "en_leak": 1.0,
+        "n": 50
+      },
+      "ha": {
+        "lc_rate": 0.0,
+        "en_leak": 1.0,
+        "n": 50
+      }
+    },
+    "yo": {
+      "en": {
+        "lc_rate": 0.0,
+        "en_leak": 0.0,
+        "n": 49
+      },
+      "yo": {
+        "lc_rate": 0.9796,
+        "en_leak": 0.0,
+        "n": 49
+      },
+      "so": {
+        "lc_rate": 0.0,
+        "en_leak": 0.0,
+        "n": 49
+      },
+      "ha": {
+        "lc_rate": 0.0,
+        "en_leak": 0.0,
+        "n": 49
+      }
+    },
+    "so": {
+      "en": {
+        "lc_rate": 0.0,
+        "en_leak": 0.0,
+        "n": 50
+      },
+      "yo": {
+        "lc_rate": 0.0,
+        "en_leak": 0.0,
+        "n": 50
+      },
+      "so": {
+        "lc_rate": 1.0,
+        "en_leak": 0.0,
+        "n": 50
+      },
+      "ha": {
+        "lc_rate": 0.0,
+        "en_leak": 0.0,
+        "n": 50
+      }
+    },
+    "ha": {
+      "en": {
+        "lc_rate": 0.0,
+        "en_leak": 0.0,
+        "n": 50
+      },
+      "yo": {
+        "lc_rate": 0.0,
+        "en_leak": 0.0,
+        "n": 50
+      },
+      "so": {
+        "lc_rate": 0.66,
+        "en_leak": 0.0,
+        "n": 50
+      },
+      "ha": {
+        "lc_rate": 1.0,
+        "en_leak": 0.0,
+        "n": 50
+      }
+    }
+  }
+}

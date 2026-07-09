@@ -1,0 +1,13 @@
+{
+  "method": "DSCT",
+  "model": "/root/project/models/Qwen3.5-9B-Base",
+  "donor_adapter": "results/phase2_v2/lis_Qwen3.5-9B-Base_train_en",
+  "merged_donor_path": "results/dsct/donor_merged_base",
+  "train_lang": "so",
+  "train_samples": 7704,
+  "alpha": 0.1,
+  "beta": 0.05,
+  "lambda_ortho": 0.01,
+  "top_n_layers": 4,
+  "n_pos2": 3
+}

@@ -1,0 +1,189 @@
+#!/bin/bash
+# launch_mid.sh
+# MID (Mechanistic Interface Distillation) 实验
+#
+# Teacher: Base + LoRA_en (merged, frozen)
+# Student: Base + LoRA_spec (纯目标语言 CE + top-K层 CosDist 约束)
+# 核心 claim: 无需英文数据，仅靠潜空间约束维持指令接口
+#
+# 顺序训练：yo → so → ha（各自独立 LoRA_spec）
+# 评测：TruthfulQA MC1 + Belebele + SIB200 + IrokoBench MCQ + LCB-chat 4×4矩阵
+#
+# 用法：
+#   nohup bash scripts/launch_mid.sh > logs/mid_master.log 2>&1 &
+
+set -euo pipefail
+
+export PATH=/home/tiger/.local/bin:$PATH
+export HF_HOME=/root/project/hf_cache
+export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+export HF_DATASETS_OFFLINE=0
+export HF_HUB_OFFLINE=0
+
+cd /root/project
+mkdir -p logs results/mid
+
+MODEL="/root/project/models/Qwen3.5-9B-Base"
+MODEL_SHORT="Qwen3.5-9B-Base"
+TEACHER_ADAPTER="results/phase2_v2/lis_${MODEL_SHORT}_train_en"
+ACCEL_CFG="configs/accelerate_fullgpu.yaml"
+EXP_CFG="configs/experiments/lis_matrix.yaml"
+RESULTS="results/mid"
+
+bash scripts/setup_accelerate.sh
+
+# ── Step 0: Probe（单 GPU 快速验证 teacher 信号质量）──────────────────────────
+echo "[$(date)] === Probe: teacher hidden-state consistency on yo/so/ha ==="
+python scripts/train_mid.py \
+    --model           "$MODEL" \
+    --teacher_adapter "$TEACHER_ADAPTER" \
+    --train_lang      yo \
+    --output_dir      /tmp/mid_probe_unused \
+    --config          "$EXP_CFG" \
+    --probe_only \
+    --probe_langs     yo,so,ha \
+    2>&1 | tee logs/mid_probe.log
+echo "[$(date)] Probe done. See logs/mid_probe.log"
+
+# ── Step 1–N: 每种语言训练 + 评测 ────────────────────────────────────────────
+for LANG in yo so ha; do
+    EXP_NAME="mid_${MODEL_SHORT}_${LANG}"
+    OUT_DIR="${RESULTS}/${EXP_NAME}"
+    EVAL_OUT="${RESULTS}/${EXP_NAME}_eval.json"
+    LCB_OUT="${RESULTS}/${EXP_NAME}_lcb_matrix.json"
+
+    echo ""
+    echo "[$(date)] =================================================="
+    echo "[$(date)] === MID Training: ${LANG} (no English data) ==="
+    echo "[$(date)] =================================================="
+
+    # ── 训练 ──────────────────────────────────────────────────────────────
+    if [[ -f "${OUT_DIR}/adapter_config.json" ]]; then
+        echo "[$(date)] Skipping training — adapter_config.json already exists."
+    else
+        accelerate launch --config_file "$ACCEL_CFG" scripts/train_mid.py \
+            --model           "$MODEL" \
+            --teacher_adapter "$TEACHER_ADAPTER" \
+            --train_lang      "$LANG" \
+            --output_dir      "$OUT_DIR" \
+            --config          "$EXP_CFG" \
+            --alpha           0.1 \
+            --beta            0.05 \
+            --top_n_layers    4 \
+            --n_pos2          3 \
+            2>&1 | tee "logs/mid_${LANG}_train.log"
+    fi
+
+    # ── 评测：TruthfulQA MC1 + Belebele + SIB200 ──────────────────────────
+    if [[ -f "$EVAL_OUT" ]]; then
+        echo "[$(date)] Skipping standard eval — ${EVAL_OUT} already exists."
+    else
+        echo "[$(date)] === Eval: MID-${LANG} — TruthfulQA + Belebele + SIB200 ==="
+        python scripts/evaluate.py \
+            --model_path  "$OUT_DIR" \
+            --tasks       all \
+            --en_tasks    truthfulqa_mc1 \
+            --languages   en,yo,so,ha \
+            --skip_flores \
+            --output      "$EVAL_OUT" \
+            2>&1 | tee "logs/mid_${LANG}_eval.log"
+    fi
+
+    # ── 评测：IrokoBench MCQ ───────────────────────────────────────────────
+    echo "[$(date)] === Eval: MID-${LANG} — IrokoBench MCQ ==="
+    python scripts/eval_extended.py \
+        --model_path  "$OUT_DIR" \
+        --result_json "$EVAL_OUT" \
+        --only_iroko_mcq \
+        2>&1 | tee "logs/mid_${LANG}_iroko.log"
+
+    # ── 评测：LCB-chat 4×4 矩阵（v1: tag=input_lang）─────────────────────
+    if [[ -f "$LCB_OUT" ]]; then
+        echo "[$(date)] Skipping LCB matrix — ${LCB_OUT} already exists."
+    else
+        echo "[$(date)] === Eval: MID-${LANG} — LCB-chat 4×4 matrix ==="
+        python scripts/eval_lcb_matrix.py \
+            --model_path  "$OUT_DIR" \
+            --output      "$LCB_OUT" \
+            2>&1 | tee "logs/mid_${LANG}_lcb.log"
+    fi
+
+    echo "[$(date)] === Done: MID-${LANG} ==="
+done
+
+# ── 汇总 ──────────────────────────────────────────────────────────────────────
+echo ""
+echo "[$(date)] ======================================================"
+echo "[$(date)] === 全部完成，MID 实验结果汇总 ==="
+echo "[$(date)] ======================================================"
+
+python3 - << 'PYEOF'
+import json, os
+
+RESULTS     = "/root/project/results/mid"
+MIX_DIR     = "/root/project/results/mix_en"
+MODEL_SHORT = "Qwen3.5-9B-Base"
+LANGS       = ["yo", "so", "ha"]
+
+BASE_PATH = f"/root/project/results/phase2_v2/{MODEL_SHORT}_baseline.json"
+
+def safe_load(path):
+    if not os.path.exists(path):
+        return None
+    with open(path) as f:
+        return json.load(f).get("scores", {})
+
+def get_metrics(scores):
+    if scores is None:
+        return {}
+    tqa  = scores.get("english",       {}).get("truthfulqa_mc1", float("nan"))
+    bele = scores.get("multilingual",  {}).get("belebele",        {})
+    mcq  = scores.get("multilingual",  {}).get("irokobench",      {})
+    return {
+        "tqa":     tqa,
+        "bele_en": bele.get("en",   float("nan")),
+        "bele_yo": bele.get("yo",   float("nan")),
+        "bele_so": bele.get("so",   float("nan")),
+        "bele_ha": bele.get("ha",   float("nan")),
+        "mcq_yo":  mcq.get("yo",    {}).get("mcq_accuracy", float("nan")),
+        "mcq_ha":  mcq.get("ha",    {}).get("mcq_accuracy", float("nan")),
+    }
+
+def fmt(v):
+    return f"{v:.4f}" if isinstance(v, float) and v == v else " N/A "
+
+hdr = f"{'model':<22} {'tqa':>6} | {'bele_en':>7} {'bele_yo':>7} {'bele_so':>7} {'bele_ha':>7} | {'mcq_yo':>7} {'mcq_ha':>7}"
+print(hdr)
+print("-" * len(hdr))
+
+def print_row(name, path):
+    m = get_metrics(safe_load(path))
+    print(f"{name:<22} {fmt(m.get('tqa',float('nan'))):>6} | "
+          f"{fmt(m.get('bele_en',float('nan'))):>7} {fmt(m.get('bele_yo',float('nan'))):>7} "
+          f"{fmt(m.get('bele_so',float('nan'))):>7} {fmt(m.get('bele_ha',float('nan'))):>7} | "
+          f"{fmt(m.get('mcq_yo',float('nan'))):>7} {fmt(m.get('mcq_ha',float('nan'))):>7}")
+
+print_row("baseline", BASE_PATH)
+for lang in LANGS:
+    print_row(f"mix_en_{lang}", f"{MIX_DIR}/mix_{MODEL_SHORT}_en_{lang}_eval.json")
+for lang in LANGS:
+    print_row(f"MID_{lang}",    f"{RESULTS}/mid_{MODEL_SHORT}_{lang}_eval.json")
+
+print("\n=== LCB-chat 4×4 矩阵关键格（lc_rate） ===")
+print(f"  比较对象：mix_en_yo 和 train_en 的 lc_rate（来自 results/lcb_chat/）")
+print()
+for lang in LANGS:
+    lp = f"{RESULTS}/mid_{MODEL_SHORT}_{lang}_lcb_matrix.json"
+    if not os.path.exists(lp):
+        print(f"  MID_{lang}: N/A")
+        continue
+    with open(lp) as f:
+        d = json.load(f)
+    mat = d.get("matrix", {})
+    # Key cells: en→lang (cross-lingual instruction following) and lang→lang (monolingual)
+    en_to_lang   = mat.get("en",   {}).get(lang, {}).get("lc_rate", "N/A")
+    lang_to_lang = mat.get(lang,   {}).get(lang, {}).get("lc_rate", "N/A")
+    print(f"  MID_{lang}: en→{lang}={en_to_lang}  {lang}→{lang}={lang_to_lang}")
+PYEOF
+
+echo "[$(date)] launch_mid.sh complete."

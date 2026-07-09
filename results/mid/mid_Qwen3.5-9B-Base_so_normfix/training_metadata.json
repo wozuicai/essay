@@ -1,0 +1,11 @@
+{
+  "method": "MID",
+  "model": "/root/project/models/Qwen3.5-9B-Base",
+  "teacher_adapter": "results/phase2_v2/lis_Qwen3.5-9B-Base_train_en",
+  "train_lang": "so",
+  "train_samples": 7704,
+  "alpha": 0.1,
+  "beta": 0.05,
+  "top_n_layers": 4,
+  "n_pos2": 3
+}
