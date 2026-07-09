@@ -61,7 +61,7 @@ python scripts/preflight_required.py \
     --langs en,yo,so,ha \
     --max_train_chars "$MAX_TRAIN_CHARS"
 
-# ── Stage 1: 共享底层 LoRA（4-lang mixed, 1 epoch, 底层 0-15）────────────
+# ── Stage 1: 共享底层 LoRA（4-lang mixed, 2 epochs, 底层 0-15）────────────
 if [[ "$STEP" == "stage1" ]]; then
     echo "[$(date -u '+%Y-%m-%d %H:%M:%S UTC')] === Stage 1: Shared bottom LoRA ==="
 
@@ -83,7 +83,7 @@ if [[ "$STEP" == "stage1" ]]; then
     echo "接下来在 H100 运行: bash scripts/launch_layerwise.sh stage2"
 fi
 
-# ── Stage 2: 三个语言的顶层 LoRA（顺序执行，各 1 epoch, 顶层 16-31）────
+# ── Stage 2: 三个语言的顶层 LoRA（顺序执行，各 2 epochs, 顶层 16-31）────
 if [[ "$STEP" == "stage2" ]]; then
     echo "[$(date -u '+%Y-%m-%d %H:%M:%S UTC')] === Stage 2: Language-specific top LoRA ==="
 

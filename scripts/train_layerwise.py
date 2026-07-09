@@ -148,7 +148,7 @@ def run_stage2(args, cfg):
     if local_rank == 0:
         print(
             f"\n=== Stage 2: [{lang}] top LoRA (layers {SPLIT}-{N_LAYERS-1}, "
-            f"r={args.r}, 1 epoch) ===\n"
+            f"r={args.r}, {cfg.training.num_epochs} epochs) ===\n"
         )
 
     tokenizer = load_tokenizer(args.model)
@@ -177,7 +177,7 @@ def run_stage2(args, cfg):
         print(f"Stage 2 [{lang}]: {len(lang_data)} samples")
 
     cfg_s2 = OmegaConf.to_container(cfg, resolve=True)
-    cfg_s2["training"]["num_epochs"] = 1
+    cfg_s2["training"]["num_epochs"] = cfg.training.num_epochs
     cfg_s2 = OmegaConf.create(cfg_s2)
     sft_cfg = build_sft_config(cfg_s2, stage2_dir)
 

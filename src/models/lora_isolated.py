@@ -7,8 +7,8 @@ Architecture:
   - At inference: merge both adapters into base model
 
 Training (per target language):
-  Stage 1: shared adapter on full en + full lang data, step1_epochs (1)
-  Stage 2: freeze shared, train lang adapter on full lang data, step2_epochs (1)
+  Stage 1: shared adapter on full en + full lang data, step1_epochs (2)
+  Stage 2: freeze shared, train lang adapter on full lang data, step2_epochs (2)
 """
 
 import glob

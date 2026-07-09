@@ -41,6 +41,8 @@ export MAX_SEQ_LENGTH=2048
 
 所有主实验 launcher 都已对齐到同一组长度默认值。`MAX_SEQ_LENGTH=2048` 恢复旧版训练速度和截断口径；`MAX_TRAIN_CHARS=200000` 会保留当前 yo/so/ha 中除严重异常外的长样本，本地 so 的 659 万字符词典行仍会被过滤。当前训练默认关闭 `completion_only_loss`，整条 `text` 序列都会参与 LM loss。
 
+所有实验配置的 `training.num_epochs` 已统一为 2；Layerwise、SSO-LoRA、Isolated LoRA 这类多阶段实验的 stage 训练也对齐为 2 epochs。
+
 ## 主实验顺序
 
 ```bash

@@ -3,8 +3,8 @@
 # Isolated-LoRA 实验：yo / so / ha 各训练一组 (shared + lang adapter)
 #
 # 设计：
-#   Stage 1: shared adapter on full en + full lang, 1 epoch
-#   Stage 2: lang adapter on full lang only, 1 epoch
+#   Stage 1: shared adapter on full en + full lang, 2 epochs
+#   Stage 2: lang adapter on full lang only, 2 epochs
 #   训练完自动 merge 两个 adapter，保存为标准 HF 模型供 evaluate.py 使用
 #
 # 评测内容：

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Phase 2 v2: baseline + SFT LIS matrix for en+yo+so+ha
 # Languages: English (24926), Yoruba (11758), Somali (7704), Hausa (3512)
-# Config: rank=16, 1 epoch, full data, 4×H100 ZeRO-2 per job (sequential)
+# Config: rank=16, 2 epochs, full data, 4×H100 ZeRO-2 per job (sequential)
 #
 # Usage: nohup bash scripts/launch_phase2_v2.sh > logs/phase2_v2_master.log 2>&1 &
 

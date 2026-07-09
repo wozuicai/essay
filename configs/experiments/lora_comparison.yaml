@@ -16,8 +16,8 @@ methods:
     lora_alpha: 16
     lora_dropout: 0.05
     shared_r: 8
-    step1_epochs: 1
-    step2_epochs: 1
+    step1_epochs: 2
+    step2_epochs: 2
     target_modules:
     - q_proj
     - k_proj
@@ -59,7 +59,7 @@ training:
   logging_steps: 100
   lr_scheduler: cosine
   max_seq_length: 2048
-  num_epochs: 1
+  num_epochs: 2
   per_device_train_batch_size: 2
   save_steps: 500
   save_total_limit: 1

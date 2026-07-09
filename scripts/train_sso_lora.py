@@ -2,8 +2,8 @@
 """
 SSO-LoRA training script.
 
---mode stage1  Train shared LoRA on all 4 languages (1 epoch).
---mode stage2  Freeze shared, train lang-specific LoRA with orthogonal penalty (1 epoch).
+--mode stage1  Train shared LoRA on all 4 languages.
+--mode stage2  Freeze shared, train lang-specific LoRA with orthogonal penalty.
 --mode merge   Merge shared+lang adapters into a standard HF model.
 """
 
@@ -210,7 +210,7 @@ def run_stage2(args, cfg):
         print(f"Trainable: {trainable/1e6:.1f}M / {total/1e6:.1f}M")
 
     cfg_s2 = OmegaConf.to_container(cfg, resolve=True)
-    cfg_s2["training"]["num_epochs"] = 1
+    cfg_s2["training"]["num_epochs"] = cfg.training.num_epochs
     cfg_s2 = OmegaConf.create(cfg_s2)
     sft_cfg = build_sft_config(cfg_s2, stage2_dir)
 

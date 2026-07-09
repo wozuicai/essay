@@ -114,6 +114,8 @@ export MAX_SEQ_LENGTH=2048
 
 所有主实验 launcher 都已对齐到同一组长度默认值。`MAX_TRAIN_CHARS=200000` 只过滤当前 so 数据中 659 万字符的严重异常词典行，尽量保留其他长样本；`MAX_SEQ_LENGTH=2048` 用于恢复旧版训练速度和 token 截断口径。
 
+所有实验配置的 `training.num_epochs` 已统一为 2；多阶段训练里的 isolated/shared/lang-specific stage 也对齐为 2 epochs。
+
 ## Launcher 改动
 
 主实验 launcher 已更新：

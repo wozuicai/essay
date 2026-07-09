@@ -2,7 +2,7 @@
 # launch_tag_routing.sh
 # Phase 5：全语言 SFT + Tag Hard Routing
 #
-# 训练：en + yo + so + ha 全量 concat shuffle，标准 LoRA r=16，1 epoch（en adapter + 对照基线）
+# 训练：en + yo + so + ha 全量 concat shuffle，标准 LoRA r=16，2 epochs（en adapter + 对照基线）
 # yo/so/ha adapter：直接复用 results/mix_en/ 已有 adapter，无需重新训练
 # 推理时解析 <|tgt_lang:xx|> tag，硬切换到对应语言 adapter
 #

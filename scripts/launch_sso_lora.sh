@@ -1,7 +1,7 @@
 #!/bin/bash
 # SSO-LoRA：Shared-Specific Orthogonal LoRA
 #
-# Stage 1: shared LoRA (all layers, r=16, 4-lang mixed, 1 epoch)
+# Stage 1: shared LoRA (all layers, r=16, 4-lang mixed, 2 epochs)
 # Stage 2: per-lang LoRA (all layers, r=8) with orth penalty, sequential yo/so/ha
 # Merge + Eval per language
 #
@@ -52,7 +52,7 @@ python scripts/preflight_required.py \
     --langs en,yo,so,ha \
     --max_train_chars "$MAX_TRAIN_CHARS"
 
-# ── Stage 1: 共享 LoRA（全层，4-lang，1 epoch）────────────────────────────
+# ── Stage 1: 共享 LoRA（全层，4-lang，2 epochs）────────────────────────────
 if [[ "$STEP" == "stage1" ]]; then
     echo "[$(date -u '+%Y-%m-%d %H:%M:%S UTC')] === SSO-LoRA Stage 1: Shared LoRA ==="
 
