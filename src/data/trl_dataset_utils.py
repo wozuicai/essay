@@ -134,7 +134,7 @@ def filter_by_char_length(dataset, name: str = "train"):
 
     Exact token filtering needs the runtime tokenizer, but a character cap catches
     data corruption and multi-megabyte rows early. Set `MAX_TRAIN_CHARS<=0` to
-    disable; launchers default it to 12000 based on the current yo/so/ha tails.
+    disable; launchers default it to 200000 so only severe corruption is dropped.
     """
     raw = os.environ.get("MAX_TRAIN_CHARS", "").strip()
     if not raw:

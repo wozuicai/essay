@@ -27,7 +27,7 @@ def parse_args():
     p.add_argument("--model", required=True)
     p.add_argument("--data_dir", default="data/processed")
     p.add_argument("--langs", default="en,yo,so,ha")
-    p.add_argument("--max_train_chars", type=int, default=12000)
+    p.add_argument("--max_train_chars", type=int, default=200000)
     p.add_argument("--allow_missing_model_weights", action="store_true")
     return p.parse_args()
 

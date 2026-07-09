@@ -17,8 +17,8 @@ def parse_args():
     p.add_argument("--data_dir", default="data/processed")
     p.add_argument("--langs", default="en,yo,so,ha")
     p.add_argument("--model", default="")
-    p.add_argument("--max_length", type=int, default=4096)
-    p.add_argument("--max_train_chars", type=int, default=12000)
+    p.add_argument("--max_length", type=int, default=24000)
+    p.add_argument("--max_train_chars", type=int, default=200000)
     return p.parse_args()
 
 

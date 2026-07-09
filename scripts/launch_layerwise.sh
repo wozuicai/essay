@@ -23,8 +23,8 @@ set -euo pipefail
 
 export PATH=/home/tiger/.local/bin:$PATH
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
-export MAX_SEQ_LENGTH="${MAX_SEQ_LENGTH:-4096}"
-export MAX_TRAIN_CHARS="${MAX_TRAIN_CHARS:-12000}"
+export MAX_SEQ_LENGTH="${MAX_SEQ_LENGTH:-24000}"
+export MAX_TRAIN_CHARS="${MAX_TRAIN_CHARS:-200000}"
 export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-0}"
 export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-0}"
 # Fix CUDA 803: compat dir (575.x) in ldconfig overrides the real driver (580.x)

@@ -100,19 +100,19 @@ data/processed/en.jsonl
 当前目标语言的字符长度分布：
 
 ```text
-yo: p95=5768, p99=11432, max=135759, >12000 共 107 条
-so: p95=3266, p99=6253, max=6592963, >12000 共 8 条
-ha: p95=1685, p99=5235, max=12749, >12000 共 1 条
+yo: p95=5768, p99=11432, max=135759, >200000 共 0 条
+so: p95=3266, p99=6253, max=6592963, >200000 共 1 条
+ha: p95=1685, p99=5235, max=12749, >200000 共 0 条
 ```
 
 因此默认策略是：
 
 ```bash
-export MAX_TRAIN_CHARS=12000
-export MAX_SEQ_LENGTH=4096
+export MAX_TRAIN_CHARS=200000
+export MAX_SEQ_LENGTH=24000
 ```
 
-MID/DSCT 默认使用 `MAX_SEQ_LENGTH=2048`，因为 teacher+student hidden states 显存压力更高。
+所有主实验 launcher 都已对齐到同一组长度默认值。`MAX_TRAIN_CHARS=200000` 只过滤当前 so 数据中 659 万字符的严重异常词典行，尽量保留其他长样本；`MAX_SEQ_LENGTH=24000` 用于减少 token 级截断。
 
 ## Launcher 改动
 
@@ -201,7 +201,7 @@ TRAIN_EVAL_RUNBOOK.md
 建议先跑：
 
 ```bash
-python scripts/audit_sft_data.py --data_dir data/processed --langs en,yo,so,ha --model /root/project/models/Qwen3.5-9B-Base --max_length 4096
+python scripts/audit_sft_data.py --data_dir data/processed --langs en,yo,so,ha --model /root/project/models/Qwen3.5-9B-Base --max_length 24000 --max_train_chars 200000
 ```
 
 再按 runbook 里的实验顺序启动 launcher。

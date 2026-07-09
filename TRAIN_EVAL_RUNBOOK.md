@@ -29,21 +29,17 @@ python -c "import torch, transformers, trl, peft, datasets; print(torch.cuda.is_
 先做数据长度审计：
 
 ```bash
-python scripts/audit_sft_data.py --data_dir data/processed --langs en,yo,so,ha --model /root/project/models/Qwen3.5-9B-Base --max_length 4096
+python scripts/audit_sft_data.py --data_dir data/processed --langs en,yo,so,ha --model /root/project/models/Qwen3.5-9B-Base --max_length 24000 --max_train_chars 200000
 ```
 
 默认运行策略：
 
 ```bash
-export MAX_TRAIN_CHARS=12000
-export MAX_SEQ_LENGTH=4096
+export MAX_TRAIN_CHARS=200000
+export MAX_SEQ_LENGTH=24000
 ```
 
-MID/DSCT 默认在 launcher 中使用 `MAX_SEQ_LENGTH=2048`，因为 teacher+student hidden states 显存更重。若显存充足可手动覆盖：
-
-```bash
-MAX_SEQ_LENGTH=4096 nohup bash scripts/launch_mid.sh > logs/mid_master.log 2>&1 &
-```
+所有主实验 launcher 都已对齐到同一组长度默认值。`MAX_TRAIN_CHARS=200000` 会保留当前 yo/so/ha 中除严重异常外的长样本；本地 so 的 659 万字符词典行仍会被过滤。
 
 ## 主实验顺序
 

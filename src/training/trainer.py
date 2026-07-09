@@ -173,7 +173,7 @@ def build_sft_config(
     """
     t = cfg.training
     env_seq_len = os.environ.get("MAX_SEQ_LENGTH", "").strip()
-    seq_len = int(env_seq_len) if env_seq_len else (max_seq_length or t.get("max_seq_length", 2048))
+    seq_len = int(env_seq_len) if env_seq_len else (max_seq_length or t.get("max_seq_length", 24000))
     report_to = _get_report_to()
     sft_params = inspect.signature(SFTConfig.__init__).parameters
     use_packing = strtobool_env("PACKING", True) if packing is None else packing
