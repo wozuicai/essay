@@ -1,0 +1,114 @@
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<03:20,  2.13it/s]Loading weights:   9%|▊         | 37/427 [00:00<00:04, 84.01it/s]Loading weights:  13%|█▎        | 57/427 [00:00<00:03, 99.10it/s]Loading weights:  18%|█▊        | 75/427 [00:00<00:03, 116.31it/s]Loading weights:  22%|██▏       | 94/427 [00:00<00:02, 132.22it/s]Loading weights:  28%|██▊       | 118/427 [00:01<00:02, 151.90it/s]Loading weights:  32%|███▏      | 137/427 [00:01<00:02, 144.47it/s]Loading weights:  36%|███▌      | 154/427 [00:01<00:02, 135.34it/s]Loading weights:  44%|████▎     | 186/427 [00:01<00:01, 179.66it/s]Loading weights:  48%|████▊     | 207/427 [00:01<00:01, 157.57it/s]Loading weights:  55%|█████▌    | 235/427 [00:01<00:01, 180.55it/s]Loading weights:  60%|█████▉    | 255/427 [00:01<00:01, 158.51it/s]Loading weights:  65%|██████▌   | 279/427 [00:02<00:00, 169.35it/s]Loading weights:  70%|██████▉   | 298/427 [00:02<00:00, 166.98it/s]Loading weights:  74%|███████▍  | 316/427 [00:02<00:00, 148.38it/s]Loading weights:  78%|███████▊  | 333/427 [00:02<00:00, 149.46it/s]Loading weights:  85%|████████▍ | 361/427 [00:02<00:00, 173.15it/s]Loading weights:  89%|████████▉ | 380/427 [00:02<00:00, 175.04it/s]Loading weights:  93%|█████████▎| 398/427 [00:02<00:00, 163.14it/s]Loading weights:  97%|█████████▋| 415/427 [00:02<00:00, 148.50it/s]Loading weights: 100%|██████████| 427/427 [00:02<00:00, 143.60it/s]
+`pretrained` model kwarg is not of type `str`. Many other model arguments may be ignored. Please do not launch via accelerate or use `parallelize=True` if passing an existing model this way.
+Passed an already-initialized model through `pretrained`, assuming single-process call to evaluate() or custom distributed integration
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+=== English eval ===
+Traceback (most recent call last):
+  File "/home/tiger/.local/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/home/tiger/.local/lib/python3.11/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '429 Too Many Requests' for url 'https://huggingface.co/api/datasets/cais/mmlu/tree/c30699e8356da336a370243923dbaf21066bb9fe/management?recursive=true&expand=false'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/project/scripts/eval_required.py", line 132, in <module>
+    main()
+  File "/root/project/scripts/eval_required.py", line 91, in main
+    results["scores"]["english"] = run_english_eval(
+                                   ^^^^^^^^^^^^^^^^^
+  File "/root/project/src/evaluation/english_eval.py", line 182, in run_english_eval
+    results = lm_eval.simple_evaluate(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/lm_eval/utils.py", line 575, in _wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/lm_eval/evaluator.py", line 302, in simple_evaluate
+    loaded = task_manager.load(tasks)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/lm_eval/tasks/manager.py", line 208, in load
+    obj = self._load_spec(spec) if not isinstance(spec, (Task, Group)) else spec  # type:ignore[invalid-argument-type]
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/lm_eval/tasks/manager.py", line 154, in _load_spec
+    return self._factory.build(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/lm_eval/tasks/_factory.py", line 58, in build
+    return self._build_group(entry.name, raw_cfg, overrides, registry)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/lm_eval/tasks/_factory.py", line 120, in _build_group
+    for child in self._build_group_members(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/lm_eval/tasks/_factory.py", line 200, in _build_group_members
+    child_obj = self.build(
+                ^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/lm_eval/tasks/_factory.py", line 58, in build
+    return self._build_group(entry.name, raw_cfg, overrides, registry)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/lm_eval/tasks/_factory.py", line 120, in _build_group
+    for child in self._build_group_members(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/lm_eval/tasks/_factory.py", line 210, in _build_group_members
+    child_obj = self.build(
+                ^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/lm_eval/tasks/_factory.py", line 61, in build
+    return self._build_task(entry, overrides)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/lm_eval/tasks/_factory.py", line 81, in _build_task
+    obj = ConfigurableTask(config=cfg)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/lm_eval/api/task.py", line 753, in __init__
+    self.download(self.config.dataset_kwargs)
+  File "/home/tiger/.local/lib/python3.11/site-packages/lm_eval/api/task.py", line 869, in download
+    self.dataset = datasets.load_dataset(
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/datasets/load.py", line 1698, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/datasets/load.py", line 1363, in load_dataset_builder
+    builder_instance: DatasetBuilder = builder_cls(
+                                       ^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/datasets/builder.py", line 351, in __init__
+    self.config, self.config_id = self._create_builder_config(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/datasets/builder.py", line 566, in _create_builder_config
+    builder_config._resolve_data_files(
+  File "/home/tiger/.local/lib/python3.11/site-packages/datasets/builder.py", line 211, in _resolve_data_files
+    self.data_files = self.data_files.resolve(base_path, download_config)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/datasets/data_files.py", line 822, in resolve
+    out[key] = data_files_patterns_list.resolve(base_path, download_config)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/datasets/data_files.py", line 775, in resolve
+    resolve_pattern(
+  File "/home/tiger/.local/lib/python3.11/site-packages/datasets/data_files.py", line 372, in resolve_pattern
+    for filepath, info in fs.glob(fs_pattern, detail=True, **glob_kwargs).items():
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/huggingface_hub/hf_file_system.py", line 728, in glob
+    return super().glob(path, maxdepth=maxdepth, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/fsspec/spec.py", line 642, in glob
+    allpaths = self.find(root, maxdepth=depth, withdirs=True, detail=True, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/huggingface_hub/hf_file_system.py", line 767, in find
+    out = self._ls_tree(path, recursive=True, refresh=refresh, maxdepth=maxdepth, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/huggingface_hub/hf_file_system.py", line 612, in _ls_tree
+    for path_info in tree:
+  File "/home/tiger/.local/lib/python3.11/site-packages/huggingface_hub/hf_api.py", line 3927, in list_repo_tree
+    for path_info in paginate(path=tree_url, headers=headers, params={"recursive": recursive, "expand": expand}):
+  File "/home/tiger/.local/lib/python3.11/site-packages/huggingface_hub/utils/_pagination.py", line 36, in paginate
+    hf_raise_for_status(r)
+  File "/home/tiger/.local/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 868, in hf_raise_for_status
+    raise _format(HfHubHTTPError, message, response) from e
+huggingface_hub.errors.HfHubHTTPError: (Request ID: Root=1-6a4eb67d-1834d9132b12320d37f185aa;f63b61ea-5d45-48a8-9a79-b622cda1a4c2)
+
+429 Too Many Requests: you have reached your 'api' rate limit.
+Retry after 163 seconds (0/500 requests remaining in current 300s window).
+Url: https://huggingface.co/api/datasets/cais/mmlu/tree/c30699e8356da336a370243923dbaf21066bb9fe/management?recursive=true&expand=false.
+We had to rate limit your IP (2605:340::304). To continue using our service, create a HF account or login to your existing account, and make sure you pass a HF_TOKEN if you're using the API.

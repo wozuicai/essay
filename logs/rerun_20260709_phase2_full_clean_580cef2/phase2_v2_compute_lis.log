@@ -1,0 +1,27 @@
+
+=== Computing LIS matrix for Qwen3.5-9B-Base ===
+Baseline LIS scores (SIB-200 + Belebele avg):
+  en: 0.9233
+  yo: 0.4367
+  so: 0.4689
+  ha: 0.4833
+
+LIS matrix (rows=train_lang, cols=eval_lang):
+        en      yo      so      ha
+en -0.0120  0.0356  0.0284  0.0138
+yo -0.0096 -0.0127 -0.0379  0.0230
+so -0.0036 -0.0534 -0.0095  0.0115
+ha  0.0048 -0.0153 -0.0237  0.0276
+LIS matrix saved to results/phase2_v2/lis_matrix_Qwen3.5-9B-Base.csv
+Per-metric LIS (sib200) saved to results/phase2_v2/lis_matrix_Qwen3.5-9B-Base_sib200.csv
+Per-metric LIS (belebele) saved to results/phase2_v2/lis_matrix_Qwen3.5-9B-Base_belebele.csv
+
+English retention (MMLU/HellaSwag/ARC/TruthfulQA) saved to results/phase2_v2/en_retention_Qwen3.5-9B-Base.csv
+              mmlu  hellaswag  arc_challenge  truthfulqa_mc1
+train_lang                                                  
+en          0.7707     0.8016         0.5708          0.3574
+yo          0.7747     0.8007         0.5896          0.3366
+so          0.7718     0.8004         0.5879          0.3268
+ha          0.7735     0.7998         0.5811          0.3439
+
+Done.

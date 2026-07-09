@@ -1,0 +1,97 @@
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+Warning : `load_model` does not return WordVectorModel or SupervisedModel any more, but a `FastText` object which is very similar.
+Loading model: /root/project/results/mix_en/mix_Qwen3.5-9B-Base_en_so
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<02:38,  2.69it/s]Loading weights:   0%|          | 2/427 [00:00<02:50,  2.50it/s]Loading weights:   4%|▍         | 19/427 [00:00<00:12, 31.53it/s]Loading weights:   8%|▊         | 36/427 [00:01<00:06, 57.93it/s]Loading weights:  11%|█         | 47/427 [00:01<00:05, 64.19it/s]Loading weights:  16%|█▌        | 67/427 [00:01<00:03, 94.37it/s]Loading weights:  19%|█▉        | 82/427 [00:01<00:03, 106.92it/s]Loading weights:  23%|██▎       | 99/427 [00:01<00:02, 119.07it/s]Loading weights:  28%|██▊       | 119/427 [00:01<00:02, 135.99it/s]Loading weights:  32%|███▏      | 135/427 [00:01<00:02, 127.51it/s]Loading weights:  36%|███▌      | 152/427 [00:01<00:02, 134.10it/s]Loading weights:  40%|████      | 172/427 [00:01<00:01, 143.39it/s]Loading weights:  44%|████▍     | 188/427 [00:02<00:01, 133.89it/s]Loading weights:  48%|████▊     | 205/427 [00:02<00:01, 138.44it/s]Loading weights:  53%|█████▎    | 225/427 [00:02<00:01, 148.98it/s]Loading weights:  56%|█████▋    | 241/427 [00:02<00:01, 144.01it/s]Loading weights:  60%|██████    | 258/427 [00:02<00:01, 143.90it/s]Loading weights:  65%|██████▍   | 276/427 [00:02<00:00, 152.28it/s]Loading weights:  68%|██████▊   | 292/427 [00:02<00:00, 145.63it/s]Loading weights:  72%|███████▏  | 307/427 [00:02<00:00, 132.63it/s]Loading weights:  77%|███████▋  | 328/427 [00:03<00:00, 151.96it/s]Loading weights:  81%|████████  | 344/427 [00:03<00:00, 152.46it/s]Loading weights:  84%|████████▍ | 360/427 [00:03<00:00, 145.77it/s]Loading weights:  88%|████████▊ | 375/427 [00:03<00:00, 142.77it/s]Loading weights:  92%|█████████▏| 394/427 [00:03<00:00, 149.67it/s]Loading weights:  96%|█████████▋| 412/427 [00:03<00:00, 151.08it/s]Loading weights: 100%|██████████| 427/427 [00:03<00:00, 114.98it/s]
+Loading weights:   0%|          | 0/256 [00:00<?, ?it/s]Loading weights: 100%|██████████| 256/256 [00:00<00:00, 3807.72it/s]
+
+=== LCB: yo ===
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  200 prompts loaded
+  [yo] 8/200
+  [yo] 16/200
+  [yo] 24/200
+  [yo] 32/200
+  [yo] 40/200
+  [yo] 48/200
+  [yo] 56/200
+  [yo] 64/200
+  [yo] 72/200
+  [yo] 80/200
+  [yo] 88/200
+  [yo] 96/200
+  [yo] 104/200
+  [yo] 112/200
+  [yo] 120/200
+  [yo] 128/200
+  [yo] 136/200
+  [yo] 144/200
+  [yo] 152/200
+  [yo] 160/200
+  [yo] 168/200
+  [yo] 176/200
+  [yo] 184/200
+  [yo] 192/200
+  [yo] 200/200
+  {'lc_rate': 0.965, 'en_leak': 0.0, 'n': 200}
+
+=== LCB: so ===
+  200 prompts loaded
+  [so] 8/200
+  [so] 16/200
+  [so] 24/200
+  [so] 32/200
+  [so] 40/200
+  [so] 48/200
+  [so] 56/200
+  [so] 64/200
+  [so] 72/200
+  [so] 80/200
+  [so] 88/200
+  [so] 96/200
+  [so] 104/200
+  [so] 112/200
+  [so] 120/200
+  [so] 128/200
+  [so] 136/200
+  [so] 144/200
+  [so] 152/200
+  [so] 160/200
+  [so] 168/200
+  [so] 176/200
+  [so] 184/200
+  [so] 192/200
+  [so] 200/200
+  {'lc_rate': 0.9949, 'en_leak': 0.0, 'n': 198}
+
+=== LCB: ha ===
+  200 prompts loaded
+  [ha] 8/200
+  [ha] 16/200
+  [ha] 24/200
+  [ha] 32/200
+  [ha] 40/200
+  [ha] 48/200
+  [ha] 56/200
+  [ha] 64/200
+  [ha] 72/200
+  [ha] 80/200
+  [ha] 88/200
+  [ha] 96/200
+  [ha] 104/200
+  [ha] 112/200
+  [ha] 120/200
+  [ha] 128/200
+  [ha] 136/200
+  [ha] 144/200
+  [ha] 152/200
+  [ha] 160/200
+  [ha] 168/200
+  [ha] 176/200
+  [ha] 184/200
+  [ha] 192/200
+  [ha] 200/200
+  {'lc_rate': 0.995, 'en_leak': 0.0, 'n': 200}
+
+Saved: results/lcb/mix_en_so_lcb.json

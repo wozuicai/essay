@@ -1,0 +1,69 @@
+Warning : `load_model` does not return WordVectorModel or SupervisedModel any more, but a `FastText` object which is very similar.
+Loading model: results/mid/mid_Qwen3.5-9B-Base_so
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<02:22,  2.99it/s]Loading weights:   5%|▌         | 23/427 [00:00<00:05, 67.46it/s]Loading weights:  10%|█         | 43/427 [00:00<00:03, 102.54it/s]Loading weights:  15%|█▍        | 64/427 [00:00<00:02, 131.51it/s]Loading weights:  19%|█▉        | 81/427 [00:00<00:02, 134.79it/s]Loading weights:  23%|██▎       | 97/427 [00:00<00:02, 138.45it/s]Loading weights:  28%|██▊       | 118/427 [00:00<00:01, 156.90it/s]Loading weights:  32%|███▏      | 136/427 [00:01<00:01, 146.13it/s]Loading weights:  36%|███▌      | 152/427 [00:01<00:01, 146.49it/s]Loading weights:  40%|████      | 172/427 [00:01<00:01, 159.15it/s]Loading weights:  46%|████▌     | 196/427 [00:01<00:01, 181.04it/s]Loading weights:  50%|█████     | 215/427 [00:01<00:01, 161.97it/s]Loading weights:  55%|█████▍    | 233/427 [00:01<00:01, 164.51it/s]Loading weights:  59%|█████▉    | 251/427 [00:01<00:01, 167.61it/s]Loading weights:  63%|██████▎   | 269/427 [00:01<00:01, 154.15it/s]Loading weights:  67%|██████▋   | 285/427 [00:02<00:01, 100.31it/s]Loading weights:  71%|███████   | 304/427 [00:02<00:01, 116.38it/s]Loading weights:  75%|███████▍  | 319/427 [00:02<00:00, 116.08it/s]Loading weights:  81%|████████  | 345/427 [00:02<00:00, 143.68it/s]Loading weights:  85%|████████▍ | 362/427 [00:02<00:00, 143.48it/s]Loading weights:  90%|████████▉ | 383/427 [00:02<00:00, 158.81it/s]Loading weights:  94%|█████████▍| 401/427 [00:02<00:00, 149.78it/s]Loading weights:  98%|█████████▊| 417/427 [00:03<00:00, 150.56it/s]Loading weights: 100%|██████████| 427/427 [00:03<00:00, 136.77it/s]
+Pre-loading MasakhaNEWS excerpts for ['en', 'yo', 'so', 'ha']
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  en: 50 excerpts loaded, e.g. "China's strategy for tackling Covid feels frozen in time."
+  yo: 50 excerpts loaded, e.g. 'Igbakeji Aarẹ tẹlẹ ni Naijiria, Atiku Abubakar ti ke si awọn gomina lati ma duro'
+  so: 50 excerpts loaded, e.g. 'Kooxaha Premier League-ga ayaa shir ay shalay ku yeesheen internet-ka oo maqal i'
+  ha: 50 excerpts loaded, e.g. "A ranar 12 ga watan Rabiul Awwal, wani bangare na al'ummar Musulmi na gudanar da"
+
+=== cell (en → en) ===
+  lc_rate=0.9800  en_leak=0.9800  n=50
+
+=== cell (en → yo) ===
+  lc_rate=0.0000  en_leak=0.9800  n=50
+
+=== cell (en → so) ===
+  lc_rate=0.0000  en_leak=1.0000  n=50
+
+=== cell (en → ha) ===
+  lc_rate=0.0000  en_leak=1.0000  n=50
+
+=== cell (yo → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=49
+
+=== cell (yo → yo) ===
+  lc_rate=0.9796  en_leak=0.0000  n=49
+
+=== cell (yo → so) ===
+  lc_rate=0.0000  en_leak=0.0000  n=49
+
+=== cell (yo → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=49
+
+=== cell (so → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → yo) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → so) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+=== cell (so → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → yo) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → so) ===
+  lc_rate=0.6600  en_leak=0.0000  n=50
+
+=== cell (ha → ha) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+Saved: results/mid/mid_Qwen3.5-9B-Base_so_lcb_matrix.json
+
+=== lc_rate matrix ===
+instr\tgt      en      yo      so      ha
+        en   0.980   0.000   0.000   0.000
+        yo   0.000   0.980   0.000   0.000
+        so   0.000   0.000   1.000   0.000
+        ha   0.000   0.000   0.660   1.000

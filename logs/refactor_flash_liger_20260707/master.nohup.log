@@ -1,0 +1,132 @@
+[2026-07-07 12:30:10 UTC] Run ID: refactor_flash_liger_20260707
+[2026-07-07 12:30:10 UTC] Root: results/refactor_flash_liger_20260707
+[2026-07-07 12:30:10 UTC] CUDA_VISIBLE_DEVICES=all
+torch 2.7.1+cu128 cuda 12.8 ngpu 8
+flash_attn 2.8.3.post1
+use_liger_kernel_param True
+[2026-07-07 12:31:04 UTC] START train_standard_en_lis_Qwen3.5-9B-Base_train_en
+W0707 12:32:01.413000 3780 torch/distributed/run.py:766] 
+W0707 12:32:01.413000 3780 torch/distributed/run.py:766] *****************************************
+W0707 12:32:01.413000 3780 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0707 12:32:01.413000 3780 torch/distributed/run.py:766] *****************************************
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/root/project/scripts/train.py", line 201, in <module>
+  File "/root/project/scripts/train.py", line 201, in <module>
+Traceback (most recent call last):
+  File "/root/project/scripts/train.py", line 201, in <module>
+    main()
+    main()
+  File "/root/project/scripts/train.py", line 84, in main
+  File "/root/project/scripts/train.py", line 84, in main
+    main()
+  File "/root/project/scripts/train.py", line 84, in main
+    setup_training_environment()
+    setup_training_environment()
+  File "/root/project/src/training/trainer.py", line 50, in setup_training_environment
+  File "/root/project/src/training/trainer.py", line 50, in setup_training_environment
+    setup_training_environment()
+  File "/root/project/src/training/trainer.py", line 50, in setup_training_environment
+    tmpdir, triton_cache = _scratch_dirs()
+    tmpdir, triton_cache = _scratch_dirs()
+                                            ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^^^^^^^^^^^^^^^^^^^
+^
+  File "/root/project/src/training/trainer.py", line 76, in _scratch_dirs
+  File "/root/project/src/training/trainer.py", line 76, in _scratch_dirs
+    tmpdir, triton_cache = _scratch_dirs()
+                   raise RuntimeError("Could not find a writable scratch directory for training caches.") 
+               ^raise RuntimeError("Could not find a writable scratch directory for training caches.")^
+RuntimeError^^^: ^Could not find a writable scratch directory for training caches.^
+^^^^^^^^
+  File "/root/project/src/training/trainer.py", line 76, in _scratch_dirs
+RuntimeError: Could not find a writable scratch directory for training caches.
+    raise RuntimeError("Could not find a writable scratch directory for training caches.")
+RuntimeError: Could not find a writable scratch directory for training caches.
+Loading tokenizer from /root/project/models/Qwen3.5-9B-Base...
+Loading tokenizer from /root/project/models/Qwen3.5-9B-Base...
+Loading tokenizer from /root/project/models/Qwen3.5-9B-Base...
+Loading tokenizer from /root/project/models/Qwen3.5-9B-Base...
+Loading tokenizer from /root/project/models/Qwen3.5-9B-Base...
+Loading base model from /root/project/models/Qwen3.5-9B-Base...
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading base model from /root/project/models/Qwen3.5-9B-Base...
+Loading base model from /root/project/models/Qwen3.5-9B-Base...
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading base model from /root/project/models/Qwen3.5-9B-Base...
+Loading base model from /root/project/models/Qwen3.5-9B-Base...
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+W0707 12:34:14.668000 3780 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 4220 closing signal SIGTERM
+W0707 12:34:14.674000 3780 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 4221 closing signal SIGTERM
+W0707 12:34:14.675000 3780 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 4222 closing signal SIGTERM
+W0707 12:34:14.675000 3780 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 4223 closing signal SIGTERM
+W0707 12:34:14.675000 3780 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 4225 closing signal SIGTERM
+W0707 12:34:14.675000 3780 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 4226 closing signal SIGTERM
+W0707 12:34:14.676000 3780 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 4227 closing signal SIGTERM
+E0707 12:34:14.885000 3780 torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 4 (pid: 4224) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/home/tiger/.local/bin/accelerate", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1390, in launch_command
+    deepspeed_launcher(args)
+  File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1076, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-07-07_12:34:14
+  host      : trial-301608967-trialrun-301608967-worker-0
+  rank      : 4 (local_rank: 4)
+  exitcode  : 1 (pid: 4224)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

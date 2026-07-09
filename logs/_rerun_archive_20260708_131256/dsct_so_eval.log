@@ -1,0 +1,36 @@
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+Using the latest cached version of the dataset since truthfulqa/truthful_qa couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'multiple_choice' at /home/tiger/.cache/huggingface/datasets/truthfulqa___truthful_qa/multiple_choice/0.0.0/741b8276f2d1982aa3d5b832d3ee81ed3b896490 (last modified on Thu Jun 11 14:55:01 2026).
+=== Running English evaluation ===
+Traceback (most recent call last):
+  File "/root/project/scripts/evaluate.py", line 102, in <module>
+    main()
+  File "/root/project/scripts/evaluate.py", line 61, in main
+    en_results = run_english_eval(args.model_path, tasks=en_task_list, batch_size=args.batch_size, inject_lang_tag=args.inject_lang_tag)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/project/src/evaluation/english_eval.py", line 145, in run_english_eval
+    scores["truthfulqa_mc1"] = _run_truthfulqa_tagged(model_path)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/project/src/evaluation/english_eval.py", line 74, in _run_truthfulqa_tagged
+    model, tokenizer = _load_model_tokenizer_for_eval(model_path)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/project/src/evaluation/english_eval.py", line 40, in _load_model_tokenizer_for_eval
+    tokenizer = AutoTokenizer.from_pretrained(base_name, trust_remote_code=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/models/auto/tokenization_auto.py", line 839, in from_pretrained
+    return tokenizer_class.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/tokenization_utils_base.py", line 1743, in from_pretrained
+    return cls._from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/tokenization_utils_base.py", line 1933, in _from_pretrained
+    tokenizer = cls(*init_inputs, **init_kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/tokenization_utils_tokenizers.py", line 376, in __init__
+    raise ValueError(
+ValueError: Couldn't instantiate the backend tokenizer from one of: 
+(1) a `tokenizers` library serialization file, 
+(2) a slow tokenizer instance to convert or 
+(3) an equivalent slow tokenizer class to instantiate and convert. 
+You need to have sentencepiece or tiktoken installed to convert a slow tokenizer to a fast one.

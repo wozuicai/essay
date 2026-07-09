@@ -1,0 +1,49 @@
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading tokenizer from /root/project/models/Qwen3.5-9B-Base...
+Loading base model from /root/project/models/Qwen3.5-9B-Base...
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:  11%|█         | 48/427 [00:00<00:00, 447.72it/s]Loading weights:  22%|██▏       | 96/427 [00:00<00:00, 456.71it/s]Loading weights:  37%|███▋      | 160/427 [00:00<00:00, 534.76it/s]Loading weights:  58%|█████▊    | 246/427 [00:00<00:00, 658.66it/s]Loading weights:  73%|███████▎  | 313/427 [00:00<00:00, 618.58it/s]Loading weights: 100%|██████████| 427/427 [00:00<00:00, 796.77it/s]
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+Training dataset size: 1
+trainable params: 29,097,984 || all params: 8,982,901,248 || trainable%: 0.3239
+Traceback (most recent call last):
+  File "/root/project/scripts/train.py", line 201, in <module>
+    main()
+  File "/root/project/scripts/train.py", line 147, in main
+    trainer = SFTTrainer(
+              ^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/trl/trainer/sft_trainer.py", line 1064, in __init__
+    is_peft_model(model)
+  File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/utils/modeling.py", line 79, in is_peft_model
+    return is_peft_available() and isinstance(extract_model_from_parallel(model), PeftModel)
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/utils/other.py", line 258, in extract_model_from_parallel
+    from deepspeed import DeepSpeedEngine
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/__init__.py", line 25, in <module>
+    from . import ops
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/ops/__init__.py", line 15, in <module>
+    from ..git_version_info import compatible_ops as __compatible_ops__
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/git_version_info.py", line 29, in <module>
+    op_compatible = builder.is_compatible()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/ops/op_builder/fp_quantizer.py", line 37, in is_compatible
+    sys_cuda_major, _ = installed_cuda_version()
+                        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/ops/op_builder/builder.py", line 53, in installed_cuda_version
+    output = subprocess.check_output([cuda_home + "/bin/nvcc", "-V"], universal_newlines=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/subprocess.py", line 1024, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.11/subprocess.py", line 1901, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/tiger/.local/lib/python3.11/site-packages/nvidia/cu13/bin/nvcc'

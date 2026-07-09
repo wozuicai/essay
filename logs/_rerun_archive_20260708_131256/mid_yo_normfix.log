@@ -1,0 +1,195 @@
+[2026-06-25 11:25:44 UTC] === MID yo normfix training ===
+[2026-06-25 11:25:44 UTC] GPUs: all available
+[2026-06-25 11:25:44 UTC] Output: results/mid/mid_Qwen3.5-9B-Base_yo_normfix
+[2026-06-25 11:26:25,475] [WARNING] [real_accelerator.py:183:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+W0625 11:26:37.544000 617625 torch/distributed/run.py:766] 
+W0625 11:26:37.544000 617625 torch/distributed/run.py:766] *****************************************
+W0625 11:26:37.544000 617625 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0625 11:26:37.544000 617625 torch/distributed/run.py:766] *****************************************
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+
+=== MID Training: [yo] | α=0.1 β=0.05 K=4 P2=3 ===
+  [teacher] loading base from /root/project/models/Qwen3.5-9B-Base ...
+  [teacher] loading base from /root/project/models/Qwen3.5-9B-Base ...
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+  [teacher] loading base from /root/project/models/Qwen3.5-9B-Base ...
+  [teacher] loading base from /root/project/models/Qwen3.5-9B-Base ...
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights: 100%|██████████| 427/427 [00:00<00:00, 6872.82it/s]
+Loading weights: 100%|██████████| 427/427 [00:00<00:00, 6611.27it/s]
+Loading weights: 100%|██████████| 427/427 [00:00<00:00, 6413.97it/s]
+Loading weights: 100%|██████████| 427/427 [00:00<00:00, 6142.14it/s]
+  [teacher] loading adapter from results/phase2_v2/lis_Qwen3.5-9B-Base_train_en ...
+  [teacher] loading adapter from results/phase2_v2/lis_Qwen3.5-9B-Base_train_en ...
+  [teacher] loading adapter from results/phase2_v2/lis_Qwen3.5-9B-Base_train_en ...
+  [teacher] loading adapter from results/phase2_v2/lis_Qwen3.5-9B-Base_train_en ...
+Traceback (most recent call last):
+  File "/root/project/scripts/train_mid.py", line 348, in <module>
+    main()
+  File "/root/project/scripts/train_mid.py", line 286, in main
+    teacher = load_teacher(args.model, args.teacher_adapter, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/project/scripts/train_mid.py", line 74, in load_teacher
+    t = t.to(device)
+        ^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/modeling_utils.py", line 3701, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+           ^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/cuda/__init__.py", line 372, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx
+Traceback (most recent call last):
+  File "/root/project/scripts/train_mid.py", line 348, in <module>
+    main()
+  File "/root/project/scripts/train_mid.py", line 286, in main
+    teacher = load_teacher(args.model, args.teacher_adapter, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/project/scripts/train_mid.py", line 74, in load_teacher
+    t = t.to(device)
+        ^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/modeling_utils.py", line 3701, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+           ^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/cuda/__init__.py", line 372, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx
+Traceback (most recent call last):
+  File "/root/project/scripts/train_mid.py", line 348, in <module>
+    main()
+  File "/root/project/scripts/train_mid.py", line 286, in main
+    teacher = load_teacher(args.model, args.teacher_adapter, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/project/scripts/train_mid.py", line 74, in load_teacher
+    t = t.to(device)
+        ^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/modeling_utils.py", line 3701, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+           ^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/cuda/__init__.py", line 372, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx
+Traceback (most recent call last):
+  File "/root/project/scripts/train_mid.py", line 348, in <module>
+    main()
+  File "/root/project/scripts/train_mid.py", line 286, in main
+    teacher = load_teacher(args.model, args.teacher_adapter, device)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/project/scripts/train_mid.py", line 74, in load_teacher
+    t = t.to(device)
+        ^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/modeling_utils.py", line 3701, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1355, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 915, in _apply
+    module._apply(fn)
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 942, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1341, in convert
+    return t.to(
+           ^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/cuda/__init__.py", line 372, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx
+W0625 11:29:36.160000 617625 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 618005 closing signal SIGTERM
+W0625 11:29:36.167000 617625 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 618006 closing signal SIGTERM
+W0625 11:29:36.168000 617625 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 618007 closing signal SIGTERM
+E0625 11:29:36.282000 617625 torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 618004) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/home/tiger/.local/bin/accelerate", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1390, in launch_command
+    deepspeed_launcher(args)
+  File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1076, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/train_mid.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-06-25_11:29:36
+  host      : trial-301319543-trialrun-301319543-worker-0
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 618004)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

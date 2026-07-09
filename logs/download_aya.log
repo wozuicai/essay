@@ -1,0 +1,35 @@
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+HTTP Error 429 thrown while requesting HEAD https://huggingface.co/datasets/CohereForAI/aya_dataset/resolve/main/README.md
+Rate limited. Waiting 224.0s before retry [Retry 1/5].
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading Aya dataset (this may take a few minutes)...
+Generating train split:   0%|          | 0/202362 [00:00<?, ? examples/s]Generating train split:  11%|█▏        | 23000/202362 [00:00<00:00, 225189.12 examples/s]Generating train split:  27%|██▋       | 55000/202362 [00:00<00:00, 274507.65 examples/s]Generating train split:  47%|████▋     | 96000/202362 [00:00<00:00, 329055.96 examples/s]Generating train split:  64%|██████▎   | 129000/202362 [00:00<00:00, 326626.49 examples/s]Generating train split:  85%|████████▌ | 173000/202362 [00:00<00:00, 309441.85 examples/s]Generating train split: 100%|██████████| 202362/202362 [00:00<00:00, 310797.04 examples/s]
+Generating test split:   0%|          | 0/1750 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 1750/1750 [00:00<00:00, 190947.76 examples/s]
+Total Aya samples: 202362
+Languages indexed.
+
+[fr] French: 1422 samples in Aya, need 5000
+  → Saved 1422 samples to data/processed/fr.jsonl
+  ⚠ fr: only 1422/5000 from Aya — will need NLLB translation to supplement
+
+[zh] Chinese Simplified: 0 samples in Aya, need 5000
+  → Saved 0 samples to data/processed/zh.jsonl
+  ⚠ zh: only 0/5000 from Aya — will need NLLB translation to supplement
+
+[sw] Swahili: 366 samples in Aya, need 2000
+  → Saved 366 samples to data/processed/sw.jsonl
+  ⚠ sw: only 366/2000 from Aya — will need NLLB translation to supplement
+
+[th] Thai: 724 samples in Aya, need 2000
+  → Saved 724 samples to data/processed/th.jsonl
+  ⚠ th: only 724/2000 from Aya — will need NLLB translation to supplement
+
+[bn] Bengali: 1534 samples in Aya, need 2000
+  → Saved 1534 samples to data/processed/bn.jsonl
+  ⚠ bn: only 1534/2000 from Aya — will need NLLB translation to supplement
+
+[yo] Yoruba: 11758 samples in Aya, need 500
+  → Saved 500 samples to data/processed/yo.jsonl
+
+Done.

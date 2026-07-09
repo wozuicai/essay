@@ -1,0 +1,14 @@
+[Wed Jun 17 09:26:52 AM UTC 2026] === run_iroko_mcq_rerun.sh 启动（train_yo GPU0 / train_ha GPU1 并行）===
+[Wed Jun 17 09:26:52 AM UTC 2026] --- 开始 IrokoBench MCQ model=train_yo (GPU 0) ---
+[Wed Jun 17 09:26:52 AM UTC 2026] --- 开始 IrokoBench MCQ model=train_ha (GPU 1) ---
+[Wed Jun 17 09:30:49 AM UTC 2026] --- 完成 train_yo (GPU 0, exit=0) ---
+[Wed Jun 17 09:31:06 AM UTC 2026] --- 完成 train_ha (GPU 1, exit=0) ---
+[Wed Jun 17 09:31:06 AM UTC 2026] === IrokoBench MCQ 重跑完成 ===
+
+=== 结果汇总 ===
+train_yo:
+  yo MCQ = 0.454
+  ha MCQ = 0.398
+train_ha:
+  yo MCQ = 0.454
+  ha MCQ = 0.42

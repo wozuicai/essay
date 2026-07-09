@@ -1,0 +1,28 @@
+[Tue Jun 16 06:27:27 AM UTC 2026] === run_eval_extended.sh 启动 ===
+[Tue Jun 16 06:27:27 AM UTC 2026] --- 开始评测 model=baseline ---
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+=== eval_extended: /root/project/models/Qwen3.5-9B-Base ===
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 2/427 [00:00<00:27, 15.20it/s]Loading weights:   5%|▌         | 23/427 [00:00<00:03, 110.63it/s]Loading weights:  10%|█         | 43/427 [00:00<00:02, 134.65it/s]Loading weights:  14%|█▍        | 60/427 [00:00<00:02, 139.97it/s]Loading weights:  19%|█▊        | 79/427 [00:00<00:02, 155.98it/s]Loading weights:  22%|██▏       | 95/427 [00:00<00:02, 149.76it/s]Loading weights:  26%|██▌       | 111/427 [00:00<00:02, 150.09it/s]Loading weights:  30%|███       | 129/427 [00:00<00:01, 152.12it/s]Loading weights:  34%|███▍      | 145/427 [00:01<00:01, 152.91it/s]Loading weights:  38%|███▊      | 161/427 [00:01<00:01, 133.23it/s]Loading weights:  44%|████▍     | 187/427 [00:01<00:01, 159.81it/s]Loading weights:  48%|████▊     | 204/427 [00:01<00:01, 158.42it/s]Loading weights:  52%|█████▏    | 221/427 [00:01<00:01, 158.87it/s]Loading weights:  56%|█████▌    | 238/427 [00:01<00:01, 157.66it/s]Loading weights:  59%|█████▉    | 254/427 [00:01<00:01, 143.18it/s]Loading weights:  63%|██████▎   | 269/427 [00:01<00:01, 136.96it/s]Loading weights:  66%|██████▋   | 283/427 [00:01<00:01, 137.53it/s]Loading weights:  70%|██████▉   | 297/427 [00:02<00:00, 138.13it/s]Loading weights:  73%|███████▎  | 311/427 [00:02<00:00, 132.88it/s]Loading weights:  78%|███████▊  | 331/427 [00:02<00:00, 149.85it/s]Loading weights:  81%|████████▏ | 347/427 [00:02<00:00, 137.15it/s]Loading weights:  85%|████████▌ | 364/427 [00:02<00:00, 142.84it/s]Loading weights:  90%|████████▉ | 384/427 [00:02<00:00, 152.59it/s]Loading weights:  94%|█████████▎| 400/427 [00:02<00:00, 145.14it/s]Loading weights:  98%|█████████▊| 417/427 [00:02<00:00, 149.35it/s]Loading weights: 100%|██████████| 427/427 [00:02<00:00, 144.79it/s]
+
+[AfriQA] lang=yo (yor)
+  F1=0.0097  EM=0.0  n=48
+
+[AfriQA] lang=ha (hau)
+  F1=0.0444  EM=0.02  n=50
+
+[partial-write] afriqa -> /root/project/results/phase2_v2/Qwen3.5-9B-Base_baseline.json
+
+[Aya Evaluation] loading dataset...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  columns: ['id', 'inputs', 'targets', 'language', 'script', 'source_id']  lang_col=language
+  available languages (sample): ['kas', 'rus', 'tam', 'mni', 'sna', 'tur', 'jpn', 'spa', 'zul', 'vie', 'als', 'khk', 'nob', 'kat', 'plt', 'hye', 'urd', 'ukr', 'cym', 'ltz']
+
+[Aya Evaluation] lang=en
+  20/50 done, avg score so far: 3.10
+  40/50 done, avg score so far: 3.27
+[Tue Jun 16 06:45:51 AM UTC 2026] --- 完成 model=baseline ---
+[Tue Jun 16 06:45:51 AM UTC 2026] --- 开始评测 model=en ---
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(

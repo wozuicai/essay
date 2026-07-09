@@ -1,0 +1,69 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning : `load_model` does not return WordVectorModel or SupervisedModel any more, but a `FastText` object which is very similar.
+Loading model: results/mid/mid_Qwen3.5-9B-Base_yo
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<01:59,  3.58it/s]Loading weights:   6%|▌         | 26/427 [00:00<00:04, 85.46it/s]Loading weights:  11%|█         | 46/427 [00:00<00:03, 120.96it/s]Loading weights:  16%|█▌        | 67/427 [00:00<00:02, 145.17it/s]Loading weights:  20%|██        | 87/427 [00:00<00:02, 161.81it/s]Loading weights:  25%|██▍       | 106/427 [00:00<00:02, 157.73it/s]Loading weights:  30%|███       | 129/427 [00:00<00:01, 176.06it/s]Loading weights:  35%|███▍      | 148/427 [00:01<00:02, 119.40it/s]Loading weights:  40%|███▉      | 169/427 [00:01<00:01, 138.21it/s]Loading weights:  46%|████▌     | 196/427 [00:01<00:01, 164.80it/s]Loading weights:  51%|█████     | 216/427 [00:01<00:01, 161.60it/s]Loading weights:  56%|█████▌    | 238/427 [00:01<00:01, 175.08it/s]Loading weights:  60%|██████    | 258/427 [00:01<00:01, 165.83it/s]Loading weights:  65%|██████▌   | 279/427 [00:01<00:00, 173.22it/s]Loading weights:  70%|██████▉   | 298/427 [00:02<00:00, 171.68it/s]Loading weights:  74%|███████▍  | 316/427 [00:02<00:00, 165.23it/s]Loading weights:  81%|████████  | 344/427 [00:02<00:00, 194.34it/s]Loading weights:  85%|████████▌ | 365/427 [00:02<00:00, 173.11it/s]Loading weights:  90%|████████▉ | 384/427 [00:02<00:00, 110.04it/s]Loading weights:  94%|█████████▎| 400/427 [00:02<00:00, 118.00it/s]Loading weights:  98%|█████████▊| 418/427 [00:02<00:00, 128.48it/s]Loading weights: 100%|██████████| 427/427 [00:02<00:00, 143.55it/s]
+Pre-loading MasakhaNEWS excerpts for ['en', 'yo', 'so', 'ha']
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+  en: 50 excerpts loaded, e.g. "China's strategy for tackling Covid feels frozen in time."
+  yo: 50 excerpts loaded, e.g. 'Igbakeji Aarẹ tẹlẹ ni Naijiria, Atiku Abubakar ti ke si awọn gomina lati ma duro'
+  so: 50 excerpts loaded, e.g. 'Kooxaha Premier League-ga ayaa shir ay shalay ku yeesheen internet-ka oo maqal i'
+  ha: 50 excerpts loaded, e.g. "A ranar 12 ga watan Rabiul Awwal, wani bangare na al'ummar Musulmi na gudanar da"
+
+=== cell (en → en) ===
+  lc_rate=1.0000  en_leak=1.0000  n=50
+
+=== cell (en → yo) ===
+  lc_rate=0.2200  en_leak=0.7800  n=50
+
+=== cell (en → so) ===
+  lc_rate=0.0600  en_leak=0.9400  n=50
+
+=== cell (en → ha) ===
+  lc_rate=0.0000  en_leak=1.0000  n=50
+
+=== cell (yo → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (yo → yo) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+=== cell (yo → so) ===
+  lc_rate=0.0200  en_leak=0.0000  n=50
+
+=== cell (yo → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → en) ===
+  lc_rate=0.0600  en_leak=0.0600  n=50
+
+=== cell (so → yo) ===
+  lc_rate=0.0200  en_leak=0.0000  n=50
+
+=== cell (so → so) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+=== cell (so → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → en) ===
+  lc_rate=0.1000  en_leak=0.1000  n=50
+
+=== cell (ha → yo) ===
+  lc_rate=0.1600  en_leak=0.0000  n=50
+
+=== cell (ha → so) ===
+  lc_rate=0.2400  en_leak=0.0000  n=50
+
+=== cell (ha → ha) ===
+  lc_rate=0.9796  en_leak=0.0000  n=49
+
+Saved: results/mid/mid_Qwen3.5-9B-Base_yo_lcb_matrix.json
+
+=== lc_rate matrix ===
+instr\tgt      en      yo      so      ha
+        en   1.000   0.220   0.060   0.000
+        yo   0.000   1.000   0.020   0.000
+        so   0.060   0.020   1.000   0.000
+        ha   0.100   0.160   0.240   0.980

@@ -1,0 +1,62 @@
+Warning : `load_model` does not return WordVectorModel or SupervisedModel any more, but a `FastText` object which is very similar.
+Loading model: /root/project/results/mix_en/mix_Qwen3.5-9B-Base_en_ha
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<03:25,  2.07it/s]Loading weights:   0%|          | 2/427 [00:00<03:30,  2.02it/s]Loading weights:   5%|▌         | 23/427 [00:01<00:12, 31.91it/s]Loading weights:   9%|▉         | 38/427 [00:01<00:07, 51.61it/s]Loading weights:  12%|█▏        | 50/427 [00:01<00:06, 60.86it/s]Loading weights:  15%|█▌        | 66/427 [00:01<00:04, 76.98it/s]Loading weights:  21%|██        | 90/427 [00:01<00:03, 110.36it/s]Loading weights:  25%|██▍       | 105/427 [00:01<00:03, 106.98it/s]Loading weights:  28%|██▊       | 119/427 [00:01<00:02, 109.11it/s]Loading weights:  31%|███▏      | 134/427 [00:01<00:02, 107.82it/s]Loading weights:  36%|███▌      | 152/427 [00:02<00:02, 122.85it/s]Loading weights:  40%|████      | 171/427 [00:02<00:01, 138.10it/s]Loading weights:  44%|████▎     | 186/427 [00:02<00:01, 128.48it/s]Loading weights:  47%|████▋     | 202/427 [00:02<00:01, 131.29it/s]Loading weights:  52%|█████▏    | 221/427 [00:02<00:01, 146.11it/s]Loading weights:  56%|█████▌    | 237/427 [00:02<00:01, 143.54it/s]Loading weights:  59%|█████▉    | 252/427 [00:02<00:01, 145.25it/s]Loading weights:  63%|██████▎   | 267/427 [00:02<00:01, 131.52it/s]Loading weights:  68%|██████▊   | 289/427 [00:03<00:00, 154.05it/s]Loading weights:  72%|███████▏  | 306/427 [00:03<00:00, 155.74it/s]Loading weights:  76%|███████▌  | 323/427 [00:03<00:00, 152.95it/s]Loading weights:  81%|████████  | 344/427 [00:03<00:00, 166.03it/s]Loading weights:  85%|████████▍ | 361/427 [00:03<00:00, 150.15it/s]Loading weights:  89%|████████▉ | 381/427 [00:03<00:00, 162.02it/s]Loading weights:  93%|█████████▎| 398/427 [00:03<00:00, 157.66it/s]Loading weights:  97%|█████████▋| 415/427 [00:03<00:00, 146.33it/s]Loading weights: 100%|██████████| 427/427 [00:03<00:00, 108.85it/s]
+Loading weights:   0%|          | 0/256 [00:00<?, ?it/s]Loading weights:  72%|███████▏  | 184/256 [00:00<00:00, 1821.60it/s]Loading weights: 100%|██████████| 256/256 [00:00<00:00, 1297.85it/s]
+
+=== LCB-chat: yo (50 instructions) ===
+  [yo] 4/50
+  [yo] 8/50
+  [yo] 12/50
+  [yo] 16/50
+  [yo] 20/50
+  [yo] 24/50
+  [yo] 28/50
+  [yo] 32/50
+  [yo] 36/50
+  [yo] 40/50
+  [yo] 44/50
+  [yo] 48/50
+  [yo] 50/50
+  {'lc_rate': 0.94, 'en_leak': 0.06, 'n': 50}
+
+=== LCB-chat: so (50 instructions) ===
+  [so] 4/50
+  [so] 8/50
+  [so] 12/50
+  [so] 16/50
+  [so] 20/50
+  [so] 24/50
+  [so] 28/50
+  [so] 32/50
+  [so] 36/50
+  [so] 40/50
+  [so] 44/50
+  [so] 48/50
+  [so] 50/50
+  {'lc_rate': 0.96, 'en_leak': 0.02, 'n': 50}
+
+=== LCB-chat: ha (50 instructions) ===
+  [ha] 4/50
+  [ha] 8/50
+  [ha] 12/50
+  [ha] 16/50
+  [ha] 20/50
+  [ha] 24/50
+  [ha] 28/50
+  [ha] 32/50
+  [ha] 36/50
+  [ha] 40/50
+  [ha] 44/50
+  [ha] 48/50
+  [ha] 50/50
+  {'lc_rate': 0.9767, 'en_leak': 0.0233, 'n': 43}
+
+Saved: results/lcb_chat/mix_en_ha_lcb_chat.json
+0
+  [ha] 44/50
+  [ha] 48/50
+  [ha] 50/50
+  {'lc_rate': 0.9767, 'en_leak': 0.0233, 'n': 43}
+
+Saved: results/lcb_chat/mix_en_ha_lcb_chat.json

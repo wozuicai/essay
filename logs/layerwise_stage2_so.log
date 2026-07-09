@@ -1,0 +1,799 @@
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+
+=== Stage 2: [so] top LoRA (layers 16-31, r=16, 1 epoch) ===
+
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s][transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights: 100%|██████████| 427/427 [00:00<00:00, 11599.46it/s]
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights: 100%|██████████| 427/427 [00:00<00:00, 11948.23it/s]
+Loading weights: 100%|██████████| 427/427 [00:00<00:00, 11380.83it/s]
+Loading weights: 100%|██████████| 427/427 [00:00<00:00, 11913.73it/s]
+[so] top-layer trainable: 14.5M params
+[so] top-layer trainable: 14.5M params
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+[so] top-layer trainable: 14.5M params
+[so] top-layer trainable: 14.5M params
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+Stage 2 [so]: 7704 samples
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+Warning: The cache directory for DeepSpeed Triton autotune, /home/tiger/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /home/tiger/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /home/tiger/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Warning: The cache directory for DeepSpeed Triton autotune, /home/tiger/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Adding EOS to train dataset:   0%|          | 0/7704 [00:00<?, ? examples/s]Adding EOS to train dataset:  43%|████▎     | 3349/7704 [00:00<00:00, 33324.45 examples/s]Adding EOS to train dataset: 100%|██████████| 7704/7704 [00:00<00:00, 28580.23 examples/s]Adding EOS to train dataset: 100%|██████████| 7704/7704 [00:00<00:00, 28994.19 examples/s]
+Tokenizing train dataset:   0%|          | 0/7704 [00:00<?, ? examples/s]Tokenizing train dataset:   3%|▎         | 253/7704 [00:00<00:02, 2505.81 examples/s]Tokenizing train dataset:   8%|▊         | 635/7704 [00:00<00:02, 2524.25 examples/s]Tokenizing train dataset:  13%|█▎        | 994/7704 [00:00<00:02, 2450.90 examples/s]Tokenizing train dataset:  16%|█▌        | 1250/7704 [00:00<00:03, 2141.98 examples/s]Tokenizing train dataset:  19%|█▉        | 1494/7704 [00:00<00:02, 2223.95 examples/s]Tokenizing train dataset:  24%|██▍       | 1840/7704 [00:00<00:02, 2246.52 examples/s]Tokenizing train dataset:  28%|██▊       | 2176/7704 [00:00<00:02, 2237.26 examples/s]Tokenizing train dataset:  31%|███▏      | 2416/7704 [00:01<00:02, 2275.70 examples/s]Tokenizing train dataset:  35%|███▍      | 2663/7704 [00:01<00:02, 2318.85 examples/s]Tokenizing train dataset:  38%|███▊      | 2911/7704 [00:01<00:02, 2347.07 examples/s]Tokenizing train dataset:  43%|████▎     | 3275/7704 [00:01<00:01, 2341.80 examples/s]Tokenizing train dataset:  46%|████▌     | 3534/7704 [00:01<00:01, 2400.18 examples/s]Tokenizing train dataset:  50%|█████     | 3872/7704 [00:01<00:01, 2336.37 examples/s]Tokenizing train dataset:  54%|█████▍    | 4181/7704 [00:01<00:01, 2243.45 examples/s]Tokenizing train dataset:  59%|█████▊    | 4511/7704 [00:01<00:01, 2222.81 examples/s]Tokenizing train dataset:  62%|██████▏   | 4800/7704 [00:02<00:01, 2370.16 examples/s]Tokenizing train dataset:  67%|██████▋   | 5161/7704 [00:02<00:01, 2380.01 examples/s][transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (3060300 > 262144). Running this sequence through the model will result in indexing errors
+Tokenizing train dataset:  71%|███████   | 5446/7704 [00:07<00:12, 181.37 examples/s] Tokenizing train dataset:  74%|███████▍  | 5689/7704 [00:07<00:08, 236.30 examples/s]Tokenizing train dataset:  77%|███████▋  | 5949/7704 [00:07<00:05, 316.03 examples/s]Tokenizing train dataset:  81%|████████  | 6235/7704 [00:08<00:03, 395.47 examples/s]Tokenizing train dataset:  84%|████████▍ | 6471/7704 [00:08<00:02, 506.32 examples/s]Tokenizing train dataset:  87%|████████▋ | 6715/7704 [00:08<00:01, 650.80 examples/s]Tokenizing train dataset:  91%|█████████ | 6987/7704 [00:08<00:00, 850.34 examples/s]Tokenizing train dataset:  95%|█████████▌| 7327/7704 [00:08<00:00, 1092.03 examples/s]Tokenizing train dataset:  99%|█████████▉| 7610/7704 [00:08<00:00, 1331.36 examples/s]Tokenizing train dataset: 100%|██████████| 7704/7704 [00:08<00:00, 882.74 examples/s] 
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO NCCL_SOCKET_FAMILY set by environment to AF_INET6
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO cudaDriverVersion 13000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO NCCL version 2.29.7+cuda13.2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO NCCL git version stable b81d6a5a3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO cudaDriverVersion 13000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO cudaDriverVersion 13000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO cudaDriverVersion 13000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO NCCL_SOCKET_FAMILY set by environment to AF_INET6
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO NCCL_SOCKET_FAMILY set by environment to AF_INET6
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO NCCL_SOCKET_FAMILY set by environment to AF_INET6
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Comm config Blocking set to 1
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO NCCL version 2.29.7+cuda13.2
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO NCCL git version stable b81d6a5a3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO NCCL version 2.29.7+cuda13.2
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO NCCL git version stable b81d6a5a3
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO NCCL version 2.29.7+cuda13.2
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO NCCL git version stable b81d6a5a3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Comm config Blocking set to 1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Comm config Blocking set to 1
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Comm config Blocking set to 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO NET/Plugin: Could not find: libnccl-net.so
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO NET/Plugin: Could not find: libnccl-net.so
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO NCCL_SOCKET_FAMILY set by environment to AF_INET6
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO NCCL_SOCKET_FAMILY set by environment to AF_INET6
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO NET/Plugin: Could not find: libnccl-net.so
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO NCCL_SOCKET_FAMILY set by environment to AF_INET6
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO NET/Plugin: Could not find: libnccl-net.so
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO NCCL_SOCKET_FAMILY set by environment to AF_INET6
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO NET/IB : No device found.
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO NET/IB : Using [RO]; OOB eth0:2605:340:cda2:1238:1dc0::2<0>
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Failed to initialize NET plugin IB
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO NCCL_SOCKET_FAMILY set by environment to AF_INET6
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO NET/Socket : Using [0]eth0:2605:340:cda2:1238:1dc0::2<0>
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Initialized NET plugin Socket
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Assigned NET plugin Socket to comm
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO NET/IB : No device found.
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO NET/IB : Using [RO]; OOB eth0:2605:340:cda2:1238:1dc0::2<0>
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Failed to initialize NET plugin IB
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO NCCL_SOCKET_FAMILY set by environment to AF_INET6
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO GIN/Plugin: Could not find: libnccl-gin.so
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Failed to initialize any GIN plugin
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Using network Socket
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO NET/Socket : Using [0]eth0:2605:340:cda2:1238:1dc0::2<0>
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Initialized NET plugin Socket
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Assigned NET plugin Socket to comm
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO NET/IB : No device found.
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO NET/IB : Using [RO]; OOB eth0:2605:340:cda2:1238:1dc0::2<0>
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Failed to initialize NET plugin IB
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO NCCL_SOCKET_FAMILY set by environment to AF_INET6
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO NET/IB : No device found.
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO NET/IB : Using [RO]; OOB eth0:2605:340:cda2:1238:1dc0::2<0>
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Failed to initialize NET plugin IB
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO NCCL_SOCKET_FAMILY set by environment to AF_INET6
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO GIN/Plugin: Could not find: libnccl-gin.so
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Failed to initialize any GIN plugin
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Using network Socket
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO NET/Socket : Using [0]eth0:2605:340:cda2:1238:1dc0::2<0>
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Initialized NET plugin Socket
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Assigned NET plugin Socket to comm
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO NET/Socket : Using [0]eth0:2605:340:cda2:1238:1dc0::2<0>
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Initialized NET plugin Socket
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Assigned NET plugin Socket to comm
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO GIN/Plugin: Could not find: libnccl-gin.so
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Failed to initialize any GIN plugin
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Using network Socket
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO GIN/Plugin: Could not find: libnccl-gin.so
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Failed to initialize any GIN plugin
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Using network Socket
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO [Rank 1] ncclCommInitRankConfig comm 0x1e58c4d0 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 52000 commId 0x7e12429290f97545 - Init START
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO [Rank 0] ncclCommInitRankConfig comm 0x1c14fd00 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 51000 commId 0x7e12429290f97545 - Init START
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO [Rank 3] ncclCommInitRankConfig comm 0x1cdba790 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId 63000 commId 0x7e12429290f97545 - Init START
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO [Rank 2] ncclCommInitRankConfig comm 0x1ee53fd0 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 62000 commId 0x7e12429290f97545 - Init START
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO RAS client listening socket at ::1<28028>
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO RAS client listening socket at ::1<28028>
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO RAS client listening socket at ::1<28028>
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO RAS client listening socket at ::1<28028>
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO MNNVL busId 0x63000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x80
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO MNNVL busId 0x62000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x80
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO MNNVL busId 0x52000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x80
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO MNNVL busId 0x51000 fabric UUID 0.0 cliqueId 0x0 state 3 healthMask 0x80
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Could not find real path of /sys/class/pci_bus/fffffff/../../fffffff:ff:f
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO TOPO/NET : Importing network plugins to topology
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO ncclTopoPopulateNics : Filled eth0 in topo with pciPath=(null) net=1 gin=(null) keep=1 coll=(null)
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Could not find real path of /sys/class/pci_bus/fffffff/../../fffffff:ff:f
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO TOPO/NET : Importing network plugins to topology
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO ncclTopoPopulateNics : Filled eth0 in topo with pciPath=(null) net=1 gin=(null) keep=1 coll=(null)
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Could not find real path of /sys/class/pci_bus/fffffff/../../fffffff:ff:f
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO TOPO/NET : Importing network plugins to topology
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO ncclTopoPopulateNics : Filled eth0 in topo with pciPath=(null) net=1 gin=(null) keep=1 coll=(null)
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Could not find real path of /sys/class/pci_bus/fffffff/../../fffffff:ff:f
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO TOPO/NET : Importing network plugins to topology
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO ncclTopoPopulateNics : Filled eth0 in topo with pciPath=(null) net=1 gin=(null) keep=1 coll=(null)
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO === System : maxBw 721.8 totalBw 721.8 ===
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO CPU/0-0 (1/1/4)
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO + PCI[5000.0] - NIC/0-0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO                 + NET[1.2] - NET/0-0 (0/0/0/1.250000)
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO + PCI[48.0] - PCI/0-45000 (1d0f02001d0f0200)
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO               + PCI[48.0] - GPU/0-51000 (0)
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO               + PCI[48.0] - GPU/0-52000 (1)
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO + PCI[48.0] - PCI/0-56000 (1d0f02001d0f0200)
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO               + PCI[48.0] - GPU/0-62000 (2)
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO               + PCI[48.0] - GPU/0-63000 (3)
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO ==========================================
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO GPU/0-51000 :GPU/0-51000 (0/5000.0/LOC) GPU/0-52000 (2/721.8/NVL) GPU/0-62000 (2/721.8/NVL) GPU/0-63000 (2/721.8/NVL) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO GPU/0-52000 :GPU/0-51000 (2/721.8/NVL) GPU/0-52000 (0/5000.0/LOC) GPU/0-62000 (2/721.8/NVL) GPU/0-63000 (2/721.8/NVL) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO GPU/0-62000 :GPU/0-51000 (2/721.8/NVL) GPU/0-52000 (2/721.8/NVL) GPU/0-62000 (0/5000.0/LOC) GPU/0-63000 (2/721.8/NVL) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO GPU/0-63000 :GPU/0-51000 (2/721.8/NVL) GPU/0-52000 (2/721.8/NVL) GPU/0-62000 (2/721.8/NVL) GPU/0-63000 (0/5000.0/LOC) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO NET/0-0 :GPU/0-51000 (4/1.2/PHB) GPU/0-52000 (4/1.2/PHB) GPU/0-62000 (4/1.2/PHB) GPU/0-63000 (4/1.2/PHB) CPU/0-0 (2/1.2/PHB) NET/0-0 (0/5000.0/LOC) 
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 1 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity = 0-191).
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO NVLS multicast support is available on dev 1 (NVLS_NCHANNELS 24)
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO === System : maxBw 721.8 totalBw 721.8 ===
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO CPU/0-0 (1/1/4)
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO + PCI[5000.0] - NIC/0-0
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO                 + NET[1.2] - NET/0-0 (0/0/0/1.250000)
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO + PCI[48.0] - PCI/0-45000 (1d0f02001d0f0200)
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO               + PCI[48.0] - GPU/0-51000 (0)
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO               + PCI[48.0] - GPU/0-52000 (1)
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO + PCI[48.0] - PCI/0-56000 (1d0f02001d0f0200)
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO               + PCI[48.0] - GPU/0-62000 (2)
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO               + PCI[48.0] - GPU/0-63000 (3)
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO ==========================================
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO GPU/0-51000 :GPU/0-51000 (0/5000.0/LOC) GPU/0-52000 (2/721.8/NVL) GPU/0-62000 (2/721.8/NVL) GPU/0-63000 (2/721.8/NVL) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO GPU/0-52000 :GPU/0-51000 (2/721.8/NVL) GPU/0-52000 (0/5000.0/LOC) GPU/0-62000 (2/721.8/NVL) GPU/0-63000 (2/721.8/NVL) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO GPU/0-62000 :GPU/0-51000 (2/721.8/NVL) GPU/0-52000 (2/721.8/NVL) GPU/0-62000 (0/5000.0/LOC) GPU/0-63000 (2/721.8/NVL) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO GPU/0-63000 :GPU/0-51000 (2/721.8/NVL) GPU/0-52000 (2/721.8/NVL) GPU/0-62000 (2/721.8/NVL) GPU/0-63000 (0/5000.0/LOC) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO NET/0-0 :GPU/0-51000 (4/1.2/PHB) GPU/0-52000 (4/1.2/PHB) GPU/0-62000 (4/1.2/PHB) GPU/0-63000 (4/1.2/PHB) CPU/0-0 (2/1.2/PHB) NET/0-0 (0/5000.0/LOC) 
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 3 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity = 0-191).
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO NVLS multicast support is available on dev 3 (NVLS_NCHANNELS 24)
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO === System : maxBw 721.8 totalBw 721.8 ===
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO CPU/0-0 (1/1/4)
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO + PCI[5000.0] - NIC/0-0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO                 + NET[1.2] - NET/0-0 (0/0/0/1.250000)
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO + PCI[48.0] - PCI/0-45000 (1d0f02001d0f0200)
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO               + PCI[48.0] - GPU/0-51000 (0)
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO               + PCI[48.0] - GPU/0-52000 (1)
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO + PCI[48.0] - PCI/0-56000 (1d0f02001d0f0200)
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO               + PCI[48.0] - GPU/0-62000 (2)
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO               + PCI[48.0] - GPU/0-63000 (3)
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO ==========================================
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO GPU/0-51000 :GPU/0-51000 (0/5000.0/LOC) GPU/0-52000 (2/721.8/NVL) GPU/0-62000 (2/721.8/NVL) GPU/0-63000 (2/721.8/NVL) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO GPU/0-52000 :GPU/0-51000 (2/721.8/NVL) GPU/0-52000 (0/5000.0/LOC) GPU/0-62000 (2/721.8/NVL) GPU/0-63000 (2/721.8/NVL) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO GPU/0-62000 :GPU/0-51000 (2/721.8/NVL) GPU/0-52000 (2/721.8/NVL) GPU/0-62000 (0/5000.0/LOC) GPU/0-63000 (2/721.8/NVL) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO GPU/0-63000 :GPU/0-51000 (2/721.8/NVL) GPU/0-52000 (2/721.8/NVL) GPU/0-62000 (2/721.8/NVL) GPU/0-63000 (0/5000.0/LOC) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO NET/0-0 :GPU/0-51000 (4/1.2/PHB) GPU/0-52000 (4/1.2/PHB) GPU/0-62000 (4/1.2/PHB) GPU/0-63000 (4/1.2/PHB) CPU/0-0 (2/1.2/PHB) NET/0-0 (0/5000.0/LOC) 
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 2 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity = 0-191).
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO NVLS multicast support is available on dev 2 (NVLS_NCHANNELS 24)
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO === System : maxBw 721.8 totalBw 721.8 ===
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO CPU/0-0 (1/1/4)
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO + PCI[5000.0] - NIC/0-0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO                 + NET[1.2] - NET/0-0 (0/0/0/1.250000)
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO + PCI[48.0] - PCI/0-45000 (1d0f02001d0f0200)
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO               + PCI[48.0] - GPU/0-51000 (0)
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO               + PCI[48.0] - GPU/0-52000 (1)
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO + PCI[48.0] - PCI/0-56000 (1d0f02001d0f0200)
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO               + PCI[48.0] - GPU/0-62000 (2)
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO               + PCI[48.0] - GPU/0-63000 (3)
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO                             + NVL[721.8] - NVS/0-0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO ==========================================
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO GPU/0-51000 :GPU/0-51000 (0/5000.0/LOC) GPU/0-52000 (2/721.8/NVL) GPU/0-62000 (2/721.8/NVL) GPU/0-63000 (2/721.8/NVL) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO GPU/0-52000 :GPU/0-51000 (2/721.8/NVL) GPU/0-52000 (0/5000.0/LOC) GPU/0-62000 (2/721.8/NVL) GPU/0-63000 (2/721.8/NVL) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO GPU/0-62000 :GPU/0-51000 (2/721.8/NVL) GPU/0-52000 (2/721.8/NVL) GPU/0-62000 (0/5000.0/LOC) GPU/0-63000 (2/721.8/NVL) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO GPU/0-63000 :GPU/0-51000 (2/721.8/NVL) GPU/0-52000 (2/721.8/NVL) GPU/0-62000 (2/721.8/NVL) GPU/0-63000 (0/5000.0/LOC) NVS/0-0 (1/721.8/NVL) CPU/0-0 (2/48.0/PHB) NET/0-0 (4/1.2/PHB) 
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO NET/0-0 :GPU/0-51000 (4/1.2/PHB) GPU/0-52000 (4/1.2/PHB) GPU/0-62000 (4/1.2/PHB) GPU/0-63000 (4/1.2/PHB) CPU/0-0 (2/1.2/PHB) NET/0-0 (0/5000.0/LOC) 
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is 0-47,96-143. (GPU affinity = 0-47,96-143 ; CPU affinity = 0-191).
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO NVLS multicast support is available on dev 0 (NVLS_NCHANNELS 24)
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Pattern 4, crossNic 0, nChannels 16, bw 45.000000/45.000000, type NVL/PIX, sameChannels 1
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  0 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  1 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  2 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  3 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  4 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  5 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  6 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  7 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  8 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  9 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO 10 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO 11 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO 12 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO 13 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO 14 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO 15 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Pattern 4, crossNic 0, nChannels 16, bw 45.000000/45.000000, type NVL/PIX, sameChannels 1
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  0 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  1 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  2 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  3 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  4 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  5 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  6 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  7 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  8 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  9 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO 10 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO 11 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO 12 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO 13 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO 14 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO 15 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Pattern 4, crossNic 0, nChannels 16, bw 45.000000/45.000000, type NVL/PIX, sameChannels 1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  0 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  1 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  2 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  3 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  4 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  5 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  6 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  7 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  8 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  9 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO 10 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO 11 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO 12 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO 13 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO 14 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO 15 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Pattern 4, crossNic 0, nChannels 16, bw 45.000000/45.000000, type NVL/PIX, sameChannels 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  0 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  1 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  2 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  3 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  4 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  5 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  6 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  7 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  8 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  9 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO 10 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO 11 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO 12 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO 13 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO 14 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO 15 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Pattern 3, crossNic 0, nChannels 16, bw 50.000000/50.000000, type NVL/PIX, sameChannels 0
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  0 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  1 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  2 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  3 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  4 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  5 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  6 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  7 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  8 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  9 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO 10 : GPU/0-52000 GPU/0-62000 GPU/0-63000 GPU/0-51000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO 11 : GPU/0-52000 GPU/0-62000 GPU/0-63000 GPU/0-51000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO 12 : GPU/0-62000 GPU/0-63000 GPU/0-51000 GPU/0-52000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO 13 : GPU/0-62000 GPU/0-63000 GPU/0-51000 GPU/0-52000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO 14 : GPU/0-63000 GPU/0-51000 GPU/0-52000 GPU/0-62000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO 15 : GPU/0-63000 GPU/0-51000 GPU/0-52000 GPU/0-62000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Pattern 3, crossNic 0, nChannels 16, bw 50.000000/50.000000, type NVL/PIX, sameChannels 0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  0 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  1 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  2 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  3 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  4 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  5 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  6 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  7 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  8 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  9 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Pattern 5, crossNic 0, nChannels 4, bw 90.000000/90.000000, type NVL/PIX, sameChannels 0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO 10 : GPU/0-52000 GPU/0-62000 GPU/0-63000 GPU/0-51000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  0 : GPU/0-51000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO 11 : GPU/0-52000 GPU/0-62000 GPU/0-63000 GPU/0-51000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  1 : GPU/0-52000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  2 : GPU/0-62000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO 12 : GPU/0-62000 GPU/0-63000 GPU/0-51000 GPU/0-52000
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO  3 : GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO 13 : GPU/0-62000 GPU/0-63000 GPU/0-51000 GPU/0-52000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO 14 : GPU/0-63000 GPU/0-51000 GPU/0-52000 GPU/0-62000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO 15 : GPU/0-63000 GPU/0-51000 GPU/0-52000 GPU/0-62000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Pattern 5, crossNic 0, nChannels 4, bw 90.000000/90.000000, type NVL/PIX, sameChannels 0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  0 : GPU/0-51000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  1 : GPU/0-52000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  2 : GPU/0-62000
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO  3 : GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Pattern 3, crossNic 0, nChannels 16, bw 50.000000/50.000000, type NVL/PIX, sameChannels 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  0 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  1 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  2 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  3 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  4 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  5 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  6 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  7 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  8 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  9 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO 10 : GPU/0-52000 GPU/0-62000 GPU/0-63000 GPU/0-51000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO 11 : GPU/0-52000 GPU/0-62000 GPU/0-63000 GPU/0-51000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO 12 : GPU/0-62000 GPU/0-63000 GPU/0-51000 GPU/0-52000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO 13 : GPU/0-62000 GPU/0-63000 GPU/0-51000 GPU/0-52000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO 14 : GPU/0-63000 GPU/0-51000 GPU/0-52000 GPU/0-62000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO 15 : GPU/0-63000 GPU/0-51000 GPU/0-52000 GPU/0-62000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Pattern 5, crossNic 0, nChannels 4, bw 90.000000/90.000000, type NVL/PIX, sameChannels 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  0 : GPU/0-51000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  1 : GPU/0-52000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  2 : GPU/0-62000
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO  3 : GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Pattern 3, crossNic 0, nChannels 16, bw 50.000000/50.000000, type NVL/PIX, sameChannels 0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  0 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  1 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  2 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  3 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  4 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  5 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  6 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  7 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  8 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  9 : GPU/0-51000 GPU/0-52000 GPU/0-62000 GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO 10 : GPU/0-52000 GPU/0-62000 GPU/0-63000 GPU/0-51000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO 11 : GPU/0-52000 GPU/0-62000 GPU/0-63000 GPU/0-51000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO 12 : GPU/0-62000 GPU/0-63000 GPU/0-51000 GPU/0-52000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO 13 : GPU/0-62000 GPU/0-63000 GPU/0-51000 GPU/0-52000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO 14 : GPU/0-63000 GPU/0-51000 GPU/0-52000 GPU/0-62000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO 15 : GPU/0-63000 GPU/0-51000 GPU/0-52000 GPU/0-62000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Pattern 5, crossNic 0, nChannels 4, bw 90.000000/90.000000, type NVL/PIX, sameChannels 0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  0 : GPU/0-51000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  1 : GPU/0-52000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  2 : GPU/0-62000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO  3 : GPU/0-63000
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO comm 0x1c14fd00 rank 0 nRanks 4 nNodes 1 localRanks 4 localRank 0 MNNVL 0
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO comm 0x1cdba790 rank 3 nRanks 4 nNodes 1 localRanks 4 localRank 3 MNNVL 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO comm 0x1ee53fd0 rank 2 nRanks 4 nNodes 1 localRanks 4 localRank 2 MNNVL 0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 0 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Tree 14 : -1 -> 3 -> 0/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Tree 12 : -1 -> 2 -> 3/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 16 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Tree 30 : -1 -> 3 -> 0/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Tree 28 : -1 -> 2 -> 3/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 1 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Tree 15 : -1 -> 3 -> 0/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Tree 13 : -1 -> 2 -> 3/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Tree 31 : -1 -> 3 -> 0/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Tree 29 : -1 -> 2 -> 3/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 17 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 2 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 18 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 3 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 19 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 4 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 20 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO comm 0x1e58c4d0 rank 1 nRanks 4 nNodes 1 localRanks 4 localRank 1 MNNVL 0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 5 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 21 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 00 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 00 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 6 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 01 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 01 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 22 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 02 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 02 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 03 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 7 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 03 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Tree 10 : -1 -> 1 -> 2/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 04 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Tree 26 : -1 -> 1 -> 2/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 04 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 23 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 05 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Tree 11 : -1 -> 1 -> 2/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 05 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 8 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 06 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Tree 27 : -1 -> 1 -> 2/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 06 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 24 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 07 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 07 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 9 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 08 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 08 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Tree 25 : -1 -> 0 -> 1/-1/-1
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 09 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 09 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 10 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 10 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 11 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 11 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 12 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 00/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 12 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 13 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 00 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 13 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 01/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 14 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 14 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 01 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 02/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 15 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 03/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 15 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 02 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 16 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 16 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 04/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 03 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 17 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 17 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 04 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 05/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 18 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 18 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 05 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 06/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 19 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 19 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 06 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 07/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 20 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 20 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 07 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 08/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 21 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 21 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 08 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 22 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 22 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 09/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 23 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 09 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 23 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 10/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 10 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 24 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 24 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 11 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 25 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 11/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 25 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 12 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 12/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 26 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 26 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 13 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 13/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 27 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 14 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 27 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 15 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 28 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 14/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 28 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 16 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 29 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 15/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 29 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 17 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 30 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 30 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Ring 31 : 2 -> 3 -> 0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 16/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 18 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2 [2] -1/-1/-1->3->2 [3] -1/-1/-1->3->2 [4] -1/-1/-1->3->2 [5] -1/-1/-1->3->2 [6] -1/-1/-1->3->2 [7] -1/-1/-1->3->2 [8] -1/-1/-1->3->2 [9] -1/-1/-1->3->2 [10] 0/-1/-1->3->2 [11] 0/-1/-1->3->2 [12] 0/-1/-1->3->2 [13] 0/-1/-1->3->2 [14] 0/-1/-1->3->-1 [15] 0/-1/-1->3->-1 [16] -1/-1/-1->3->2 [17] -1/-1/-1->3->2 [18] -1/-1/-1->3->2 [19] -1/-1/-1->3->2 [20] -1/-1/-1->3->2 [21] -1/-1/-1->3->2 [22] -1/-1/-1->3->2 [23] -1/-1/-1->3->2 [24] -1/-1/-1->3->2 [25] -1/-1/-1->3->2 [26] 0/-1/-1->3->2 [27] 0/-1/-1->3->2 [28] 0/-1/-1->3->2 [29] 0/-1/-1->3->2 [30] 0/-1/-1->3->-1 [31] 0/-1/-1->3->-1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Ring 31 : 1 -> 2 -> 3
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 17/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 19 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 [2] 3/-1/-1->2->1 [3] 3/-1/-1->2->1 [4] 3/-1/-1->2->1 [5] 3/-1/-1->2->1 [6] 3/-1/-1->2->1 [7] 3/-1/-1->2->1 [8] 3/-1/-1->2->1 [9] 3/-1/-1->2->1 [10] 3/-1/-1->2->1 [11] 3/-1/-1->2->1 [12] 3/-1/-1->2->-1 [13] 3/-1/-1->2->-1 [14] -1/-1/-1->2->1 [15] -1/-1/-1->2->1 [16] 3/-1/-1->2->1 [17] 3/-1/-1->2->1 [18] 3/-1/-1->2->1 [19] 3/-1/-1->2->1 [20] 3/-1/-1->2->1 [21] 3/-1/-1->2->1 [22] 3/-1/-1->2->1 [23] 3/-1/-1->2->1 [24] 3/-1/-1->2->1 [25] 3/-1/-1->2->1 [26] 3/-1/-1->2->1 [27] 3/-1/-1->2->1 [28] 3/-1/-1->2->-1 [29] 3/-1/-1->2->-1 [30] -1/-1/-1->2->1 [31] -1/-1/-1->2->1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 18/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 20 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO P2P Chunksize set to 524288
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 19/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 21 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO P2P Chunksize set to 524288
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 20/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 22 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 21/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 23 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 22/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 23/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 24 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 24/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 25 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 25/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 26 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 26/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 27/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 27 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 28/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 28 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 29/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 29 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 30/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 30 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 31/32 : 0 1 2 3
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Ring 31 : 0 -> 1 -> 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 00 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 [2] 2/-1/-1->1->0 [3] 2/-1/-1->1->0 [4] 2/-1/-1->1->0 [5] 2/-1/-1->1->0 [6] 2/-1/-1->1->0 [7] 2/-1/-1->1->0 [8] 2/-1/-1->1->0 [9] 2/-1/-1->1->0 [10] 2/-1/-1->1->-1 [11] 2/-1/-1->1->-1 [12] -1/-1/-1->1->0 [13] -1/-1/-1->1->0 [14] 2/-1/-1->1->0 [15] 2/-1/-1->1->0 [16] 2/-1/-1->1->0 [17] 2/-1/-1->1->0 [18] 2/-1/-1->1->0 [19] 2/-1/-1->1->0 [20] 2/-1/-1->1->0 [21] 2/-1/-1->1->0 [22] 2/-1/-1->1->0 [23] 2/-1/-1->1->0 [24] 2/-1/-1->1->0 [25] 2/-1/-1->1->0 [26] 2/-1/-1->1->-1 [27] 2/-1/-1->1->-1 [28] -1/-1/-1->1->0 [29] -1/-1/-1->1->0 [30] 2/-1/-1->1->0 [31] 2/-1/-1->1->0
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 01 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 02 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO P2P Chunksize set to 524288
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 03 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 04 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 05 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 06 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 07 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 08 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 09 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 10 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 11 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 12 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 13 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 14 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 15 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 16 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 17 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 18 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 19 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 20 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 21 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 22 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 23 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 24 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 25 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 26 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 27 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 28 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 29 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 30 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Ring 31 : 3 -> 0 -> 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 [2] 1/-1/-1->0->-1 [3] 1/-1/-1->0->-1 [4] 1/-1/-1->0->-1 [5] 1/-1/-1->0->-1 [6] 1/-1/-1->0->-1 [7] 1/-1/-1->0->-1 [8] 1/-1/-1->0->-1 [9] 1/-1/-1->0->-1 [10] -1/-1/-1->0->3 [11] -1/-1/-1->0->3 [12] 1/-1/-1->0->3 [13] 1/-1/-1->0->3 [14] 1/-1/-1->0->3 [15] 1/-1/-1->0->3 [16] 1/-1/-1->0->-1 [17] 1/-1/-1->0->-1 [18] 1/-1/-1->0->-1 [19] 1/-1/-1->0->-1 [20] 1/-1/-1->0->-1 [21] 1/-1/-1->0->-1 [22] 1/-1/-1->0->-1 [23] 1/-1/-1->0->-1 [24] 1/-1/-1->0->-1 [25] 1/-1/-1->0->-1 [26] -1/-1/-1->0->3 [27] -1/-1/-1->0->3 [28] 1/-1/-1->0->3 [29] 1/-1/-1->0->3 [30] 1/-1/-1->0->3 [31] 1/-1/-1->0->3
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO P2P Chunksize set to 524288
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO ncclP2pSchedule: group size used is 4
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO ncclP2pSchedule: group size used is 4
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO ncclP2pSchedule: group size used is 4
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+trial-301387632-trialrun-301387632-worker-0:118176:119371 [0] NCCL INFO [Proxy Service] Device 3 CPU core 7
+trial-301387632-trialrun-301387632-worker-0:118175:119372 [0] NCCL INFO [Proxy Service] Device 2 CPU core 125
+trial-301387632-trialrun-301387632-worker-0:118174:119373 [0] NCCL INFO [Proxy Service] Device 1 CPU core 97
+trial-301387632-trialrun-301387632-worker-0:118176:119375 [0] NCCL INFO [Proxy Service UDS] Device 3 CPU core 142
+trial-301387632-trialrun-301387632-worker-0:118175:119374 [0] NCCL INFO [Proxy Service UDS] Device 2 CPU core 139
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO ncclP2pSchedule: group size used is 4
+trial-301387632-trialrun-301387632-worker-0:118174:119376 [0] NCCL INFO [Proxy Service UDS] Device 1 CPU core 9
+trial-301387632-trialrun-301387632-worker-0:118173:119377 [0] NCCL INFO [Proxy Service] Device 0 CPU core 119
+trial-301387632-trialrun-301387632-worker-0:118173:119378 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 127
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO 32 coll channels, 32 collnet channels, 24 nvls channels, 32 p2p channels, 32 p2p channels per peer
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Symmetric VA size=180GB
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO 32 coll channels, 32 collnet channels, 24 nvls channels, 32 p2p channels, 32 p2p channels per peer
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Symmetric VA size=180GB
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO 32 coll channels, 32 collnet channels, 24 nvls channels, 32 p2p channels, 32 p2p channels per peer
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Symmetric VA size=180GB
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO CC Off, workFifoBytes 1048576
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO 32 coll channels, 32 collnet channels, 24 nvls channels, 32 p2p channels, 32 p2p channels per peer
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Symmetric VA size=180GB
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO ncclCommInitRankConfig comm 0x1cdba790 rank 3 nranks 4 cudaDev 3 nvmlDev 3 busId 63000 commId 0x7e12429290f97545 - Init COMPLETE
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Init timings - ncclCommInitRankConfig: rank 3 nranks 4 total 1.81 (kernels 0.29, alloc 0.59, bootstrap 0.20, allgathers 0.00, topo 0.48, graphs 0.01, connections 0.24, rest 0.00)
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO ncclCommInitRankConfig comm 0x1c14fd00 rank 0 nranks 4 cudaDev 0 nvmlDev 0 busId 51000 commId 0x7e12429290f97545 - Init COMPLETE
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Init timings - ncclCommInitRankConfig: rank 0 nranks 4 total 1.81 (kernels 0.27, alloc 0.60, bootstrap 0.21, allgathers 0.00, topo 0.48, graphs 0.01, connections 0.24, rest 0.00)
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO ncclCommInitRankConfig comm 0x1e58c4d0 rank 1 nranks 4 cudaDev 1 nvmlDev 1 busId 52000 commId 0x7e12429290f97545 - Init COMPLETE
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Init timings - ncclCommInitRankConfig: rank 1 nranks 4 total 1.81 (kernels 0.30, alloc 0.56, bootstrap 0.22, allgathers 0.00, topo 0.48, graphs 0.01, connections 0.24, rest 0.00)
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO ncclCommInitRankConfig comm 0x1ee53fd0 rank 2 nranks 4 cudaDev 2 nvmlDev 2 busId 62000 commId 0x7e12429290f97545 - Init COMPLETE
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Init timings - ncclCommInitRankConfig: rank 2 nranks 4 total 1.81 (kernels 0.28, alloc 0.61, bootstrap 0.19, allgathers 0.00, topo 0.48, graphs 0.01, connections 0.24, rest 0.00)
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Symmetric VA size=180GB
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Symmetric VA size=180GB
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Symmetric VA size=180GB
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Symmetric VA size=180GB
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 04/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 05/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 06/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 07/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 08/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 09/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 10/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 00/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 01/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 11/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 12/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 00/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 01/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 13/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 02/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 02/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 14/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 03/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 03/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 04/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 04/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 03/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 05/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 05/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 04/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 06/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 15/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 06/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 05/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 06/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 16/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 07/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 17/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 07/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 08/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 08/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 18/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 09/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 19/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 20/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 07/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 10/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 09/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 08/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 21/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 11/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 10/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 09/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 22/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 10/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 23/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 12/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 11/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 24/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 13/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 12/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 25/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 26/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 11/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 12/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 27/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 14/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 13/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 13/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 15/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 28/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 14/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 14/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 29/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 30/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 16/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 15/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Channel 31/0 : 0[0] -> 1[1] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 17/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 16/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 15/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 16/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 17/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 18/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 17/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 18/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 19/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 18/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 20/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 19/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 21/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 19/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 20/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 20/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 21/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 22/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 22/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 21/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 23/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 22/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 24/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 23/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 23/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 25/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 24/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 24/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 25/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 26/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 26/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 25/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 27/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 26/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 27/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 28/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 27/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 28/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 29/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 28/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 29/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 29/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 30/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 30/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Channel 31/0 : 3[3] -> 0[0] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 30/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Channel 31/0 : 1[1] -> 2[2] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Channel 31/0 : 2[2] -> 3[3] via P2P/CUMEM
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+Adding EOS to train dataset:   0%|          | 0/7704 [00:00<?, ? examples/s]Adding EOS to train dataset:   0%|          | 0/7704 [00:00<?, ? examples/s]Adding EOS to train dataset:   0%|          | 0/7704 [00:00<?, ? examples/s]Adding EOS to train dataset:  42%|████▏     | 3205/7704 [00:00<00:00, 31887.79 examples/s]Adding EOS to train dataset:  43%|████▎     | 3349/7704 [00:00<00:00, 33309.44 examples/s]Adding EOS to train dataset:  43%|████▎     | 3278/7704 [00:00<00:00, 32586.11 examples/s]Adding EOS to train dataset: 100%|██████████| 7704/7704 [00:00<00:00, 27780.10 examples/s]Adding EOS to train dataset: 100%|██████████| 7704/7704 [00:00<00:00, 28273.51 examples/s]
+Adding EOS to train dataset: 100%|██████████| 7704/7704 [00:00<00:00, 27436.15 examples/s]Adding EOS to train dataset: 100%|██████████| 7704/7704 [00:00<00:00, 27857.79 examples/s]
+Adding EOS to train dataset: 100%|██████████| 7704/7704 [00:00<00:00, 27216.24 examples/s]Adding EOS to train dataset: 100%|██████████| 7704/7704 [00:00<00:00, 27617.83 examples/s]
+[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 248044}.
+Tokenizing train dataset:   0%|          | 0/7704 [00:00<?, ? examples/s]Tokenizing train dataset:   0%|          | 0/7704 [00:00<?, ? examples/s]Tokenizing train dataset:   0%|          | 0/7704 [00:00<?, ? examples/s]Tokenizing train dataset:   3%|▎         | 255/7704 [00:00<00:02, 2518.29 examples/s]Tokenizing train dataset:   3%|▎         | 257/7704 [00:00<00:02, 2529.00 examples/s]Tokenizing train dataset:   3%|▎         | 252/7704 [00:00<00:02, 2496.35 examples/s]Tokenizing train dataset:   8%|▊         | 635/7704 [00:00<00:02, 2509.09 examples/s]Tokenizing train dataset:   7%|▋         | 565/7704 [00:00<00:03, 2192.40 examples/s]Tokenizing train dataset:   8%|▊         | 627/7704 [00:00<00:02, 2487.91 examples/s]Tokenizing train dataset:  11%|█         | 826/7704 [00:00<00:02, 2340.85 examples/s]Tokenizing train dataset:  11%|█▏        | 880/7704 [00:00<00:02, 2486.91 examples/s]Tokenizing train dataset:  13%|█▎        | 993/7704 [00:00<00:02, 2433.88 examples/s]Tokenizing train dataset:  15%|█▍        | 1133/7704 [00:00<00:03, 2089.49 examples/s]Tokenizing train dataset:  15%|█▍        | 1136/7704 [00:00<00:03, 1997.62 examples/s]Tokenizing train dataset:  16%|█▌        | 1241/7704 [00:00<00:03, 2105.06 examples/s]Tokenizing train dataset:  18%|█▊        | 1368/7704 [00:00<00:02, 2165.35 examples/s]Tokenizing train dataset:  18%|█▊        | 1381/7704 [00:00<00:02, 2121.34 examples/s]Tokenizing train dataset:  19%|█▉        | 1486/7704 [00:00<00:02, 2190.69 examples/s]Tokenizing train dataset:  21%|██        | 1595/7704 [00:00<00:02, 2184.71 examples/s]Tokenizing train dataset:  21%|██        | 1604/7704 [00:00<00:02, 2149.87 examples/s]Tokenizing train dataset:  24%|██▍       | 1832/7704 [00:00<00:02, 2224.91 examples/s]Tokenizing train dataset:  24%|██▎       | 1828/7704 [00:00<00:02, 2221.96 examples/s]Tokenizing train dataset:  24%|██▍       | 1840/7704 [00:00<00:02, 2204.50 examples/s]Tokenizing train dataset:  28%|██▊       | 2163/7704 [00:00<00:02, 2213.84 examples/s]Tokenizing train dataset:  28%|██▊       | 2163/7704 [00:00<00:02, 2198.85 examples/s]Tokenizing train dataset:  28%|██▊       | 2175/7704 [00:00<00:02, 2210.89 examples/s]Tokenizing train dataset:  31%|███▏      | 2410/7704 [00:01<00:02, 2270.85 examples/s]Tokenizing train dataset:  31%|███       | 2404/7704 [00:01<00:02, 2251.92 examples/s]Tokenizing train dataset:  31%|███▏      | 2419/7704 [00:01<00:02, 2270.53 examples/s]Tokenizing train dataset:  34%|███▍      | 2657/7704 [00:01<00:02, 2314.35 examples/s]Tokenizing train dataset:  34%|███▍      | 2642/7704 [00:01<00:02, 2284.57 examples/s]Tokenizing train dataset:  35%|███▍      | 2663/7704 [00:01<00:02, 2315.82 examples/s]Tokenizing train dataset:  38%|███▊      | 2911/7704 [00:01<00:02, 2346.76 examples/s]Tokenizing train dataset:  37%|███▋      | 2886/7704 [00:01<00:02, 2324.91 examples/s]Tokenizing train dataset:  38%|███▊      | 2911/7704 [00:01<00:02, 2346.85 examples/s]Tokenizing train dataset:  41%|████      | 3121/7704 [00:01<00:02, 2219.17 examples/s]Tokenizing train dataset:  42%|████▏     | 3274/7704 [00:01<00:01, 2339.24 examples/s]Tokenizing train dataset:  43%|████▎     | 3275/7704 [00:01<00:01, 2339.24 examples/s]Tokenizing train dataset:  44%|████▍     | 3414/7704 [00:01<00:01, 2403.14 examples/s]Tokenizing train dataset:  46%|████▌     | 3532/7704 [00:01<00:01, 2389.77 examples/s]Tokenizing train dataset:  46%|████▌     | 3534/7704 [00:01<00:01, 2391.12 examples/s]Tokenizing train dataset:  49%|████▉     | 3758/7704 [00:01<00:01, 2350.51 examples/s]Tokenizing train dataset:  50%|█████     | 3862/7704 [00:01<00:01, 2317.72 examples/s]Tokenizing train dataset:  50%|█████     | 3855/7704 [00:01<00:01, 2289.02 examples/s]Tokenizing train dataset:  52%|█████▏    | 4027/7704 [00:01<00:01, 2151.18 examples/s]Tokenizing train dataset:  54%|█████▍    | 4166/7704 [00:01<00:01, 2218.24 examples/s]Tokenizing train dataset:  54%|█████▍    | 4163/7704 [00:01<00:01, 2207.71 examples/s]Tokenizing train dataset:  56%|█████▌    | 4290/7704 [00:01<00:01, 2268.16 examples/s]Tokenizing train dataset:  57%|█████▋    | 4392/7704 [00:01<00:01, 2216.02 examples/s]Tokenizing train dataset:  57%|█████▋    | 4392/7704 [00:01<00:01, 2200.15 examples/s]Tokenizing train dataset:  60%|██████    | 4629/7704 [00:02<00:01, 2253.99 examples/s]Tokenizing train dataset:  60%|██████    | 4628/7704 [00:02<00:01, 2246.14 examples/s]Tokenizing train dataset:  60%|██████    | 4629/7704 [00:02<00:01, 2241.52 examples/s]Tokenizing train dataset:  64%|██████▍   | 4932/7704 [00:02<00:01, 2459.51 examples/s]Tokenizing train dataset:  64%|██████▍   | 4925/7704 [00:02<00:01, 2423.36 examples/s]Tokenizing train dataset:  64%|██████▍   | 4933/7704 [00:02<00:01, 2451.50 examples/s][transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (3060300 > 262144). Running this sequence through the model will result in indexing errors
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (3060300 > 262144). Running this sequence through the model will result in indexing errors
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (3060300 > 262144). Running this sequence through the model will result in indexing errors
+Tokenizing train dataset:  68%|██████▊   | 5240/7704 [00:07<00:15, 163.42 examples/s] Tokenizing train dataset:  68%|██████▊   | 5240/7704 [00:07<00:15, 163.54 examples/s] Tokenizing train dataset:  68%|██████▊   | 5240/7704 [00:07<00:14, 170.44 examples/s] Tokenizing train dataset:  71%|███████   | 5445/7704 [00:07<00:10, 208.48 examples/s]Tokenizing train dataset:  71%|███████   | 5447/7704 [00:07<00:10, 209.17 examples/s]Tokenizing train dataset:  71%|███████   | 5445/7704 [00:07<00:10, 214.92 examples/s]Tokenizing train dataset:  74%|███████▍  | 5689/7704 [00:07<00:07, 282.06 examples/s]Tokenizing train dataset:  74%|███████▍  | 5692/7704 [00:07<00:07, 283.34 examples/s]Tokenizing train dataset:  74%|███████▍  | 5689/7704 [00:07<00:07, 287.65 examples/s]Tokenizing train dataset:  77%|███████▋  | 5949/7704 [00:08<00:04, 386.42 examples/s]Tokenizing train dataset:  77%|███████▋  | 5959/7704 [00:08<00:04, 390.89 examples/s]Tokenizing train dataset:  77%|███████▋  | 5948/7704 [00:08<00:04, 390.35 examples/s]Tokenizing train dataset:  81%|████████  | 6232/7704 [00:08<00:03, 473.52 examples/s]Tokenizing train dataset:  81%|████████  | 6233/7704 [00:08<00:03, 473.05 examples/s]Tokenizing train dataset:  81%|████████  | 6232/7704 [00:08<00:03, 476.39 examples/s]Tokenizing train dataset:  84%|████████▍ | 6461/7704 [00:08<00:02, 601.89 examples/s]Tokenizing train dataset:  84%|████████▍ | 6461/7704 [00:08<00:02, 601.16 examples/s]Tokenizing train dataset:  84%|████████▍ | 6459/7704 [00:08<00:02, 602.89 examples/s]Tokenizing train dataset:  87%|████████▋ | 6705/7704 [00:08<00:01, 770.56 examples/s]Tokenizing train dataset:  87%|████████▋ | 6707/7704 [00:08<00:01, 772.38 examples/s]Tokenizing train dataset:  87%|████████▋ | 6700/7704 [00:08<00:01, 766.52 examples/s]Tokenizing train dataset:  91%|█████████ | 6985/7704 [00:08<00:00, 1003.97 examples/s]Tokenizing train dataset:  91%|█████████ | 6983/7704 [00:08<00:00, 1001.89 examples/s]Tokenizing train dataset:  90%|█████████ | 6966/7704 [00:08<00:00, 982.89 examples/s]Tokenizing train dataset:  95%|█████████▌| 7319/7704 [00:08<00:00, 1244.45 examples/s]Tokenizing train dataset:  95%|█████████▌| 7329/7704 [00:08<00:00, 1259.91 examples/s]Tokenizing train dataset:  95%|█████████▍| 7303/7704 [00:08<00:00, 1231.69 examples/s]Tokenizing train dataset:  99%|█████████▊| 7600/7704 [00:08<00:00, 1492.08 examples/s]Tokenizing train dataset:  99%|█████████▉| 7610/7704 [00:08<00:00, 1502.93 examples/s]Tokenizing train dataset: 100%|██████████| 7704/7704 [00:08<00:00, 862.65 examples/s] 
+Tokenizing train dataset:  99%|█████████▊| 7594/7704 [00:08<00:00, 1495.56 examples/s]Tokenizing train dataset: 100%|██████████| 7704/7704 [00:08<00:00, 861.61 examples/s] 
+Tokenizing train dataset: 100%|██████████| 7704/7704 [00:08<00:00, 857.82 examples/s] 
+[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 248044}.
+[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 248044}.
+[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'pad_token_id': 248044}.
+  0%|          | 0/241 [00:00<?, ?it/s]  0%|          | 1/241 [00:08<34:45,  8.69s/it]  1%|          | 2/241 [00:14<28:39,  7.19s/it]  1%|          | 3/241 [00:21<27:08,  6.84s/it]  2%|▏         | 4/241 [00:29<29:39,  7.51s/it]  2%|▏         | 5/241 [00:36<28:10,  7.16s/it]  2%|▏         | 6/241 [00:43<27:27,  7.01s/it]  3%|▎         | 7/241 [00:53<31:19,  8.03s/it]  3%|▎         | 8/241 [00:59<28:47,  7.41s/it]  4%|▎         | 9/241 [01:05<26:48,  6.93s/it]  4%|▍         | 10/241 [01:10<25:17,  6.57s/it]  5%|▍         | 11/241 [01:18<26:27,  6.90s/it]  5%|▍         | 12/241 [01:24<25:21,  6.64s/it]  5%|▌         | 13/241 [01:30<24:50,  6.54s/it]  6%|▌         | 14/241 [01:40<28:42,  7.59s/it]  6%|▌         | 15/241 [01:46<26:42,  7.09s/it]  7%|▋         | 16/241 [01:53<26:35,  7.09s/it]  7%|▋         | 17/241 [02:02<28:16,  7.57s/it]  7%|▋         | 18/241 [02:09<27:05,  7.29s/it]  8%|▊         | 19/241 [02:15<25:27,  6.88s/it]  8%|▊         | 20/241 [02:22<25:35,  6.95s/it]  9%|▊         | 21/241 [02:31<27:57,  7.63s/it]  9%|▉         | 22/241 [02:38<26:43,  7.32s/it] 10%|▉         | 23/241 [02:45<27:02,  7.44s/it] 10%|▉         | 24/241 [02:52<25:52,  7.15s/it] 10%|█         | 25/241 [03:01<27:33,  7.65s/it] 11%|█         | 26/241 [03:09<28:24,  7.93s/it] 11%|█         | 27/241 [03:17<27:50,  7.81s/it] 12%|█▏        | 28/241 [03:24<26:43,  7.53s/it] 12%|█▏        | 29/241 [03:31<26:42,  7.56s/it] 12%|█▏        | 30/241 [03:38<25:39,  7.30s/it] 13%|█▎        | 31/241 [03:46<26:14,  7.50s/it] 13%|█▎        | 32/241 [03:54<26:24,  7.58s/it] 14%|█▎        | 33/241 [04:00<24:57,  7.20s/it] 14%|█▍        | 34/241 [04:07<24:57,  7.24s/it] 15%|█▍        | 35/241 [04:14<24:39,  7.18s/it] 15%|█▍        | 36/241 [04:21<24:28,  7.16s/it] 15%|█▌        | 37/241 [04:29<24:46,  7.29s/it] 16%|█▌        | 38/241 [04:38<26:06,  7.72s/it] 16%|█▌        | 39/241 [04:44<24:49,  7.37s/it] 17%|█▋        | 40/241 [04:51<23:33,  7.03s/it] 17%|█▋        | 41/241 [04:58<24:11,  7.26s/it] 17%|█▋        | 42/241 [05:05<23:55,  7.21s/it] 18%|█▊        | 43/241 [05:12<23:29,  7.12s/it] 18%|█▊        | 44/241 [05:20<23:28,  7.15s/it] 19%|█▊        | 45/241 [05:26<22:18,  6.83s/it] 19%|█▉        | 46/241 [05:33<22:21,  6.88s/it] 20%|█▉        | 47/241 [05:40<23:06,  7.15s/it] 20%|█▉        | 48/241 [05:47<22:13,  6.91s/it] 20%|██        | 49/241 [05:53<21:52,  6.84s/it] 21%|██        | 50/241 [06:03<23:55,  7.52s/it] 21%|██        | 51/241 [06:09<22:35,  7.13s/it] 22%|██▏       | 52/241 [06:19<25:40,  8.15s/it] 22%|██▏       | 53/241 [06:25<23:01,  7.35s/it] 22%|██▏       | 54/241 [06:31<22:03,  7.08s/it] 23%|██▎       | 55/241 [06:37<20:51,  6.73s/it] 23%|██▎       | 56/241 [06:43<19:39,  6.38s/it] 24%|██▎       | 57/241 [06:50<20:24,  6.66s/it] 24%|██▍       | 58/241 [06:56<19:58,  6.55s/it] 24%|██▍       | 59/241 [07:05<22:13,  7.33s/it] 25%|██▍       | 60/241 [07:12<21:28,  7.12s/it] 25%|██▌       | 61/241 [07:21<22:42,  7.57s/it] 26%|██▌       | 62/241 [07:27<21:42,  7.28s/it] 26%|██▌       | 63/241 [07:33<20:20,  6.86s/it] 27%|██▋       | 64/241 [07:40<20:14,  6.86s/it] 27%|██▋       | 65/241 [07:49<22:20,  7.62s/it] 27%|██▋       | 66/241 [07:56<20:59,  7.20s/it] 28%|██▊       | 67/241 [08:03<21:21,  7.37s/it] 28%|██▊       | 68/241 [08:09<19:52,  6.89s/it] 29%|██▊       | 69/241 [08:18<21:29,  7.50s/it] 29%|██▉       | 70/241 [08:24<19:44,  6.93s/it] 29%|██▉       | 71/241 [08:30<18:57,  6.69s/it] 30%|██▉       | 72/241 [08:39<20:43,  7.36s/it] 30%|███       | 73/241 [08:46<20:27,  7.31s/it] 31%|███       | 74/241 [08:53<20:00,  7.19s/it] 31%|███       | 75/241 [09:00<19:28,  7.04s/it] 32%|███▏      | 76/241 [09:06<19:01,  6.92s/it] 32%|███▏      | 77/241 [09:13<18:43,  6.85s/it] 32%|███▏      | 78/241 [09:21<19:43,  7.26s/it] 33%|███▎      | 79/241 [09:30<20:52,  7.73s/it] 33%|███▎      | 80/241 [09:37<20:29,  7.64s/it] 34%|███▎      | 81/241 [09:47<22:16,  8.35s/it] 34%|███▍      | 82/241 [09:54<20:45,  7.83s/it] 34%|███▍      | 83/241 [09:59<18:36,  7.07s/it] 35%|███▍      | 84/241 [10:06<18:31,  7.08s/it] 35%|███▌      | 85/241 [10:13<17:56,  6.90s/it] 36%|███▌      | 86/241 [10:20<18:16,  7.07s/it] 36%|███▌      | 87/241 [10:27<17:36,  6.86s/it] 37%|███▋      | 88/241 [10:33<16:46,  6.58s/it] 37%|███▋      | 89/241 [10:41<17:53,  7.06s/it] 37%|███▋      | 90/241 [10:51<19:48,  7.87s/it] 38%|███▊      | 91/241 [10:57<18:28,  7.39s/it] 38%|███▊      | 92/241 [11:04<18:25,  7.42s/it] 39%|███▊      | 93/241 [11:12<18:16,  7.41s/it] 39%|███▉      | 94/241 [11:19<17:51,  7.29s/it] 39%|███▉      | 95/241 [11:29<19:38,  8.07s/it] 40%|███▉      | 96/241 [11:36<19:11,  7.94s/it] 40%|████      | 97/241 [11:42<17:28,  7.28s/it] 41%|████      | 98/241 [11:50<17:29,  7.34s/it] 41%|████      | 99/241 [11:57<17:39,  7.46s/it] 41%|████▏     | 100/241 [12:04<17:22,  7.39s/it]                                                 {'loss': '1.722', 'grad_norm': '0', 'learning_rate': '0.0001337', 'entropy': '1.747', 'num_tokens': '8.723e+05', 'mean_token_accuracy': '0.6461', 'epoch': '0.4154'}
+ 41%|████▏     | 100/241 [12:04<17:22,  7.39s/it] 42%|████▏     | 101/241 [12:10<16:09,  6.93s/it] 42%|████▏     | 102/241 [12:17<16:03,  6.93s/it] 43%|████▎     | 103/241 [12:25<16:21,  7.11s/it] 43%|████▎     | 104/241 [12:31<15:29,  6.78s/it] 44%|████▎     | 105/241 [12:37<15:01,  6.63s/it] 44%|████▍     | 106/241 [12:44<15:02,  6.69s/it] 44%|████▍     | 107/241 [12:50<14:46,  6.61s/it] 45%|████▍     | 108/241 [12:59<15:55,  7.18s/it] 45%|████▌     | 109/241 [13:07<16:22,  7.44s/it] 46%|████▌     | 110/241 [13:13<15:19,  7.02s/it] 46%|████▌     | 111/241 [13:22<16:27,  7.59s/it] 46%|████▋     | 112/241 [13:28<15:34,  7.24s/it] 47%|████▋     | 113/241 [13:34<14:21,  6.73s/it] 47%|████▋     | 114/241 [13:39<13:31,  6.39s/it] 48%|████▊     | 115/241 [13:46<13:43,  6.54s/it] 48%|████▊     | 116/241 [13:51<12:20,  5.92s/it] 49%|████▊     | 117/241 [13:58<12:56,  6.26s/it] 49%|████▉     | 118/241 [14:05<13:36,  6.64s/it] 49%|████▉     | 119/241 [14:12<13:47,  6.79s/it] 50%|████▉     | 120/241 [14:20<14:08,  7.01s/it] 50%|█████     | 121/241 [14:26<13:33,  6.78s/it] 51%|█████     | 122/241 [14:34<14:15,  7.19s/it] 51%|█████     | 123/241 [14:41<13:59,  7.12s/it] 51%|█████▏    | 124/241 [14:48<13:25,  6.89s/it] 52%|█████▏    | 125/241 [14:54<13:02,  6.75s/it] 52%|█████▏    | 126/241 [15:04<14:45,  7.70s/it] 53%|█████▎    | 127/241 [15:09<13:02,  6.87s/it] 53%|█████▎    | 128/241 [15:19<14:33,  7.73s/it] 54%|█████▎    | 129/241 [15:25<13:25,  7.20s/it] 54%|█████▍    | 130/241 [15:32<13:29,  7.29s/it] 54%|█████▍    | 131/241 [15:39<12:57,  7.07s/it] 55%|█████▍    | 132/241 [15:46<12:58,  7.14s/it] 55%|█████▌    | 133/241 [15:54<13:02,  7.24s/it] 56%|█████▌    | 134/241 [16:00<12:28,  7.00s/it] 56%|█████▌    | 135/241 [16:05<11:15,  6.37s/it] 56%|█████▋    | 136/241 [16:12<11:24,  6.52s/it] 57%|█████▋    | 137/241 [16:18<11:13,  6.47s/it] 57%|█████▋    | 138/241 [16:26<11:53,  6.93s/it] 58%|█████▊    | 139/241 [16:33<11:46,  6.93s/it] 58%|█████▊    | 140/241 [16:40<11:30,  6.84s/it] 59%|█████▊    | 141/241 [16:47<11:35,  6.96s/it] 59%|█████▉    | 142/241 [16:53<11:15,  6.82s/it] 59%|█████▉    | 143/241 [17:02<11:51,  7.26s/it] 60%|█████▉    | 144/241 [17:10<12:06,  7.49s/it] 60%|██████    | 145/241 [17:17<11:51,  7.41s/it] 61%|██████    | 146/241 [17:22<10:40,  6.74s/it] 61%|██████    | 147/241 [17:29<10:46,  6.88s/it] 61%|██████▏   | 148/241 [17:35<10:18,  6.65s/it] 62%|██████▏   | 149/241 [17:41<09:55,  6.47s/it] 62%|██████▏   | 150/241 [17:49<10:20,  6.82s/it] 63%|██████▎   | 151/241 [17:56<10:26,  6.96s/it] 63%|██████▎   | 152/241 [18:02<09:53,  6.66s/it] 63%|██████▎   | 153/241 [18:12<11:05,  7.56s/it] 64%|██████▍   | 154/241 [18:20<11:05,  7.65s/it] 64%|██████▍   | 155/241 [18:28<11:09,  7.79s/it] 65%|██████▍   | 156/241 [18:35<10:30,  7.42s/it] 65%|██████▌   | 157/241 [18:42<10:22,  7.41s/it] 66%|██████▌   | 158/241 [18:50<10:44,  7.76s/it] 66%|██████▌   | 159/241 [18:59<10:42,  7.84s/it] 66%|██████▋   | 160/241 [19:05<10:00,  7.42s/it] 67%|██████▋   | 161/241 [19:13<10:09,  7.62s/it] 67%|██████▋   | 162/241 [19:19<09:34,  7.27s/it] 68%|██████▊   | 163/241 [19:26<09:17,  7.14s/it] 68%|██████▊   | 164/241 [19:31<08:14,  6.43s/it] 68%|██████▊   | 165/241 [19:38<08:09,  6.44s/it] 69%|██████▉   | 166/241 [19:44<07:59,  6.39s/it] 69%|██████▉   | 167/241 [19:52<08:28,  6.88s/it] 70%|██████▉   | 168/241 [19:57<07:37,  6.26s/it] 70%|███████   | 169/241 [20:03<07:25,  6.18s/it] 71%|███████   | 170/241 [20:13<08:37,  7.29s/it] 71%|███████   | 171/241 [20:20<08:38,  7.41s/it] 71%|███████▏  | 172/241 [20:27<08:23,  7.30s/it] 72%|███████▏  | 173/241 [20:34<07:56,  7.01s/it] 72%|███████▏  | 174/241 [20:41<08:00,  7.18s/it] 73%|███████▎  | 175/241 [20:47<07:28,  6.79s/it] 73%|███████▎  | 176/241 [20:53<07:03,  6.51s/it] 73%|███████▎  | 177/241 [21:01<07:27,  6.99s/it] 74%|███████▍  | 178/241 [21:09<07:34,  7.22s/it] 74%|███████▍  | 179/241 [21:16<07:26,  7.20s/it] 75%|███████▍  | 180/241 [21:22<06:59,  6.88s/it] 75%|███████▌  | 181/241 [21:29<06:56,  6.94s/it] 76%|███████▌  | 182/241 [21:35<06:34,  6.68s/it] 76%|███████▌  | 183/241 [21:42<06:36,  6.83s/it] 76%|███████▋  | 184/241 [21:50<06:36,  6.96s/it] 77%|███████▋  | 185/241 [21:55<06:01,  6.46s/it] 77%|███████▋  | 186/241 [22:02<06:08,  6.70s/it] 78%|███████▊  | 187/241 [22:09<06:03,  6.73s/it] 78%|███████▊  | 188/241 [22:15<05:50,  6.62s/it] 78%|███████▊  | 189/241 [22:21<05:26,  6.28s/it] 79%|███████▉  | 190/241 [22:28<05:39,  6.66s/it] 79%|███████▉  | 191/241 [22:35<05:33,  6.66s/it] 80%|███████▉  | 192/241 [22:40<05:07,  6.27s/it] 80%|████████  | 193/241 [22:47<05:04,  6.35s/it] 80%|████████  | 194/241 [22:52<04:44,  6.06s/it] 81%|████████  | 195/241 [23:01<05:12,  6.79s/it] 81%|████████▏ | 196/241 [23:09<05:23,  7.19s/it] 82%|████████▏ | 197/241 [23:16<05:14,  7.14s/it] 82%|████████▏ | 198/241 [23:24<05:13,  7.28s/it] 83%|████████▎ | 199/241 [23:31<05:10,  7.39s/it] 83%|████████▎ | 200/241 [23:38<04:55,  7.20s/it]                                                 {'loss': '1.681', 'grad_norm': '0', 'learning_rate': '1.561e-05', 'entropy': '1.705', 'num_tokens': '1.698e+06', 'mean_token_accuracy': '0.6566', 'epoch': '0.8307'}
+ 83%|████████▎ | 200/241 [23:39<04:55,  7.20s/it] 83%|████████▎ | 201/241 [23:45<04:42,  7.06s/it] 84%|████████▍ | 202/241 [23:51<04:23,  6.77s/it] 84%|████████▍ | 203/241 [23:59<04:32,  7.17s/it] 85%|████████▍ | 204/241 [24:07<04:35,  7.45s/it] 85%|████████▌ | 205/241 [24:16<04:45,  7.94s/it] 85%|████████▌ | 206/241 [24:24<04:37,  7.94s/it] 86%|████████▌ | 207/241 [24:31<04:18,  7.60s/it] 86%|████████▋ | 208/241 [24:39<04:17,  7.81s/it] 87%|████████▋ | 209/241 [24:47<04:08,  7.77s/it] 87%|████████▋ | 210/241 [24:54<03:57,  7.67s/it] 88%|████████▊ | 211/241 [25:03<04:00,  8.00s/it] 88%|████████▊ | 212/241 [25:10<03:41,  7.65s/it] 88%|████████▊ | 213/241 [25:17<03:28,  7.46s/it] 89%|████████▉ | 214/241 [25:26<03:33,  7.91s/it] 89%|████████▉ | 215/241 [25:33<03:20,  7.71s/it] 90%|████████▉ | 216/241 [25:38<02:55,  7.01s/it] 90%|█████████ | 217/241 [25:47<02:56,  7.35s/it] 90%|█████████ | 218/241 [25:53<02:43,  7.10s/it] 91%|█████████ | 219/241 [25:59<02:25,  6.61s/it] 91%|█████████▏| 220/241 [26:05<02:17,  6.56s/it] 92%|█████████▏| 221/241 [26:12<02:14,  6.73s/it] 92%|█████████▏| 222/241 [26:19<02:08,  6.74s/it] 93%|█████████▎| 223/241 [26:26<02:02,  6.78s/it] 93%|█████████▎| 224/241 [26:32<01:50,  6.50s/it] 93%|█████████▎| 225/241 [26:36<01:35,  5.99s/it] 94%|█████████▍| 226/241 [26:44<01:35,  6.36s/it] 94%|█████████▍| 227/241 [26:51<01:32,  6.57s/it] 95%|█████████▍| 228/241 [26:58<01:26,  6.69s/it] 95%|█████████▌| 229/241 [27:04<01:19,  6.62s/it] 95%|█████████▌| 230/241 [27:11<01:12,  6.56s/it] 96%|█████████▌| 231/241 [27:17<01:04,  6.48s/it] 96%|█████████▋| 232/241 [27:23<00:58,  6.51s/it] 97%|█████████▋| 233/241 [27:31<00:54,  6.85s/it] 97%|█████████▋| 234/241 [27:41<00:53,  7.63s/it] 98%|█████████▊| 235/241 [27:47<00:43,  7.21s/it] 98%|█████████▊| 236/241 [27:52<00:32,  6.48s/it] 98%|█████████▊| 237/241 [27:59<00:26,  6.75s/it] 99%|█████████▉| 238/241 [28:06<00:20,  6.75s/it] 99%|█████████▉| 239/241 [28:11<00:12,  6.41s/it]100%|█████████▉| 240/241 [28:18<00:06,  6.58s/it]100%|██████████| 241/241 [28:22<00:00,  5.86s/it]                                                 {'train_runtime': '1704', 'train_samples_per_second': '4.52', 'train_steps_per_second': '0.141', 'train_loss': '1.722', 'entropy': '1.754', 'num_tokens': '2.039e+06', 'mean_token_accuracy': '0.6449', 'epoch': '1'}
+100%|██████████| 241/241 [28:24<00:00,  5.86s/it]100%|██████████| 241/241 [28:24<00:00,  7.07s/it]
+[so] Stage 2 adapter saved → results/layerwise/stage2_so
+trial-301387632-trialrun-301387632-worker-0:118176:118176 [3] NCCL INFO ENV/Plugin: Closing env plugin ncclEnvDefault
+trial-301387632-trialrun-301387632-worker-0:118174:118174 [1] NCCL INFO ENV/Plugin: Closing env plugin ncclEnvDefault
+trial-301387632-trialrun-301387632-worker-0:118173:119377 [0] NCCL INFO [Service thread] Connection closed by localRank 3
+trial-301387632-trialrun-301387632-worker-0:118175:119372 [2] NCCL INFO [Service thread] Connection closed by localRank 3
+trial-301387632-trialrun-301387632-worker-0:118175:118175 [2] NCCL INFO ENV/Plugin: Closing env plugin ncclEnvDefault
+trial-301387632-trialrun-301387632-worker-0:118173:119377 [0] NCCL INFO [Service thread] Connection closed by localRank 1
+trial-301387632-trialrun-301387632-worker-0:118175:119372 [0] NCCL INFO [Service thread] Connection closed by localRank 1
+trial-301387632-trialrun-301387632-worker-0:118173:119377 [0] NCCL INFO [Service thread] Connection closed by localRank 2
+trial-301387632-trialrun-301387632-worker-0:118173:118173 [0] NCCL INFO ENV/Plugin: Closing env plugin ncclEnvDefault

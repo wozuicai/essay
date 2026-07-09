@@ -1,0 +1,55 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning : `load_model` does not return WordVectorModel or SupervisedModel any more, but a `FastText` object which is very similar.
+Loading model: results/isolated_lora/isolated_Qwen3.5-9B-Base_yo
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<04:04,  1.74it/s]Loading weights:   6%|▋         | 27/427 [00:00<00:07, 52.31it/s]Loading weights:  10%|█         | 43/427 [00:00<00:05, 75.51it/s]Loading weights:  15%|█▌        | 66/427 [00:00<00:03, 111.12it/s]Loading weights:  21%|██        | 89/427 [00:01<00:02, 135.99it/s]Loading weights:  25%|██▌       | 108/427 [00:01<00:02, 144.20it/s]Loading weights:  31%|███       | 133/427 [00:01<00:01, 166.06it/s]Loading weights:  36%|███▌      | 153/427 [00:01<00:01, 155.16it/s]Loading weights:  43%|████▎     | 183/427 [00:01<00:01, 189.80it/s]Loading weights:  48%|████▊     | 205/427 [00:01<00:01, 181.26it/s]Loading weights:  53%|█████▎    | 226/427 [00:01<00:01, 186.02it/s]Loading weights:  59%|█████▊    | 250/427 [00:01<00:00, 198.93it/s]Loading weights:  63%|██████▎   | 271/427 [00:01<00:00, 192.30it/s]Loading weights:  68%|██████▊   | 292/427 [00:02<00:00, 195.27it/s]Loading weights:  73%|███████▎  | 313/427 [00:02<00:00, 176.43it/s]Loading weights:  79%|███████▉  | 339/427 [00:02<00:00, 197.61it/s]Loading weights:  84%|████████▍ | 360/427 [00:02<00:00, 191.08it/s]Loading weights:  89%|████████▉ | 381/427 [00:02<00:00, 194.70it/s]Loading weights:  94%|█████████▍| 401/427 [00:02<00:00, 184.06it/s]Loading weights:  98%|█████████▊| 420/427 [00:02<00:00, 177.64it/s]Loading weights: 100%|██████████| 427/427 [00:02<00:00, 153.69it/s]
+
+=== LCB-chat: yo (50 instructions) ===
+  [yo] 4/50
+  [yo] 8/50
+  [yo] 12/50
+  [yo] 16/50
+  [yo] 20/50
+  [yo] 24/50
+  [yo] 28/50
+  [yo] 32/50
+  [yo] 36/50
+  [yo] 40/50
+  [yo] 44/50
+  [yo] 48/50
+  [yo] 50/50
+  {'lc_rate': 0.9583, 'en_leak': 0.0208, 'n': 48}
+
+=== LCB-chat: so (50 instructions) ===
+  [so] 4/50
+  [so] 8/50
+  [so] 12/50
+  [so] 16/50
+  [so] 20/50
+  [so] 24/50
+  [so] 28/50
+  [so] 32/50
+  [so] 36/50
+  [so] 40/50
+  [so] 44/50
+  [so] 48/50
+  [so] 50/50
+  {'lc_rate': 0.92, 'en_leak': 0.0, 'n': 50}
+
+=== LCB-chat: ha (50 instructions) ===
+  [ha] 4/50
+  [ha] 8/50
+  [ha] 12/50
+  [ha] 16/50
+  [ha] 20/50
+  [ha] 24/50
+  [ha] 28/50
+  [ha] 32/50
+  [ha] 36/50
+  [ha] 40/50
+  [ha] 44/50
+  [ha] 48/50
+  [ha] 50/50
+  {'lc_rate': 0.92, 'en_leak': 0.0, 'n': 50}
+
+Saved: results/isolated_lora/isolated_Qwen3.5-9B-Base_yo_lcb_chat.json

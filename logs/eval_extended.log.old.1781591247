@@ -1,0 +1,59 @@
+[Tue Jun 16 01:59:09 AM UTC 2026] === run_eval_extended.sh 启动 ===
+[Tue Jun 16 01:59:09 AM UTC 2026] --- 开始评测 model=baseline ---
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+=== eval_extended: /root/project/models/Qwen3.5-9B-Base ===
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   3%|▎         | 14/427 [00:00<00:03, 124.12it/s]Loading weights:   7%|▋         | 29/427 [00:00<00:02, 133.05it/s]Loading weights:  11%|█         | 48/427 [00:00<00:02, 150.72it/s]Loading weights:  16%|█▌        | 68/427 [00:00<00:02, 161.61it/s]Loading weights:  21%|██▏       | 91/427 [00:00<00:01, 183.67it/s]Loading weights:  26%|██▌       | 110/427 [00:00<00:01, 163.78it/s]Loading weights:  30%|███       | 129/427 [00:00<00:01, 166.77it/s]Loading weights:  34%|███▍      | 147/427 [00:00<00:01, 163.17it/s]Loading weights:  38%|███▊      | 164/427 [00:01<00:01, 154.43it/s]Loading weights:  44%|████▍     | 187/427 [00:01<00:01, 170.41it/s]Loading weights:  48%|████▊     | 205/427 [00:01<00:01, 160.62it/s]Loading weights:  52%|█████▏    | 222/427 [00:01<00:01, 162.66it/s]Loading weights:  56%|█████▌    | 239/427 [00:01<00:01, 156.95it/s]Loading weights:  60%|█████▉    | 255/427 [00:01<00:01, 146.04it/s]Loading weights:  64%|██████▍   | 275/427 [00:01<00:00, 157.73it/s]Loading weights:  68%|██████▊   | 291/427 [00:01<00:00, 157.73it/s]Loading weights:  72%|███████▏  | 307/427 [00:01<00:00, 143.74it/s]Loading weights:  75%|███████▌  | 322/427 [00:02<00:00, 141.23it/s]Loading weights:  80%|████████  | 343/427 [00:02<00:00, 156.62it/s]Loading weights:  84%|████████▍ | 359/427 [00:02<00:00, 152.89it/s]Loading weights:  88%|████████▊ | 375/427 [00:02<00:00, 145.78it/s]Loading weights:  93%|█████████▎| 395/427 [00:02<00:00, 158.15it/s]Loading weights:  96%|█████████▋| 412/427 [00:02<00:00, 147.50it/s]Loading weights: 100%|██████████| 427/427 [00:02<00:00, 155.08it/s]
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'masakhane/afriqa' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'masakhane/afriqa' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'CohereForAI/aya_evaluation' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'masakhane/irokobench' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'irokobench/irokobench' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'IrokoBench/irokobench' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+`trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'Irokobench/irokobench' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+
+[AfriQA] lang=yo (yoruba)
+  [error] Dataset scripts are no longer supported, but found afriqa.py
+
+[AfriQA] lang=ha (hausa)
+  [error] Dataset scripts are no longer supported, but found afriqa.py
+
+[Aya Evaluation] loading dataset...
+  [error] Dataset 'CohereForAI/aya_evaluation' doesn't exist on the Hub or cannot be accessed.
+
+[IrokoBench] loading dataset...
+  masakhane/irokobench: Dataset 'masakhane/irokobench' doesn't exist on the Hub or cannot be accessed.
+  irokobench/irokobench: Dataset 'irokobench/irokobench' doesn't exist on the Hub or cannot be accessed.
+  IrokoBench/irokobench: Dataset 'IrokoBench/irokobench' doesn't exist on the Hub or cannot be accessed.
+  Irokobench/irokobench: Dataset 'Irokobench/irokobench' doesn't exist on the Hub or cannot be accessed.
+  [error] IrokoBench dataset not found
+
+[done] updated /root/project/results/phase2_v2/Qwen3.5-9B-Base_baseline.json
+[Tue Jun 16 01:59:56 AM UTC 2026] --- 完成 model=baseline ---
+[Tue Jun 16 01:59:56 AM UTC 2026] --- 开始评测 model=en ---
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+[Tue Jun 16 03:25:20 AM UTC 2026] === run_eval_extended.sh 启动 ===
+[Tue Jun 16 03:25:20 AM UTC 2026] --- 开始评测 model=baseline ---
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+=== eval_extended: /root/project/models/Qwen3.5-9B-Base ===
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   2%|▏         | 8/427 [00:00<00:05, 71.31it/s]Loading weights:   6%|▋         | 27/427 [00:00<00:03, 126.39it/s]Loading weights:  11%|█         | 46/427 [00:00<00:02, 148.04it/s]Loading weights:  15%|█▌        | 65/427 [00:00<00:02, 162.77it/s]Loading weights:  19%|█▉        | 82/427 [00:00<00:02, 148.60it/s]Loading weights:  23%|██▎       | 100/427 [00:00<00:02, 150.45it/s]Loading weights:  28%|██▊       | 120/427 [00:00<00:02, 152.52it/s]Loading weights:  33%|███▎      | 142/427 [00:00<00:01, 166.62it/s]Loading weights:  37%|███▋      | 159/427 [00:01<00:01, 145.83it/s]Loading weights:  41%|████      | 175/427 [00:01<00:01, 149.27it/s]Loading weights:  47%|████▋     | 201/427 [00:01<00:01, 172.34it/s]Loading weights:  51%|█████▏    | 219/427 [00:01<00:01, 164.34it/s]Loading weights:  56%|█████▌    | 238/427 [00:01<00:01, 169.11it/s]Loading weights:  60%|█████▉    | 256/427 [00:01<00:01, 150.86it/s]Loading weights:  64%|██████▍   | 275/427 [00:01<00:00, 158.09it/s]Loading weights:  68%|██████▊   | 292/427 [00:01<00:00, 151.07it/s]Loading weights:  72%|███████▏  | 308/427 [00:02<00:00, 140.58it/s]Loading weights:  78%|███████▊  | 331/427 [00:02<00:00, 157.98it/s]Loading weights:  81%|████████▏ | 348/427 [00:02<00:00, 147.19it/s]Loading weights:  85%|████████▌ | 364/427 [00:02<00:00, 148.10it/s]Loading weights:  90%|████████▉ | 384/427 [00:02<00:00, 157.47it/s]Loading weights:  94%|█████████▎| 400/427 [00:02<00:00, 149.94it/s]Loading weights:  98%|█████████▊| 418/427 [00:02<00:00, 151.26it/s]Loading weights: 100%|██████████| 427/427 [00:02<00:00, 153.38it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.

@@ -1,0 +1,22 @@
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+  [teacher] loading base from /root/project/models/Qwen3.5-9B-Base ...
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights: 100%|██████████| 427/427 [00:00<00:00, 10761.41it/s]
+  [teacher] loading adapter from results/phase2_v2/lis_Qwen3.5-9B-Base_train_en ...
+  [teacher] ready on cuda:0, 8.95B params, all frozen
+
+=== PROBE [yo] teacher consistency at instruction-end (last layer) ===
+  N=50, mean pairwise cosine-sim (last layer, Pos1) = 0.8711
+  Verdict: ✅ HIGH — consistent control direction; MID signal reliable
+
+=== PROBE [so] teacher consistency at instruction-end (last layer) ===
+  N=49, mean pairwise cosine-sim (last layer, Pos1) = 0.8743
+  Verdict: ✅ HIGH — consistent control direction; MID signal reliable
+
+=== PROBE [ha] teacher consistency at instruction-end (last layer) ===
+  N=49, mean pairwise cosine-sim (last layer, Pos1) = 0.8396
+  Verdict: ✅ HIGH — consistent control direction; MID signal reliable

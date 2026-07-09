@@ -1,0 +1,69 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning : `load_model` does not return WordVectorModel or SupervisedModel any more, but a `FastText` object which is very similar.
+Loading model: results/tag_routing/tag_routing_Qwen3.5-9B-Base
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<04:11,  1.69it/s]Loading weights:   6%|▌         | 26/427 [00:00<00:08, 49.78it/s]Loading weights:  10%|▉         | 42/427 [00:00<00:05, 71.63it/s]Loading weights:  14%|█▍        | 59/427 [00:00<00:04, 79.44it/s]Loading weights:  19%|█▊        | 80/427 [00:01<00:03, 105.94it/s]Loading weights:  22%|██▏       | 96/427 [00:01<00:02, 114.94it/s]Loading weights:  28%|██▊       | 119/427 [00:01<00:02, 137.88it/s]Loading weights:  32%|███▏      | 136/427 [00:01<00:02, 140.93it/s]Loading weights:  36%|███▌      | 153/427 [00:01<00:01, 142.34it/s]Loading weights:  40%|████      | 172/427 [00:01<00:01, 154.61it/s]Loading weights:  44%|████▍     | 189/427 [00:01<00:01, 156.31it/s]Loading weights:  48%|████▊     | 206/427 [00:01<00:01, 154.48it/s]Loading weights:  53%|█████▎    | 227/427 [00:01<00:01, 162.68it/s]Loading weights:  59%|█████▉    | 252/427 [00:02<00:00, 184.82it/s]Loading weights:  63%|██████▎   | 271/427 [00:02<00:00, 172.83it/s]Loading weights:  68%|██████▊   | 291/427 [00:02<00:00, 179.95it/s]Loading weights:  73%|███████▎  | 310/427 [00:02<00:00, 168.80it/s]Loading weights:  78%|███████▊  | 331/427 [00:02<00:00, 173.70it/s]Loading weights:  82%|████████▏ | 349/427 [00:02<00:00, 170.22it/s]Loading weights:  86%|████████▌ | 367/427 [00:02<00:00, 159.67it/s]Loading weights:  91%|█████████▏| 390/427 [00:02<00:00, 174.37it/s]Loading weights:  96%|█████████▋| 412/427 [00:03<00:00, 185.89it/s]Loading weights: 100%|██████████| 427/427 [00:03<00:00, 136.94it/s]
+Pre-loading MasakhaNEWS excerpts for ['en', 'yo', 'so', 'ha']
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+  en: 50 excerpts loaded, e.g. "China's strategy for tackling Covid feels frozen in time."
+  yo: 50 excerpts loaded, e.g. 'Igbakeji Aarẹ tẹlẹ ni Naijiria, Atiku Abubakar ti ke si awọn gomina lati ma duro'
+  so: 50 excerpts loaded, e.g. 'Kooxaha Premier League-ga ayaa shir ay shalay ku yeesheen internet-ka oo maqal i'
+  ha: 50 excerpts loaded, e.g. "A ranar 12 ga watan Rabiul Awwal, wani bangare na al'ummar Musulmi na gudanar da"
+
+=== cell (en → en) ===
+  lc_rate=1.0000  en_leak=1.0000  n=50
+
+=== cell (en → yo) ===
+  lc_rate=0.3600  en_leak=0.6400  n=50
+
+=== cell (en → so) ===
+  lc_rate=0.5800  en_leak=0.4200  n=50
+
+=== cell (en → ha) ===
+  lc_rate=0.1837  en_leak=0.8163  n=49
+
+=== cell (yo → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (yo → yo) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+=== cell (yo → so) ===
+  lc_rate=0.3000  en_leak=0.0000  n=50
+
+=== cell (yo → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → yo) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → so) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+=== cell (so → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → yo) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → so) ===
+  lc_rate=0.7600  en_leak=0.0000  n=50
+
+=== cell (ha → ha) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+Saved: results/tag_routing/tag_routing_Qwen3.5-9B-Base_lcb_matrix.json
+
+=== lc_rate matrix ===
+instr\tgt      en      yo      so      ha
+        en   1.000   0.360   0.580   0.184
+        yo   0.000   1.000   0.300   0.000
+        so   0.000   0.000   1.000   0.000
+        ha   0.000   0.000   0.760   1.000

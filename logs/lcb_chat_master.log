@@ -1,0 +1,28 @@
+[Thu Jun 18 08:05:50 AM UTC 2026] === Round 1 ===
+[Thu Jun 18 08:05:50 AM UTC 2026] Skip baseline (exists)
+[Thu Jun 18 08:05:50 AM UTC 2026] GPU 1 <- train_en
+[Thu Jun 18 08:05:50 AM UTC 2026] GPU 2 <- train_yo
+[Thu Jun 18 08:05:50 AM UTC 2026] GPU 3 <- trai[Thu [Thu Jun 18 08:13:52 AM UTC 2026] pid 863064 done
+[Thu Jun 18 08:14:00 AM UTC 2026] pid 863066 done
+[Thu Jun 18 08:14:05 AM UTC 2026] pid 863068 done
+[Thu Jun 18 08:14:05 AM UTC 2026] === Round 2 ===
+[Thu Jun 18 08:14:05 AM UTC 2026] GPU 0 <- train_ha
+[Thu Jun 18 08:14:05 AM UTC 2026] GPU 1 <- mix_en_yo
+[Thu Jun 18 08:14:05 AM UTC 2026] GPU 2 <- mix_en_so
+[Thu Jun 18 08:14:05 AM UTC 2026] GPU 3 <- mix_en_ha
+[Thu Jun 18 08:22:18 AM UTC 2026] pid 868085 done
+[Thu Jun 18 08:22:18 AM UTC 2026] pid 868087 done
+[Thu Jun 18 08:22:29 AM UTC 2026] pid 868089 done
+[Thu Jun 18 08:22:29 AM UTC 2026] pid 868091 done
+[Thu Jun 18 08:22:29 AM UTC 2026] === Summary ===
+model          |  yo_lc  yo_en |  so_lc  so_en |  ha_lc  ha_en
+-----------------------------------------------------------------
+baseline       |  0.020  0.980 |  0.000  1.000 |  0.060  0.940
+train_en       |  0.960  0.020 |  0.960  0.020 |  0.800  0.200
+train_yo       |  0.920  0.040 |  0.714  0.245 |  0.620  0.320
+train_so       |  0.020  0.980 |  0.280  0.720 |  0.000  1.000
+train_ha       |  0.020  0.960 |  0.060  0.940 |  0.000  1.000
+mix_en_yo      |  0.980  0.020 |  0.980  0.000 |  0.640  0.160
+mix_en_so      |  0.800  0.160 |  0.980  0.020 |  0.640  0.340
+mix_en_ha      |  0.940  0.060 |  0.960  0.020 |  0.977  0.023
+0.940  0.060 |  0.960  0.020 |  0.977  0.023

@@ -1,0 +1,174 @@
+time=Thu Jul  9 02:52:19 AM UTC 2026
+head=321443f
+ D results/dsct/dsct_Qwen3.5-9B-Base_ha/README.md
+ D results/dsct/dsct_Qwen3.5-9B-Base_ha/adapter_config.json
+ D results/dsct/dsct_Qwen3.5-9B-Base_ha/chat_template.jinja
+ D results/dsct/dsct_Qwen3.5-9B-Base_ha/tokenizer_config.json
+ D results/dsct/dsct_Qwen3.5-9B-Base_ha/training_metadata.json
+ D results/dsct/dsct_Qwen3.5-9B-Base_ha_eval.json
+ D results/dsct/dsct_Qwen3.5-9B-Base_so/README.md
+ D results/dsct/dsct_Qwen3.5-9B-Base_so/adapter_config.json
+ D results/dsct/dsct_Qwen3.5-9B-Base_so/chat_template.jinja
+ D results/dsct/dsct_Qwen3.5-9B-Base_so/tokenizer_config.json
+ D results/dsct/dsct_Qwen3.5-9B-Base_so/training_metadata.json
+ D results/dsct/dsct_Qwen3.5-9B-Base_so_eval.json
+ D results/dsct/dsct_Qwen3.5-9B-Base_yo/README.md
+ D results/dsct/dsct_Qwen3.5-9B-Base_yo/adapter_config.json
+ D results/dsct/dsct_Qwen3.5-9B-Base_yo/chat_template.jinja
+ D results/dsct/dsct_Qwen3.5-9B-Base_yo/tokenizer_config.json
+ D results/dsct/dsct_Qwen3.5-9B-Base_yo/training_metadata.json
+ D results/dsct/dsct_Qwen3.5-9B-Base_yo_eval.json
+ D results/mid/mid_Qwen3.5-9B-Base_ha/README.md
+ D results/mid/mid_Qwen3.5-9B-Base_ha/adapter_config.json
+ D results/mid/mid_Qwen3.5-9B-Base_ha/chat_template.jinja
+ D results/mid/mid_Qwen3.5-9B-Base_ha/tokenizer_config.json
+ D results/mid/mid_Qwen3.5-9B-Base_ha/training_metadata.json
+ D results/mid/mid_Qwen3.5-9B-Base_ha_eval.json
+ D results/mid/mid_Qwen3.5-9B-Base_ha_lcb_matrix.json
+ D results/mid/mid_Qwen3.5-9B-Base_ha_normfix/README.md
+ D results/mid/mid_Qwen3.5-9B-Base_ha_normfix/adapter_config.json
+ D results/mid/mid_Qwen3.5-9B-Base_ha_normfix/chat_template.jinja
+ D results/mid/mid_Qwen3.5-9B-Base_ha_normfix/tokenizer_config.json
+ D results/mid/mid_Qwen3.5-9B-Base_ha_normfix/training_metadata.json
+ D results/mid/mid_Qwen3.5-9B-Base_ha_normfix_eval.json
+ D results/mid/mid_Qwen3.5-9B-Base_so/README.md
+ D results/mid/mid_Qwen3.5-9B-Base_so/adapter_config.json
+ D results/mid/mid_Qwen3.5-9B-Base_so/chat_template.jinja
+ D results/mid/mid_Qwen3.5-9B-Base_so/tokenizer_config.json
+ D results/mid/mid_Qwen3.5-9B-Base_so/training_metadata.json
+ D results/mid/mid_Qwen3.5-9B-Base_so_eval.json
+ D results/mid/mid_Qwen3.5-9B-Base_so_lcb_matrix.json
+ D results/mid/mid_Qwen3.5-9B-Base_so_normfix/README.md
+ D results/mid/mid_Qwen3.5-9B-Base_so_normfix/adapter_config.json
+ D results/mid/mid_Qwen3.5-9B-Base_so_normfix/chat_template.jinja
+ D results/mid/mid_Qwen3.5-9B-Base_so_normfix/tokenizer_config.json
+ D results/mid/mid_Qwen3.5-9B-Base_so_normfix/training_metadata.json
+ D results/mid/mid_Qwen3.5-9B-Base_so_normfix_eval.json
+ D results/mid/mid_Qwen3.5-9B-Base_yo/README.md
+ D results/mid/mid_Qwen3.5-9B-Base_yo/adapter_config.json
+ D results/mid/mid_Qwen3.5-9B-Base_yo/chat_template.jinja
+ D results/mid/mid_Qwen3.5-9B-Base_yo/tokenizer_config.json
+ D results/mid/mid_Qwen3.5-9B-Base_yo/training_metadata.json
+ D results/mid/mid_Qwen3.5-9B-Base_yo_eval.json
+ D results/mid/mid_Qwen3.5-9B-Base_yo_lcb_matrix.json
+ D results/mid/mid_Qwen3.5-9B-Base_yo_normfix/README.md
+ D results/mid/mid_Qwen3.5-9B-Base_yo_normfix/adapter_config.json
+ D results/mid/mid_Qwen3.5-9B-Base_yo_normfix/chat_template.jinja
+ D results/mid/mid_Qwen3.5-9B-Base_yo_normfix/tokenizer_config.json
+ D results/mid/mid_Qwen3.5-9B-Base_yo_normfix/training_metadata.json
+ D results/mid/mid_Qwen3.5-9B-Base_yo_normfix_eval.json
+ M results/mix_en/mix_Qwen3.5-9B-Base_en_ha/README.md
+ M results/mix_en/mix_Qwen3.5-9B-Base_en_ha/adapter_config.json
+ M results/mix_en/mix_Qwen3.5-9B-Base_en_ha/training_metadata.json
+ D results/mix_en/mix_Qwen3.5-9B-Base_en_ha_eval.json
+ M results/mix_en/mix_Qwen3.5-9B-Base_en_so/README.md
+ M results/mix_en/mix_Qwen3.5-9B-Base_en_so/adapter_config.json
+ M results/mix_en/mix_Qwen3.5-9B-Base_en_so/training_metadata.json
+ M results/mix_en/mix_Qwen3.5-9B-Base_en_so_eval.json
+ M results/mix_en/mix_Qwen3.5-9B-Base_en_yo/README.md
+ M results/mix_en/mix_Qwen3.5-9B-Base_en_yo/adapter_config.json
+ M results/mix_en/mix_Qwen3.5-9B-Base_en_yo/training_metadata.json
+ M results/mix_en/mix_Qwen3.5-9B-Base_en_yo_eval.json
+ D results/moe_lora/moe_lora_Qwen3.5-9B-Base/chat_template.jinja
+ D results/moe_lora/moe_lora_Qwen3.5-9B-Base/moe_config.json
+ D results/moe_lora/moe_lora_Qwen3.5-9B-Base/tokenizer_config.json
+ D results/moe_lora/moe_lora_Qwen3.5-9B-Base/training_metadata.json
+ D results/moe_lora/moe_lora_Qwen3.5-9B-Base_eval.json
+ M results/phase2_v2/Qwen3.5-9B-Base_baseline.json
+ M results/phase2_v2/en_retention_Qwen3.5-9B-Base.csv
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_en/README.md
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_en/adapter_config.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_en/tokenizer_config.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_en/training_metadata.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_en_eval.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_ha/README.md
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_ha/adapter_config.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_ha/tokenizer_config.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_ha/training_metadata.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_ha_eval.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_so/README.md
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_so/adapter_config.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_so/tokenizer_config.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_so/training_metadata.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_so_eval.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_yo/README.md
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_yo/adapter_config.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_yo/tokenizer_config.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_yo/training_metadata.json
+ M results/phase2_v2/lis_Qwen3.5-9B-Base_train_yo_eval.json
+ M results/phase2_v2/lis_matrix_Qwen3.5-9B-Base.csv
+ D results/phase2_v2/lis_matrix_Qwen3.5-9B-Base_afrimgsm.csv
+ D results/phase2_v2/lis_matrix_Qwen3.5-9B-Base_afriqa_f1.csv
+ D results/phase2_v2/lis_matrix_Qwen3.5-9B-Base_afrixnli.csv
+ D results/phase2_v2/lis_matrix_Qwen3.5-9B-Base_aya.csv
+ M results/phase2_v2/lis_matrix_Qwen3.5-9B-Base_belebele.csv
+ D results/phase2_v2/lis_matrix_Qwen3.5-9B-Base_english.csv
+ D results/phase2_v2/lis_matrix_Qwen3.5-9B-Base_irokobench_mcq.csv
+ M results/phase2_v2/lis_matrix_Qwen3.5-9B-Base_sib200.csv
+ D results/sso_lora/sso_Qwen3.5-9B-Base_ha_eval.json
+ D results/sso_lora/sso_Qwen3.5-9B-Base_so_eval.json
+ D results/sso_lora/sso_Qwen3.5-9B-Base_yo_eval.json
+ D results/sso_lora/stage1_shared/README.md
+ D results/sso_lora/stage1_shared/chat_template.jinja
+ D results/sso_lora/stage1_shared/shared/adapter_config.json
+ D results/sso_lora/stage1_shared/tokenizer_config.json
+ D results/sso_lora/stage2_ha/README.md
+ D results/sso_lora/stage2_ha/chat_template.jinja
+ D results/sso_lora/stage2_ha/ha/adapter_config.json
+ D results/sso_lora/stage2_ha/shared/adapter_config.json
+ D results/sso_lora/stage2_ha/tokenizer_config.json
+ D results/sso_lora/stage2_so/README.md
+ D results/sso_lora/stage2_so/chat_template.jinja
+ D results/sso_lora/stage2_so/shared/adapter_config.json
+ D results/sso_lora/stage2_so/so/adapter_config.json
+ D results/sso_lora/stage2_so/tokenizer_config.json
+ D results/sso_lora/stage2_yo/README.md
+ D results/sso_lora/stage2_yo/chat_template.jinja
+ D results/sso_lora/stage2_yo/shared/adapter_config.json
+ D results/sso_lora/stage2_yo/tokenizer_config.json
+ D results/sso_lora/stage2_yo/yo/adapter_config.json
+ D results/tag_routing/only16layer_Qwen3.5-9B-Base_eval.json
+ D results/tag_routing/tag_routing_Qwen3.5-9B-Base/README.md
+ D results/tag_routing/tag_routing_Qwen3.5-9B-Base/adapter_config.json
+ D results/tag_routing/tag_routing_Qwen3.5-9B-Base/chat_template.jinja
+ D results/tag_routing/tag_routing_Qwen3.5-9B-Base/tokenizer_config.json
+ D results/tag_routing/tag_routing_Qwen3.5-9B-Base/training_metadata.json
+ D results/tag_routing/tag_routing_Qwen3.5-9B-Base_eval.json
+ D results/tag_routing/tag_routing_Qwen3.5-9B-Base_lcb_matrix.json
+ M scripts/launch_dsct.sh
+ M scripts/launch_mid.sh
+ M scripts/launch_mix_en.sh
+ M scripts/launch_moe_lora.sh
+ M scripts/launch_phase2_v2.sh
+ M scripts/launch_sso_lora.sh
+ M scripts/launch_tag_routing.sh
+ M scripts/train_sso_lora.py
+ M src/training/trainer.py
+?? results/_rerun_archive_20260708_131256/
+?? results/layerwise/stage1_shared/tokenizer.json
+?? results/layerwise/stage2_ha/tokenizer.json
+?? results/layerwise/stage2_so/tokenizer.json
+?? results/layerwise/stage2_yo/tokenizer.json
+?? results/mix_en/mix_Qwen3.5-9B-Base_en_ha/run_config.json
+?? results/mix_en/mix_Qwen3.5-9B-Base_en_ha/tokenizer.json
+?? results/mix_en/mix_Qwen3.5-9B-Base_en_so/run_config.json
+?? results/mix_en/mix_Qwen3.5-9B-Base_en_so/tokenizer.json
+?? results/mix_en/mix_Qwen3.5-9B-Base_en_yo/run_config.json
+?? results/mix_en/mix_Qwen3.5-9B-Base_en_yo/tokenizer.json
+?? results/phase2_lis_matrix/lis_Qwen3.5-9B-Base_train_bn/tokenizer.json
+?? results/phase2_lis_matrix/lis_Qwen3.5-9B-Base_train_en/tokenizer.json
+?? results/phase2_lis_matrix/lis_Qwen3.5-9B-Base_train_fr/tokenizer.json
+?? results/phase2_lis_matrix/lis_Qwen3.5-9B-Base_train_sw/tokenizer.json
+?? results/phase2_lis_matrix/lis_Qwen3.5-9B-Base_train_th/tokenizer.json
+?? results/phase2_lis_matrix/lis_Qwen3.5-9B-Base_train_yo/tokenizer.json
+?? results/phase2_lis_matrix/lis_Qwen3.5-9B-Base_train_zh/tokenizer.json
+?? results/phase2_v2/lis_Qwen3.5-9B-Base_train_en/run_config.json
+?? results/phase2_v2/lis_Qwen3.5-9B-Base_train_en/tokenizer.json
+?? results/phase2_v2/lis_Qwen3.5-9B-Base_train_ha/run_config.json
+?? results/phase2_v2/lis_Qwen3.5-9B-Base_train_ha/tokenizer.json
+?? results/phase2_v2/lis_Qwen3.5-9B-Base_train_so/run_config.json
+?? results/phase2_v2/lis_Qwen3.5-9B-Base_train_so/tokenizer.json
+?? results/phase2_v2/lis_Qwen3.5-9B-Base_train_yo/run_config.json
+?? results/phase2_v2/lis_Qwen3.5-9B-Base_train_yo/tokenizer.json
+?? scripts/run_refactor_flash_liger_all.sh
+?? "\345\225\206\346\246\267\344\272\213\351\241\271.md"

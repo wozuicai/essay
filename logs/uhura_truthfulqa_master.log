@@ -1,0 +1,21 @@
+[Wed Jun 17 08:54:37 AM UTC 2026] === run_uhura_truthfulqa.sh 启动（Uhura-TruthfulQA MC1，yo+ha，并行）===
+[Wed Jun 17 08:54:37 AM UTC 2026] --- 开始 Uhura-TFQ model=baseline (GPU 0) ---
+[Wed Jun 17 08:54:37 AM UTC 2026] --- 开始 Uhura-TFQ model=yo (GPU 2) ---
+[Wed Jun 17 08:54:37 AM UTC 2026] --- 开始 Uhura-TFQ model=so (GPU 3) ---
+[Wed Jun 17 08:54:37 AM UTC 2026] --- 开始 Uhura-TFQ model=en (GPU 1) ---
+[Wed Jun 17 09:00:05 AM UTC 2026] --- 完成 Uhura-TFQ model=baseline (GPU 0, exit=0) ---
+[Wed Jun 17 09:00:36 AM UTC 2026] --- 完成 Uhura-TFQ model=yo (GPU 2, exit=0) ---
+[Wed Jun 17 09:00:43 AM UTC 2026] --- 完成 Uhura-TFQ model=so (GPU 3, exit=0) ---
+[Wed Jun 17 09:00:43 AM UTC 2026] --- 完成 Uhura-TFQ model=en (GPU 1, exit=0) ---
+[Wed Jun 17 09:00:43 AM UTC 2026] --- 开始 Uhura-TFQ model=ha (GPU 0) ---
+[Wed Jun 17 09:06:26 AM UTC 2026] --- 完成 Uhura-TFQ model=ha (GPU 0, exit=0) ---
+[Wed Jun 17 09:06:26 AM UTC 2026] === Uhura-TruthfulQA 全部完成，结果写入各 result JSON ===
+
+=== 结果汇总 ===
+model          yo_mc1   ha_mc1
+--------------------------------
+baseline       0.3931   0.3527
+train_en       0.4091   0.3626
+train_yo       0.3857   0.3342
+train_so       0.3857   0.3391
+train_ha       0.3906   0.3317

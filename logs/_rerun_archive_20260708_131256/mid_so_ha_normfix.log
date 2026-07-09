@@ -1,0 +1,331 @@
+[2026-06-25 13:49:35 UTC] === Starting mid_so_normfix (4 GPU) ===
+W0625 13:50:31.869000 636147 torch/distributed/run.py:766] 
+W0625 13:50:31.869000 636147 torch/distributed/run.py:766] *****************************************
+W0625 13:50:31.869000 636147 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0625 13:50:31.869000 636147 torch/distributed/run.py:766] *****************************************
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+/usr/local/lib/python3.11/dist-packages/wandb/apis/public.py:3075: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import parse_version
+
+=== MID Training: [so] | α=0.1 β=0.05 K=4 P2=3 ===
+  [teacher] loading base from /root/project/models/Qwen3.5-9B-Base ...
+  [teacher] loading base from /root/project/models/Qwen3.5-9B-Base ...
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+  [teacher] loading base from /root/project/models/Qwen3.5-9B-Base ...
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+  [teacher] loading base from /root/project/models/Qwen3.5-9B-Base ...
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights: 100%|██████████| 427/427 [00:00<00:00, 7260.61it/s]
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights: 100%|██████████| 427/427 [00:00<00:00, 6741.93it/s]
+  [teacher] loading adapter from results/phase2_v2/lis_Qwen3.5-9B-Base_train_en ...
+  [teacher] loading adapter from results/phase2_v2/lis_Qwen3.5-9B-Base_train_en ...
+Loading weights: 100%|██████████| 427/427 [00:00<00:00, 7013.23it/s]
+Loading weights: 100%|██████████| 427/427 [00:00<00:00, 7503.38it/s]
+  [teacher] loading adapter from results/phase2_v2/lis_Qwen3.5-9B-Base_train_en ...
+  [teacher] loading adapter from results/phase2_v2/lis_Qwen3.5-9B-Base_train_en ...
+  [teacher] ready on cuda:2, 8.95B params, all frozen
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]  [teacher] ready on cuda:0, 8.95B params, all frozen
+
+=== PROBE [so] teacher consistency at instruction-end (last layer) ===
+Loading weights: 100%|██████████| 427/427 [00:00<00:00, 7124.01it/s]
+trainable params: 29,097,984 || all params: 8,982,901,248 || trainable%: 0.3239
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+  [teacher] ready on cuda:1, 8.95B params, all frozen
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights: 100%|██████████| 427/427 [00:00<00:00, 6964.09it/s]
+trainable params: 29,097,984 || all params: 8,982,901,248 || trainable%: 0.3239
+Warning: The cache directory for DeepSpeed Triton autotune, /home/tiger/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+Warning: The cache directory for DeepSpeed Triton autotune, /home/tiger/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+  [teacher] ready on cuda:3, 8.95B params, all frozen
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights: 100%|██████████| 427/427 [00:00<00:00, 6273.44it/s]
+trainable params: 29,097,984 || all params: 8,982,901,248 || trainable%: 0.3239
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+Warning: The cache directory for DeepSpeed Triton autotune, /home/tiger/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+  N=49, mean pairwise cosine-sim (last layer, Pos1) = 0.8127
+  Verdict: ✅ HIGH — consistent control direction; MID signal reliable
+
+[rank 0] Loading student base model ...
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights: 100%|██████████| 427/427 [00:00<00:00, 6756.13it/s]
+trainable params: 29,097,984 || all params: 8,982,901,248 || trainable%: 0.3239
+Dataset: 7704 × [so]  (NO English)
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+Warning: The cache directory for DeepSpeed Triton autotune, /home/tiger/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+trial-301319543-trialrun-301319543-worker-0:636523:636523 [0] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+trial-301319543-trialrun-301319543-worker-0:636523:636523 [0] NCCL INFO NCCL_SOCKET_FAMILY set by environment to AF_INET6
+trial-301319543-trialrun-301319543-worker-0:636523:636523 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to =eth0
+
+[2026-06-25 13:53:51] trial-301319543-trialrun-301319543-worker-0:636523:636523 [0] misc/cudawrap.cc:271 NCCL WARN Cuda failure 'CUDA driver version is insufficient for CUDA runtime version'
+
+[2026-06-25 13:53:51] trial-301319543-trialrun-301319543-worker-0:636523:636523 [0] init.cc:2349 NCCL WARN Cuda failure 'CUDA driver version is insufficient for CUDA runtime version'
+Traceback (most recent call last):
+  File "/root/project/scripts/train_mid.py", line 348, in <module>
+trial-301319543-trialrun-301319543-worker-0:636526:636526 [0] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+trial-301319543-trialrun-301319543-worker-0:636524:636524 [0] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+trial-301319543-trialrun-301319543-worker-0:636525:636525 [0] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+
+[2026-06-25 13:53:51] trial-301319543-trialrun-301319543-worker-0:636526:636526 [0] misc/cudawrap.cc:271 NCCL WARN Cuda failure 'CUDA driver version is insufficient for CUDA runtime version'
+
+[2026-06-25 13:53:51] trial-301319543-trialrun-301319543-worker-0:636524:636524 [0] misc/cudawrap.cc:271 NCCL WARN Cuda failure 'CUDA driver version is insufficient for CUDA runtime version'
+
+[2026-06-25 13:53:51] trial-301319543-trialrun-301319543-worker-0:636526:636526 [0] init.cc:2349 NCCL WARN Cuda failure 'CUDA driver version is insufficient for CUDA runtime version'
+
+[2026-06-25 13:53:51] trial-301319543-trialrun-301319543-worker-0:636524:636524 [0] init.cc:2349 NCCL WARN Cuda failure 'CUDA driver version is insufficient for CUDA runtime version'
+
+[2026-06-25 13:53:51] trial-301319543-trialrun-301319543-worker-0:636525:636525 [0] misc/cudawrap.cc:271 NCCL WARN Cuda failure 'CUDA driver version is insufficient for CUDA runtime version'
+
+[2026-06-25 13:53:51] trial-301319543-trialrun-301319543-worker-0:636525:636525 [0] init.cc:2349 NCCL WARN Cuda failure 'CUDA driver version is insufficient for CUDA runtime version'
+Traceback (most recent call last):
+  File "/root/project/scripts/train_mid.py", line 348, in <module>
+Traceback (most recent call last):
+  File "/root/project/scripts/train_mid.py", line 348, in <module>
+Traceback (most recent call last):
+  File "/root/project/scripts/train_mid.py", line 348, in <module>
+    main()
+  File "/root/project/scripts/train_mid.py", line 305, in main
+    main()
+  File "/root/project/scripts/train_mid.py", line 305, in main
+    main()
+    main()
+  File "/root/project/scripts/train_mid.py", line 305, in main
+  File "/root/project/scripts/train_mid.py", line 305, in main
+    sft_cfg = build_sft_config(cfg, args.output_dir)
+     sft_cfg = build_sft_config(cfg, args.output_dir)
+             ^^^^^    ^^sft_cfg = build_sft_config(cfg, args.output_dir)^
+^^^^    ^^sft_cfg = build_sft_config(cfg, args.output_dir)^
+^^^^^^^^^^^^^ ^ ^ ^ ^ ^ ^  ^  ^     ^   ^  
+      File "/root/project/src/training/trainer.py", line 20, in build_sft_config
+ ^   ^  ^^  ^  ^ ^^ ^ ^ ^ ^ ^^ ^^^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^  File "/root/project/src/training/trainer.py", line 20, in build_sft_config
+^^^^^^^^^^^^^
+^^^^  File "/root/project/src/training/trainer.py", line 20, in build_sft_config
+^^^^^^
+  File "/root/project/src/training/trainer.py", line 20, in build_sft_config
+    return SFTConfig(
+      return SFTConfig( 
+         ^ ^ ^ ^  ^ ^ ^ ^ ^ ^^
+^^^^  File "<string>", line 134, in __init__
+^^^^  File "/home/tiger/.local/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 289, in __post_init__
+^    
+return SFTConfig(
+  File "<string>", line 134, in __init__
+      File "/home/tiger/.local/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 289, in __post_init__
+       ^^^^^^^^^^
+  File "<string>", line 134, in __init__
+  File "/home/tiger/.local/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 289, in __post_init__
+    return SFTConfig(
+           ^^^^^^^^^^
+  File "<string>", line 134, in __init__
+  File "/home/tiger/.local/lib/python3.11/site-packages/trl/trainer/sft_config.py", line 289, in __post_init__
+            super().__post_init__()
+super().__post_init__()super().__post_init__()
+  File "/home/tiger/.local/lib/python3.11/site-packages/trl/trainer/base_config.py", line 107, in __post_init__
+  File "/home/tiger/.local/lib/python3.11/site-packages/trl/trainer/base_config.py", line 107, in __post_init__
+
+  File "/home/tiger/.local/lib/python3.11/site-packages/trl/trainer/base_config.py", line 107, in __post_init__
+    super().__post_init__()
+  File "/home/tiger/.local/lib/python3.11/site-packages/trl/trainer/base_config.py", line 107, in __post_init__
+    super().__post_init__()
+    super().__post_init__()
+    super().__post_init__()
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/training_args.py", line 1625, in __post_init__
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/training_args.py", line 1625, in __post_init__
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/training_args.py", line 1625, in __post_init__
+    super().__post_init__()
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/training_args.py", line 1625, in __post_init__
+        self.deviceself.device
+
+    self.device
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/training_args.py", line 1916, in device
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/training_args.py", line 1916, in device
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/training_args.py", line 1916, in device
+    self.device
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/training_args.py", line 1916, in device
+    return self._setup_devices
+    return self._setup_devices 
+          ^^^^^^^^^^^ ^ ^ ^ ^^^^^
+  File "/usr/lib/python3.11/functools.py", line 1001, in __get__
+    return self._setup_devices
+           ^^^^ ^ ^ ^ ^ ^ ^ ^^^^^^^^^^^^^^^^^^
+^^^^  File "/usr/lib/python3.11/functools.py", line 1001, in __get__
+^^^^^^
+  File "/usr/lib/python3.11/functools.py", line 1001, in __get__
+    return self._setup_devices
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/functools.py", line 1001, in __get__
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/training_args.py", line 1857, in _setup_devices
+    val = self.func(instance)
+    val = self.func(instance)
+                   ^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/training_args.py", line 1857, in _setup_devices
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/training_args.py", line 1857, in _setup_devices
+    val = self.func(instance)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/transformers/training_args.py", line 1857, in _setup_devices
+    self.distributed_state = PartialState(**accelerator_state_kwargs)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/state.py", line 215, in __init__
+    self.distributed_state = PartialState(**accelerator_state_kwargs)
+            self.distributed_state = PartialState(**accelerator_state_kwargs) 
+                    ^^^^^^^ ^ ^^ ^ ^      ^ self.distributed_state = PartialState(**accelerator_state_kwargs) ^
+^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^   ^  ^       ^  ^   ^  ^ ^ ^^ ^^^ ^^^^ ^ ^^ ^ ^
+^ ^ ^   File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/state.py", line 215, in __init__
+^ ^ ^ ^ ^ ^ ^ ^ ^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^  File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/state.py", line 215, in __init__
+^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/state.py", line 215, in __init__
+        dist.init_distributed(dist_backend=self.backend, auto_mpi_discovery=False, **kwargs)
+dist.init_distributed(dist_backend=self.backend, auto_mpi_discovery=False, **kwargs)
+    dist.init_distributed(dist_backend=self.backend, auto_mpi_discovery=False, **kwargs)
+    dist.init_distributed(dist_backend=self.backend, auto_mpi_discovery=False, **kwargs)
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/comm/comm.py", line 854, in init_distributed
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/comm/comm.py", line 854, in init_distributed
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/comm/comm.py", line 854, in init_distributed
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/comm/comm.py", line 854, in init_distributed
+    cdb = TorchBackend(dist_backend, timeout, init_method, rank, world_size)
+    cdb = TorchBackend(dist_backend, timeout, init_method, rank, world_size)
+    cdb = TorchBackend(dist_backend, timeout, init_method, rank, world_size)
+            ^ ^ ^ ^  ^  ^ ^^^^ ^ ^^ ^^ ^^^ ^^^ ^ ^^ ^^ ^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/comm/torch.py", line 120, in __init__
+^
+^^^^  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/comm/torch.py", line 120, in __init__
+
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/comm/torch.py", line 120, in __init__
+    cdb = TorchBackend(dist_backend, timeout, init_method, rank, world_size)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/comm/torch.py", line 120, in __init__
+    self.init_process_group(backend, timeout, init_method, rank, world_size)
+    self.init_process_group(backend, timeout, init_method, rank, world_size)
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/comm/torch.py", line 177, in init_process_group
+    self.init_process_group(backend, timeout, init_method, rank, world_size)
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/comm/torch.py", line 177, in init_process_group
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/comm/torch.py", line 177, in init_process_group
+    self.init_process_group(backend, timeout, init_method, rank, world_size)
+    torch.distributed.init_process_group(backend, **kwargs)
+  File "/home/tiger/.local/lib/python3.11/site-packages/deepspeed/comm/torch.py", line 177, in init_process_group
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+    torch.distributed.init_process_group(backend, **kwargs)
+      File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+torch.distributed.init_process_group(backend, **kwargs)
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+    torch.distributed.init_process_group(backend, **kwargs)
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/c10d_logger.py", line 95, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/c10d_logger.py", line 95, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^    func_return = func(*args, **kwargs)^
+^^^    ^return func(*args, **kwargs)^
+^^^^ ^ ^  
+       File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/c10d_logger.py", line 95, in wrapper
+         ^^ ^^ ^ ^ ^ ^ ^ ^ ^ ^^ ^ ^^    ^^func_return = func(*args, **kwargs)^^
+^^^^^^^^^^
+^^^ ^  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py", line 1717, in init_process_group
+ ^ ^ ^ ^ ^ ^ ^ ^
+       File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/c10d_logger.py", line 95, in wrapper
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py", line 1717, in init_process_group
+    func_return = func(*args, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py", line 1717, in init_process_group
+    func_return = func(*args, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py", line 1717, in init_process_group
+    default_pg, _ = _new_process_group_helper(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py", line 2074, in _new_process_group_helper
+    default_pg, _ = _new_process_group_helper(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py", line 2074, in _new_process_group_helper
+    default_pg, _ = _new_process_group_helper(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py", line 2074, in _new_process_group_helper
+    default_pg, _ = _new_process_group_helper(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py", line 2074, in _new_process_group_helper
+    eager_backend.eager_connect_single_device(device_id)
+torch.distributed.DistBackendError: NCCL error in: /pytorch/torch/csrc/distributed/c10d/NCCLUtils.cpp:77, unhandled cuda error (run with NCCL_DEBUG=INFO for details), NCCL version 2.29.7
+ncclUnhandledCudaError: Call to CUDA function failed.
+Last error:
+Cuda failure 'CUDA driver version is insufficient for CUDA runtime version'
+    eager_backend.eager_connect_single_device(device_id)
+    eager_backend.eager_connect_single_device(device_id)
+torch.distributed.DistBackendError: torch.distributed.NCCL error in: /pytorch/torch/csrc/distributed/c10d/NCCLUtils.cpp:77, unhandled cuda error (run with NCCL_DEBUG=INFO for details), NCCL version 2.29.7
+ncclUnhandledCudaError: Call to CUDA function failed.
+Last error:
+Cuda failure 'CUDA driver version is insufficient for CUDA runtime version'DistBackendError
+: NCCL error in: /pytorch/torch/csrc/distributed/c10d/NCCLUtils.cpp:77, unhandled cuda error (run with NCCL_DEBUG=INFO for details), NCCL version 2.29.7
+ncclUnhandledCudaError: Call to CUDA function failed.
+Last error:
+Cuda failure 'CUDA driver version is insufficient for CUDA runtime version'
+    eager_backend.eager_connect_single_device(device_id)
+torch.distributed.DistBackendError: NCCL error in: /pytorch/torch/csrc/distributed/c10d/NCCLUtils.cpp:77, unhandled cuda error (run with NCCL_DEBUG=INFO for details), NCCL version 2.29.7
+ncclUnhandledCudaError: Call to CUDA function failed.
+Last error:
+Cuda failure 'CUDA driver version is insufficient for CUDA runtime version'
+[W625 13:53:56.567022627 ProcessGroupNCCL.cpp:1479] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+trial-301319543-trialrun-301319543-worker-0:636525:636525 [0] NCCL INFO ENV/Plugin: Closing env plugin ncclEnvDefault
+trial-301319543-trialrun-301319543-worker-0:636524:636524 [0] NCCL INFO ENV/Plugin: Closing env plugin ncclEnvDefault
+trial-301319543-trialrun-301319543-worker-0:636526:636526 [0] NCCL INFO ENV/Plugin: Closing env plugin ncclEnvDefault
+trial-301319543-trialrun-301319543-worker-0:636523:636523 [0] NCCL INFO ENV/Plugin: Closing env plugin ncclEnvDefault
+W0625 13:53:58.131000 636147 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 636524 closing signal SIGTERM
+W0625 13:53:58.131000 636147 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 636525 closing signal SIGTERM
+W0625 13:53:58.131000 636147 torch/distributed/elastic/multiprocessing/api.py:900] Sending process 636526 closing signal SIGTERM
+E0625 13:53:58.810000 636147 torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 636523) of binary: /usr/bin/python3
+Warning: The cache directory for DeepSpeed Triton autotune, /home/tiger/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+Traceback (most recent call last):
+  File "/home/tiger/.local/bin/accelerate", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1390, in launch_command
+    deepspeed_launcher(args)
+  File "/home/tiger/.local/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1076, in deepspeed_launcher
+    distrib_run.run(args)
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tiger/.local/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/train_mid.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-06-25_13:53:58
+  host      : trial-301319543-trialrun-301319543-worker-0
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 636523)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

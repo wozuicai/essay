@@ -1,0 +1,673 @@
+
+==========================================
+MODEL: baseline
+PATH:  /root/project/models/Qwen3.5-9B-Base
+2026-06-23 07:58:32
+==========================================
+Warning : `load_model` does not return WordVectorModel or SupervisedModel any more, but a `FastText` object which is very similar.
+Loading model: /root/project/models/Qwen3.5-9B-Base
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<02:00,  3.53it/s]Loading weights:   6%|▌         | 25/427 [00:00<00:04, 82.59it/s]Loading weights:  11%|█         | 46/427 [00:00<00:03, 118.88it/s]Loading weights:  16%|█▌        | 67/427 [00:00<00:02, 141.42it/s]Loading weights:  20%|██        | 87/427 [00:00<00:02, 157.97it/s]Loading weights:  25%|██▍       | 106/427 [00:00<00:02, 151.89it/s]Loading weights:  30%|███       | 130/427 [00:00<00:01, 174.50it/s]Loading weights:  35%|███▍      | 149/427 [00:01<00:01, 165.45it/s]Loading weights:  40%|████      | 172/427 [00:01<00:01, 178.57it/s]Loading weights:  46%|████▌     | 196/427 [00:01<00:01, 193.62it/s]Loading weights:  51%|█████     | 217/427 [00:01<00:01, 180.59it/s]Loading weights:  56%|█████▌    | 239/427 [00:01<00:01, 185.25it/s]Loading weights:  60%|██████    | 258/427 [00:01<00:00, 173.44it/s]Loading weights:  65%|██████▌   | 279/427 [00:01<00:00, 177.47it/s]Loading weights:  70%|██████▉   | 298/427 [00:01<00:00, 179.49it/s]Loading weights:  74%|███████▍  | 317/427 [00:02<00:00, 167.26it/s]Loading weights:  81%|████████  | 345/427 [00:02<00:00, 190.70it/s]Loading weights:  85%|████████▌ | 365/427 [00:02<00:00, 173.69it/s]Loading weights:  90%|█████████ | 386/427 [00:02<00:00, 178.04it/s]Loading weights:  96%|█████████▋| 412/427 [00:02<00:00, 192.08it/s]Loading weights: 100%|██████████| 427/427 [00:02<00:00, 164.31it/s]
+Pre-loading MasakhaNEWS excerpts for ['en', 'yo', 'so', 'ha']
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'eng' at /root/project/hf_cache/datasets/masakhane___masakhanews/eng/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Tue Jun 23 07:55:11 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'yor' at /root/project/hf_cache/datasets/masakhane___masakhanews/yor/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:38:41 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'som' at /root/project/hf_cache/datasets/masakhane___masakhanews/som/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:42:30 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'hau' at /root/project/hf_cache/datasets/masakhane___masakhanews/hau/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:46:15 2026).
+  en: 50 excerpts loaded, e.g. "China's strategy for tackling Covid feels frozen in time."
+  yo: 50 excerpts loaded, e.g. 'Igbakeji Aarẹ tẹlẹ ni Naijiria, Atiku Abubakar ti ke si awọn gomina lati ma duro'
+  so: 50 excerpts loaded, e.g. 'Kooxaha Premier League-ga ayaa shir ay shalay ku yeesheen internet-ka oo maqal i'
+  ha: 50 excerpts loaded, e.g. "A ranar 12 ga watan Rabiul Awwal, wani bangare na al'ummar Musulmi na gudanar da"
+
+=== cell (en → en) ===
+  lc_rate=1.0000  en_leak=1.0000  n=50
+
+=== cell (en → yo) ===
+  lc_rate=0.1200  en_leak=0.8600  n=50
+
+=== cell (en → so) ===
+  lc_rate=0.6400  en_leak=0.3600  n=50
+
+=== cell (en → ha) ===
+  lc_rate=0.2600  en_leak=0.7400  n=50
+
+=== cell (yo → en) ===
+  lc_rate=0.7200  en_leak=0.7200  n=50
+
+=== cell (yo → yo) ===
+  lc_rate=0.8600  en_leak=0.1400  n=50
+
+=== cell (yo → so) ===
+  lc_rate=0.0800  en_leak=0.1400  n=50
+
+=== cell (yo → ha) ===
+  lc_rate=0.0400  en_leak=0.0600  n=50
+
+=== cell (so → en) ===
+  lc_rate=0.6400  en_leak=0.6400  n=50
+
+=== cell (so → yo) ===
+  lc_rate=0.0000  en_leak=0.3800  n=50
+
+=== cell (so → so) ===
+  lc_rate=0.9600  en_leak=0.0200  n=50
+
+=== cell (so → ha) ===
+  lc_rate=0.0000  en_leak=0.1200  n=50
+
+=== cell (ha → en) ===
+  lc_rate=0.5600  en_leak=0.5600  n=50
+
+=== cell (ha → yo) ===
+  lc_rate=0.0000  en_leak=0.2400  n=50
+
+=== cell (ha → so) ===
+  lc_rate=0.4200  en_leak=0.0400  n=50
+
+=== cell (ha → ha) ===
+  lc_rate=0.9400  en_leak=0.0600  n=50
+
+Saved: /root/project/results/lcb_matrix/baseline_lcb_matrix.json
+
+=== lc_rate matrix ===
+instr\tgt      en      yo      so      ha
+        en   1.000   0.120   0.640   0.260
+        yo   0.720   0.860   0.080   0.040
+        so   0.640   0.000   0.960   0.000
+        ha   0.560   0.000   0.420   0.940
+DONE: baseline at 08:20:48
+
+==========================================
+MODEL: train_en
+PATH:  /root/project/results/phase2_v2/lis_Qwen3.5-9B-Base_train_en
+2026-06-23 08:20:48
+==========================================
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning : `load_model` does not return WordVectorModel or SupervisedModel any more, but a `FastText` object which is very similar.
+Loading model: /root/project/results/phase2_v2/lis_Qwen3.5-9B-Base_train_en
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<02:01,  3.51it/s]Loading weights:   6%|▋         | 27/427 [00:00<00:04, 85.69it/s]Loading weights:  11%|█         | 47/427 [00:00<00:03, 110.67it/s]Loading weights:  16%|█▌        | 68/427 [00:00<00:02, 138.17it/s]Loading weights:  22%|██▏       | 92/427 [00:00<00:02, 166.75it/s]Loading weights:  26%|██▌       | 112/427 [00:00<00:01, 164.46it/s]Loading weights:  31%|███       | 133/427 [00:00<00:01, 169.76it/s]Loading weights:  36%|███▌      | 152/427 [00:01<00:01, 164.20it/s]Loading weights:  41%|████      | 173/427 [00:01<00:01, 171.27it/s]Loading weights:  47%|████▋     | 200/427 [00:01<00:01, 196.00it/s]Loading weights:  52%|█████▏    | 221/427 [00:01<00:01, 182.53it/s]Loading weights:  56%|█████▌    | 240/427 [00:01<00:01, 177.08it/s]Loading weights:  61%|██████    | 259/427 [00:01<00:00, 168.52it/s]Loading weights:  66%|██████▌   | 280/427 [00:01<00:00, 172.69it/s]Loading weights:  72%|███████▏  | 306/427 [00:01<00:00, 188.47it/s]Loading weights:  76%|███████▋  | 326/427 [00:02<00:00, 190.56it/s]Loading weights:  81%|████████  | 346/427 [00:02<00:00, 185.20it/s]Loading weights:  85%|████████▌ | 365/427 [00:02<00:00, 174.97it/s]Loading weights:  90%|█████████ | 386/427 [00:02<00:00, 180.14it/s]Loading weights:  96%|█████████▋| 412/427 [00:02<00:00, 194.02it/s]Loading weights: 100%|██████████| 427/427 [00:02<00:00, 164.68it/s]
+Pre-loading MasakhaNEWS excerpts for ['en', 'yo', 'so', 'ha']
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'eng' at /root/project/hf_cache/datasets/masakhane___masakhanews/eng/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Tue Jun 23 07:55:11 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'yor' at /root/project/hf_cache/datasets/masakhane___masakhanews/yor/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:38:41 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'som' at /root/project/hf_cache/datasets/masakhane___masakhanews/som/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:42:30 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'hau' at /root/project/hf_cache/datasets/masakhane___masakhanews/hau/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:46:15 2026).
+  en: 50 excerpts loaded, e.g. "China's strategy for tackling Covid feels frozen in time."
+  yo: 50 excerpts loaded, e.g. 'Igbakeji Aarẹ tẹlẹ ni Naijiria, Atiku Abubakar ti ke si awọn gomina lati ma duro'
+  so: 50 excerpts loaded, e.g. 'Kooxaha Premier League-ga ayaa shir ay shalay ku yeesheen internet-ka oo maqal i'
+  ha: 50 excerpts loaded, e.g. "A ranar 12 ga watan Rabiul Awwal, wani bangare na al'ummar Musulmi na gudanar da"
+
+=== cell (en → en) ===
+  lc_rate=1.0000  en_leak=1.0000  n=50
+
+=== cell (en → yo) ===
+  lc_rate=0.3400  en_leak=0.6600  n=50
+
+=== cell (en → so) ===
+  lc_rate=0.6200  en_leak=0.3800  n=50
+
+=== cell (en → ha) ===
+  lc_rate=0.4000  en_leak=0.6000  n=50
+
+=== cell (yo → en) ===
+  lc_rate=0.3469  en_leak=0.3469  n=49
+
+=== cell (yo → yo) ===
+  lc_rate=0.9600  en_leak=0.0000  n=50
+
+=== cell (yo → so) ===
+  lc_rate=0.0000  en_leak=0.0400  n=50
+
+=== cell (yo → ha) ===
+  lc_rate=0.0400  en_leak=0.0000  n=50
+
+=== cell (so → en) ===
+  lc_rate=0.2000  en_leak=0.2000  n=50
+
+=== cell (so → yo) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → so) ===
+  lc_rate=0.9800  en_leak=0.0000  n=50
+
+=== cell (so → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → en) ===
+  lc_rate=0.1224  en_leak=0.1224  n=49
+
+=== cell (ha → yo) ===
+  lc_rate=0.0000  en_leak=0.0000  n=49
+
+=== cell (ha → so) ===
+  lc_rate=0.4800  en_leak=0.0000  n=50
+
+=== cell (ha → ha) ===
+  lc_rate=0.9800  en_leak=0.0200  n=50
+
+Saved: /root/project/results/lcb_matrix/train_en_lcb_matrix.json
+
+=== lc_rate matrix ===
+instr\tgt      en      yo      so      ha
+        en   1.000   0.340   0.620   0.400
+        yo   0.347   0.960   0.000   0.040
+        so   0.200   0.000   0.980   0.000
+        ha   0.122   0.000   0.480   0.980
+DONE: train_en at 08:43:03
+
+==========================================
+MODEL: train_yo
+PATH:  /root/project/results/phase2_v2/lis_Qwen3.5-9B-Base_train_yo
+2026-06-23 08:43:03
+==========================================
+Warning : `load_model` does not return WordVectorModel or SupervisedModel any more, but a `FastText` object which is very similar.
+Loading model: /root/project/results/phase2_v2/lis_Qwen3.5-9B-Base_train_yo
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<02:01,  3.50it/s]Loading weights:   6%|▌         | 24/427 [00:00<00:05, 77.62it/s]Loading weights:  11%|█         | 46/427 [00:00<00:03, 117.50it/s]Loading weights:  16%|█▌        | 67/427 [00:00<00:02, 141.04it/s]Loading weights:  21%|██        | 90/427 [00:00<00:02, 162.19it/s]Loading weights:  26%|██▌       | 109/427 [00:00<00:02, 158.19it/s]Loading weights:  31%|███       | 133/427 [00:00<00:01, 173.39it/s]Loading weights:  36%|███▌      | 152/427 [00:01<00:01, 165.53it/s]Loading weights:  41%|████      | 173/427 [00:01<00:01, 172.67it/s]Loading weights:  47%|████▋     | 200/427 [00:01<00:01, 197.52it/s]Loading weights:  52%|█████▏    | 221/427 [00:01<00:01, 191.36it/s]Loading weights:  56%|█████▋    | 241/427 [00:01<00:01, 165.10it/s]Loading weights:  61%|██████    | 259/427 [00:01<00:01, 166.00it/s]Loading weights:  66%|██████▌   | 280/427 [00:01<00:00, 171.94it/s]Loading weights:  71%|███████   | 303/427 [00:01<00:00, 185.74it/s]Loading weights:  76%|███████▌  | 323/427 [00:02<00:00, 176.52it/s]Loading weights:  81%|████████  | 345/427 [00:02<00:00, 187.96it/s]Loading weights:  85%|████████▌ | 365/427 [00:02<00:00, 172.17it/s]Loading weights:  90%|█████████ | 386/427 [00:02<00:00, 176.75it/s]Loading weights:  96%|█████████▋| 412/427 [00:02<00:00, 190.94it/s]Loading weights: 100%|██████████| 427/427 [00:02<00:00, 163.30it/s]
+Pre-loading MasakhaNEWS excerpts for ['en', 'yo', 'so', 'ha']
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'eng' at /root/project/hf_cache/datasets/masakhane___masakhanews/eng/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Tue Jun 23 07:55:11 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'yor' at /root/project/hf_cache/datasets/masakhane___masakhanews/yor/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:38:41 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'som' at /root/project/hf_cache/datasets/masakhane___masakhanews/som/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:42:30 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'hau' at /root/project/hf_cache/datasets/masakhane___masakhanews/hau/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:46:15 2026).
+  en: 50 excerpts loaded, e.g. "China's strategy for tackling Covid feels frozen in time."
+  yo: 50 excerpts loaded, e.g. 'Igbakeji Aarẹ tẹlẹ ni Naijiria, Atiku Abubakar ti ke si awọn gomina lati ma duro'
+  so: 50 excerpts loaded, e.g. 'Kooxaha Premier League-ga ayaa shir ay shalay ku yeesheen internet-ka oo maqal i'
+  ha: 50 excerpts loaded, e.g. "A ranar 12 ga watan Rabiul Awwal, wani bangare na al'ummar Musulmi na gudanar da"
+
+=== cell (en → en) ===
+  lc_rate=1.0000  en_leak=1.0000  n=50
+
+=== cell (en → yo) ===
+  lc_rate=0.1800  en_leak=0.8200  n=50
+
+=== cell (en → so) ===
+  lc_rate=0.1200  en_leak=0.8800  n=50
+
+=== cell (en → ha) ===
+  lc_rate=0.0600  en_leak=0.9400  n=50
+
+=== cell (yo → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (yo → yo) ===
+  lc_rate=0.9800  en_leak=0.0000  n=50
+
+=== cell (yo → so) ===
+  lc_rate=0.0400  en_leak=0.0000  n=50
+
+=== cell (yo → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → yo) ===
+  lc_rate=0.0200  en_leak=0.0000  n=50
+
+=== cell (so → so) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+=== cell (so → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → en) ===
+  lc_rate=0.0200  en_leak=0.0200  n=50
+
+=== cell (ha → yo) ===
+  lc_rate=0.2200  en_leak=0.0000  n=50
+
+=== cell (ha → so) ===
+  lc_rate=0.2400  en_leak=0.0000  n=50
+
+=== cell (ha → ha) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+Saved: /root/project/results/lcb_matrix/train_yo_lcb_matrix.json
+
+=== lc_rate matrix ===
+instr\tgt      en      yo      so      ha
+        en   1.000   0.180   0.120   0.060
+        yo   0.000   0.980   0.040   0.000
+        so   0.000   0.020   1.000   0.000
+        ha   0.020   0.220   0.240   1.000
+DONE: train_yo at 09:03:59
+
+==========================================
+MODEL: train_so
+PATH:  /root/project/results/phase2_v2/lis_Qwen3.5-9B-Base_train_so
+2026-06-23 09:03:59
+==========================================
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning : `load_model` does not return WordVectorModel or SupervisedModel any more, but a `FastText` object which is very similar.
+Loading model: /root/project/results/phase2_v2/lis_Qwen3.5-9B-Base_train_so
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<02:00,  3.53it/s]Loading weights:   6%|▋         | 27/427 [00:00<00:04, 85.93it/s]Loading weights:  11%|█         | 47/427 [00:00<00:03, 119.06it/s]Loading weights:  16%|█▌        | 68/427 [00:00<00:02, 141.62it/s]Loading weights:  22%|██▏       | 92/427 [00:00<00:01, 169.74it/s]Loading weights:  26%|██▌       | 112/427 [00:00<00:01, 168.16it/s]Loading weights:  31%|███       | 133/427 [00:00<00:01, 173.94it/s]Loading weights:  36%|███▌      | 152/427 [00:01<00:01, 167.77it/s]Loading weights:  41%|████      | 173/427 [00:01<00:01, 174.07it/s]Loading weights:  47%|████▋     | 200/427 [00:01<00:01, 200.20it/s]Loading weights:  52%|█████▏    | 221/427 [00:01<00:01, 192.92it/s]Loading weights:  56%|█████▋    | 241/427 [00:01<00:01, 174.67it/s]Loading weights:  61%|██████    | 260/427 [00:01<00:01, 166.55it/s]Loading weights:  67%|██████▋   | 288/427 [00:01<00:00, 191.40it/s]Loading weights:  72%|███████▏  | 308/427 [00:01<00:00, 176.92it/s]Loading weights:  78%|███████▊  | 332/427 [00:02<00:00, 186.65it/s]Loading weights:  83%|████████▎ | 355/427 [00:02<00:00, 195.15it/s]Loading weights:  88%|████████▊ | 375/427 [00:02<00:00, 181.74it/s]Loading weights:  93%|█████████▎| 398/427 [00:02<00:00, 186.43it/s]Loading weights:  98%|█████████▊| 417/427 [00:02<00:00, 174.13it/s]Loading weights: 100%|██████████| 427/427 [00:02<00:00, 166.40it/s]
+Pre-loading MasakhaNEWS excerpts for ['en', 'yo', 'so', 'ha']
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'eng' at /root/project/hf_cache/datasets/masakhane___masakhanews/eng/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Tue Jun 23 07:55:11 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'yor' at /root/project/hf_cache/datasets/masakhane___masakhanews/yor/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:38:41 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'som' at /root/project/hf_cache/datasets/masakhane___masakhanews/som/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:42:30 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'hau' at /root/project/hf_cache/datasets/masakhane___masakhanews/hau/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:46:15 2026).
+  en: 50 excerpts loaded, e.g. "China's strategy for tackling Covid feels frozen in time."
+  yo: 50 excerpts loaded, e.g. 'Igbakeji Aarẹ tẹlẹ ni Naijiria, Atiku Abubakar ti ke si awọn gomina lati ma duro'
+  so: 50 excerpts loaded, e.g. 'Kooxaha Premier League-ga ayaa shir ay shalay ku yeesheen internet-ka oo maqal i'
+  ha: 50 excerpts loaded, e.g. "A ranar 12 ga watan Rabiul Awwal, wani bangare na al'ummar Musulmi na gudanar da"
+
+=== cell (en → en) ===
+  lc_rate=1.0000  en_leak=1.0000  n=50
+
+=== cell (en → yo) ===
+  lc_rate=0.0000  en_leak=0.9800  n=50
+
+=== cell (en → so) ===
+  lc_rate=0.0000  en_leak=1.0000  n=50
+
+=== cell (en → ha) ===
+  lc_rate=0.0400  en_leak=0.9600  n=50
+
+=== cell (yo → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (yo → yo) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+=== cell (yo → so) ===
+  lc_rate=0.0200  en_leak=0.0000  n=50
+
+=== cell (yo → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → yo) ===
+  lc_rate=0.0000  en_leak=0.0200  n=50
+
+=== cell (so → so) ===
+  lc_rate=0.9800  en_leak=0.0200  n=50
+
+=== cell (so → ha) ===
+  lc_rate=0.0000  en_leak=0.0200  n=50
+
+=== cell (ha → en) ===
+  lc_rate=0.0200  en_leak=0.0200  n=50
+
+=== cell (ha → yo) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → so) ===
+  lc_rate=0.7800  en_leak=0.0000  n=50
+
+=== cell (ha → ha) ===
+  lc_rate=0.5600  en_leak=0.0000  n=50
+
+Saved: /root/project/results/lcb_matrix/train_so_lcb_matrix.json
+
+=== lc_rate matrix ===
+instr\tgt      en      yo      so      ha
+        en   1.000   0.000   0.000   0.040
+        yo   0.000   1.000   0.020   0.000
+        so   0.000   0.000   0.980   0.000
+        ha   0.020   0.000   0.780   0.560
+DONE: train_so at 09:25:08
+
+==========================================
+MODEL: train_ha
+PATH:  /root/project/results/phase2_v2/lis_Qwen3.5-9B-Base_train_ha
+2026-06-23 09:25:08
+==========================================
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning : `load_model` does not return WordVectorModel or SupervisedModel any more, but a `FastText` object which is very similar.
+Loading model: /root/project/results/phase2_v2/lis_Qwen3.5-9B-Base_train_ha
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<02:04,  3.41it/s]Loading weights:   6%|▌         | 24/427 [00:00<00:05, 76.71it/s]Loading weights:  11%|█         | 46/427 [00:00<00:03, 118.79it/s]Loading weights:  16%|█▌        | 67/427 [00:00<00:02, 142.39it/s]Loading weights:  21%|██        | 90/427 [00:00<00:02, 166.17it/s]Loading weights:  26%|██▌       | 110/427 [00:00<00:01, 160.75it/s]Loading weights:  31%|███       | 133/427 [00:00<00:01, 173.51it/s]Loading weights:  36%|███▌      | 152/427 [00:01<00:01, 161.17it/s]Loading weights:  41%|████      | 173/427 [00:01<00:01, 168.90it/s]Loading weights:  47%|████▋     | 200/427 [00:01<00:01, 193.06it/s]Loading weights:  52%|█████▏    | 221/427 [00:01<00:01, 186.32it/s]Loading weights:  56%|█████▋    | 241/427 [00:01<00:01, 173.06it/s]Loading weights:  61%|██████    | 259/427 [00:01<00:00, 170.32it/s]Loading weights:  65%|██████▌   | 278/427 [00:01<00:00, 169.24it/s]Loading weights:  71%|███████   | 304/427 [00:01<00:00, 193.21it/s]Loading weights:  76%|███████▌  | 324/427 [00:02<00:00, 183.61it/s]Loading weights:  81%|████████  | 345/427 [00:02<00:00, 188.39it/s]Loading weights:  85%|████████▌ | 365/427 [00:02<00:00, 171.32it/s]Loading weights:  90%|█████████ | 386/427 [00:02<00:00, 175.32it/s]Loading weights:  96%|█████████▋| 411/427 [00:02<00:00, 194.21it/s]Loading weights: 100%|██████████| 427/427 [00:02<00:00, 163.30it/s]
+Pre-loading MasakhaNEWS excerpts for ['en', 'yo', 'so', 'ha']
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'eng' at /root/project/hf_cache/datasets/masakhane___masakhanews/eng/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Tue Jun 23 07:55:11 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'yor' at /root/project/hf_cache/datasets/masakhane___masakhanews/yor/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:38:41 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'som' at /root/project/hf_cache/datasets/masakhane___masakhanews/som/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:42:30 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'hau' at /root/project/hf_cache/datasets/masakhane___masakhanews/hau/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:46:15 2026).
+  en: 50 excerpts loaded, e.g. "China's strategy for tackling Covid feels frozen in time."
+  yo: 50 excerpts loaded, e.g. 'Igbakeji Aarẹ tẹlẹ ni Naijiria, Atiku Abubakar ti ke si awọn gomina lati ma duro'
+  so: 50 excerpts loaded, e.g. 'Kooxaha Premier League-ga ayaa shir ay shalay ku yeesheen internet-ka oo maqal i'
+  ha: 50 excerpts loaded, e.g. "A ranar 12 ga watan Rabiul Awwal, wani bangare na al'ummar Musulmi na gudanar da"
+
+=== cell (en → en) ===
+  lc_rate=1.0000  en_leak=1.0000  n=50
+
+=== cell (en → yo) ===
+  lc_rate=0.1400  en_leak=0.8200  n=50
+
+=== cell (en → so) ===
+  lc_rate=0.0400  en_leak=0.9600  n=50
+
+=== cell (en → ha) ===
+  lc_rate=0.1800  en_leak=0.8200  n=50
+
+=== cell (yo → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (yo → yo) ===
+  lc_rate=0.9600  en_leak=0.0000  n=50
+
+=== cell (yo → so) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (yo → ha) ===
+  lc_rate=0.0800  en_leak=0.0000  n=50
+
+=== cell (so → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → yo) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → so) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+=== cell (so → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → yo) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → so) ===
+  lc_rate=0.1800  en_leak=0.0000  n=50
+
+=== cell (ha → ha) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+Saved: /root/project/results/lcb_matrix/train_ha_lcb_matrix.json
+
+=== lc_rate matrix ===
+instr\tgt      en      yo      so      ha
+        en   1.000   0.140   0.040   0.180
+        yo   0.000   0.960   0.000   0.080
+        so   0.000   0.000   1.000   0.000
+        ha   0.000   0.000   0.180   1.000
+DONE: train_ha at 09:47:00
+
+==========================================
+MODEL: mix_en_yo
+PATH:  /root/project/results/mix_en/mix_Qwen3.5-9B-Base_en_yo
+2026-06-23 09:47:00
+==========================================
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning : `load_model` does not return WordVectorModel or SupervisedModel any more, but a `FastText` object which is very similar.
+Loading model: /root/project/results/mix_en/mix_Qwen3.5-9B-Base_en_yo
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<02:07,  3.35it/s]Loading weights:   6%|▋         | 27/427 [00:00<00:04, 84.78it/s]Loading weights:  11%|█         | 47/427 [00:00<00:03, 117.07it/s]Loading weights:  16%|█▌        | 68/427 [00:00<00:02, 139.03it/s]Loading weights:  22%|██▏       | 92/427 [00:00<00:02, 167.48it/s]Loading weights:  26%|██▌       | 112/427 [00:00<00:01, 165.38it/s]Loading weights:  31%|███       | 133/427 [00:00<00:01, 171.00it/s]Loading weights:  36%|███▌      | 152/427 [00:01<00:01, 161.83it/s]Loading weights:  40%|████      | 172/427 [00:01<00:01, 171.70it/s]Loading weights:  47%|████▋     | 199/427 [00:01<00:01, 196.77it/s]Loading weights:  52%|█████▏    | 220/427 [00:01<00:01, 185.12it/s]Loading weights:  56%|█████▌    | 240/427 [00:01<00:01, 160.38it/s]Loading weights:  60%|██████    | 258/427 [00:01<00:01, 161.59it/s]Loading weights:  65%|██████▌   | 279/427 [00:01<00:00, 168.76it/s]Loading weights:  71%|███████   | 302/427 [00:01<00:00, 181.21it/s]Loading weights:  75%|███████▌  | 321/427 [00:02<00:00, 167.41it/s]Loading weights:  81%|████████  | 345/427 [00:02<00:00, 183.39it/s]Loading weights:  85%|████████▌ | 364/427 [00:02<00:00, 171.89it/s]Loading weights:  90%|█████████ | 385/427 [00:02<00:00, 174.50it/s]Loading weights:  94%|█████████▍| 403/427 [00:02<00:00, 175.19it/s]Loading weights:  99%|█████████▊| 421/427 [00:02<00:00, 163.22it/s]Loading weights: 100%|██████████| 427/427 [00:02<00:00, 160.02it/s]
+Pre-loading MasakhaNEWS excerpts for ['en', 'yo', 'so', 'ha']
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'eng' at /root/project/hf_cache/datasets/masakhane___masakhanews/eng/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Tue Jun 23 07:55:11 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'yor' at /root/project/hf_cache/datasets/masakhane___masakhanews/yor/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:38:41 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'som' at /root/project/hf_cache/datasets/masakhane___masakhanews/som/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:42:30 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'hau' at /root/project/hf_cache/datasets/masakhane___masakhanews/hau/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:46:15 2026).
+  en: 50 excerpts loaded, e.g. "China's strategy for tackling Covid feels frozen in time."
+  yo: 50 excerpts loaded, e.g. 'Igbakeji Aarẹ tẹlẹ ni Naijiria, Atiku Abubakar ti ke si awọn gomina lati ma duro'
+  so: 50 excerpts loaded, e.g. 'Kooxaha Premier League-ga ayaa shir ay shalay ku yeesheen internet-ka oo maqal i'
+  ha: 50 excerpts loaded, e.g. "A ranar 12 ga watan Rabiul Awwal, wani bangare na al'ummar Musulmi na gudanar da"
+
+=== cell (en → en) ===
+  lc_rate=1.0000  en_leak=1.0000  n=50
+
+=== cell (en → yo) ===
+  lc_rate=0.1600  en_leak=0.8400  n=50
+
+=== cell (en → so) ===
+  lc_rate=0.1200  en_leak=0.8800  n=50
+
+=== cell (en → ha) ===
+  lc_rate=0.0000  en_leak=0.9800  n=50
+
+=== cell (yo → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (yo → yo) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+=== cell (yo → so) ===
+  lc_rate=0.0600  en_leak=0.0000  n=50
+
+=== cell (yo → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → yo) ===
+  lc_rate=0.0400  en_leak=0.0000  n=50
+
+=== cell (so → so) ===
+  lc_rate=0.9800  en_leak=0.0000  n=50
+
+=== cell (so → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → yo) ===
+  lc_rate=0.1600  en_leak=0.0000  n=50
+
+=== cell (ha → so) ===
+  lc_rate=0.1600  en_leak=0.0000  n=50
+
+=== cell (ha → ha) ===
+  lc_rate=0.9600  en_leak=0.0000  n=50
+
+Saved: /root/project/results/lcb_matrix/mix_en_yo_lcb_matrix.json
+
+=== lc_rate matrix ===
+instr\tgt      en      yo      so      ha
+        en   1.000   0.160   0.120   0.000
+        yo   0.000   1.000   0.060   0.000
+        so   0.000   0.040   0.980   0.000
+        ha   0.000   0.160   0.160   0.960
+DONE: mix_en_yo at 10:09:00
+
+==========================================
+MODEL: mix_en_so
+PATH:  /root/project/results/mix_en/mix_Qwen3.5-9B-Base_en_so
+2026-06-23 10:09:00
+==========================================
+Warning : `load_model` does not return WordVectorModel or SupervisedModel any more, but a `FastText` object which is very similar.
+Loading model: /root/project/results/mix_en/mix_Qwen3.5-9B-Base_en_so
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<02:04,  3.43it/s]Loading weights:   6%|▋         | 27/427 [00:00<00:04, 83.66it/s]Loading weights:  11%|█         | 47/427 [00:00<00:03, 116.94it/s]Loading weights:  16%|█▌        | 68/427 [00:00<00:02, 138.33it/s]Loading weights:  22%|██▏       | 92/427 [00:00<00:02, 165.92it/s]Loading weights:  26%|██▌       | 111/427 [00:00<00:01, 159.40it/s]Loading weights:  31%|███       | 132/427 [00:00<00:01, 171.47it/s]Loading weights:  35%|███▌      | 151/427 [00:01<00:01, 161.19it/s]Loading weights:  40%|████      | 172/427 [00:01<00:01, 168.34it/s]Loading weights:  46%|████▌     | 196/427 [00:01<00:01, 184.41it/s]Loading weights:  51%|█████     | 216/427 [00:01<00:01, 178.04it/s]Loading weights:  55%|█████▌    | 235/427 [00:01<00:01, 180.16it/s]Loading weights:  59%|█████▉    | 254/427 [00:01<00:00, 174.32it/s]Loading weights:  64%|██████▍   | 274/427 [00:01<00:00, 178.29it/s]Loading weights:  69%|██████▊   | 293/427 [00:01<00:00, 163.07it/s]Loading weights:  73%|███████▎  | 311/427 [00:02<00:00, 163.00it/s]Loading weights:  78%|███████▊  | 333/427 [00:02<00:00, 170.78it/s]Loading weights:  84%|████████▍ | 358/427 [00:02<00:00, 191.16it/s]Loading weights:  89%|████████▊ | 378/427 [00:02<00:00, 180.66it/s]Loading weights:  93%|█████████▎| 398/427 [00:02<00:00, 177.30it/s]Loading weights:  97%|█████████▋| 416/427 [00:02<00:00, 171.03it/s]Loading weights: 100%|██████████| 427/427 [00:02<00:00, 159.67it/s]
+Pre-loading MasakhaNEWS excerpts for ['en', 'yo', 'so', 'ha']
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'eng' at /root/project/hf_cache/datasets/masakhane___masakhanews/eng/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Tue Jun 23 07:55:11 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'yor' at /root/project/hf_cache/datasets/masakhane___masakhanews/yor/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:38:41 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'som' at /root/project/hf_cache/datasets/masakhane___masakhanews/som/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:42:30 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'hau' at /root/project/hf_cache/datasets/masakhane___masakhanews/hau/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:46:15 2026).
+  en: 50 excerpts loaded, e.g. "China's strategy for tackling Covid feels frozen in time."
+  yo: 50 excerpts loaded, e.g. 'Igbakeji Aarẹ tẹlẹ ni Naijiria, Atiku Abubakar ti ke si awọn gomina lati ma duro'
+  so: 50 excerpts loaded, e.g. 'Kooxaha Premier League-ga ayaa shir ay shalay ku yeesheen internet-ka oo maqal i'
+  ha: 50 excerpts loaded, e.g. "A ranar 12 ga watan Rabiul Awwal, wani bangare na al'ummar Musulmi na gudanar da"
+
+=== cell (en → en) ===
+  lc_rate=1.0000  en_leak=1.0000  n=50
+
+=== cell (en → yo) ===
+  lc_rate=0.2600  en_leak=0.7400  n=50
+
+=== cell (en → so) ===
+  lc_rate=0.7600  en_leak=0.2200  n=50
+
+=== cell (en → ha) ===
+  lc_rate=0.3200  en_leak=0.6600  n=50
+
+=== cell (yo → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (yo → yo) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+=== cell (yo → so) ===
+  lc_rate=0.0400  en_leak=0.0000  n=50
+
+=== cell (yo → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → yo) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → so) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+=== cell (so → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → yo) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → so) ===
+  lc_rate=0.7400  en_leak=0.0000  n=50
+
+=== cell (ha → ha) ===
+  lc_rate=1.0000  en_leak=0.0000  n=50
+
+Saved: /root/project/results/lcb_matrix/mix_en_so_lcb_matrix.json
+
+=== lc_rate matrix ===
+instr\tgt      en      yo      so      ha
+        en   1.000   0.260   0.760   0.320
+        yo   0.000   1.000   0.040   0.000
+        so   0.000   0.000   1.000   0.000
+        ha   0.000   0.000   0.740   1.000
+DONE: mix_en_so at 10:30:10
+
+==========================================
+MODEL: mix_en_ha
+PATH:  /root/project/results/mix_en/mix_Qwen3.5-9B-Base_en_ha
+2026-06-23 10:30:11
+==========================================
+Warning : `load_model` does not return WordVectorModel or SupervisedModel any more, but a `FastText` object which is very similar.
+Loading model: /root/project/results/mix_en/mix_Qwen3.5-9B-Base_en_ha
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+Loading weights:   0%|          | 0/427 [00:00<?, ?it/s]Loading weights:   0%|          | 1/427 [00:00<02:05,  3.39it/s]Loading weights:   6%|▌         | 24/427 [00:00<00:05, 77.30it/s]Loading weights:  11%|█         | 46/427 [00:00<00:03, 117.11it/s]Loading weights:  16%|█▌        | 67/427 [00:00<00:02, 139.31it/s]Loading weights:  21%|██        | 90/427 [00:00<00:02, 163.95it/s]Loading weights:  26%|██▌       | 109/427 [00:00<00:02, 152.94it/s]Loading weights:  31%|███       | 133/427 [00:00<00:01, 169.23it/s]Loading weights:  36%|███▌      | 152/427 [00:01<00:01, 155.86it/s]Loading weights:  40%|████      | 172/427 [00:01<00:01, 165.80it/s]Loading weights:  46%|████▌     | 197/427 [00:01<00:01, 188.06it/s]Loading weights:  51%|█████     | 217/427 [00:01<00:01, 177.59it/s]Loading weights:  55%|█████▌    | 236/427 [00:01<00:01, 176.53it/s]Loading weights:  60%|█████▉    | 255/427 [00:01<00:01, 166.05it/s]Loading weights:  65%|██████▌   | 278/427 [00:01<00:00, 174.61it/s]Loading weights:  69%|██████▉   | 296/427 [00:01<00:00, 170.57it/s]Loading weights:  74%|███████▎  | 314/427 [00:02<00:00, 160.51it/s]Loading weights:  81%|████████  | 344/427 [00:02<00:00, 193.85it/s]Loading weights:  85%|████████▌ | 364/427 [00:02<00:00, 175.17it/s]Loading weights:  90%|████████▉ | 384/427 [00:02<00:00, 181.47it/s]Loading weights:  94%|█████████▍| 403/427 [00:02<00:00, 174.64it/s]Loading weights:  99%|█████████▊| 421/427 [00:02<00:00, 164.10it/s]Loading weights: 100%|██████████| 427/427 [00:02<00:00, 159.48it/s]
+Pre-loading MasakhaNEWS excerpts for ['en', 'yo', 'so', 'ha']
+/usr/local/lib/python3.11/dist-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (1.26.20) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'eng' at /root/project/hf_cache/datasets/masakhane___masakhanews/eng/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Tue Jun 23 07:55:11 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'yor' at /root/project/hf_cache/datasets/masakhane___masakhanews/yor/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:38:41 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'som' at /root/project/hf_cache/datasets/masakhane___masakhanews/som/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:42:30 2026).
+Using the latest cached version of the dataset since masakhane/masakhanews couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'hau' at /root/project/hf_cache/datasets/masakhane___masakhanews/hau/0.0.0/fa3b5fff8a91d187bf0c5900a39c4271d08cf7fe (last modified on Thu Jun 18 06:46:15 2026).
+  en: 50 excerpts loaded, e.g. "China's strategy for tackling Covid feels frozen in time."
+  yo: 50 excerpts loaded, e.g. 'Igbakeji Aarẹ tẹlẹ ni Naijiria, Atiku Abubakar ti ke si awọn gomina lati ma duro'
+  so: 50 excerpts loaded, e.g. 'Kooxaha Premier League-ga ayaa shir ay shalay ku yeesheen internet-ka oo maqal i'
+  ha: 50 excerpts loaded, e.g. "A ranar 12 ga watan Rabiul Awwal, wani bangare na al'ummar Musulmi na gudanar da"
+
+=== cell (en → en) ===
+  lc_rate=1.0000  en_leak=1.0000  n=50
+
+=== cell (en → yo) ===
+  lc_rate=0.4400  en_leak=0.4800  n=50
+
+=== cell (en → so) ===
+  lc_rate=0.8200  en_leak=0.1600  n=50
+
+=== cell (en → ha) ===
+  lc_rate=0.7600  en_leak=0.2200  n=50
+
+=== cell (yo → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (yo → yo) ===
+  lc_rate=0.9800  en_leak=0.0000  n=50
+
+=== cell (yo → so) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (yo → ha) ===
+  lc_rate=0.0200  en_leak=0.0000  n=50
+
+=== cell (so → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → yo) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (so → so) ===
+  lc_rate=0.9800  en_leak=0.0000  n=50
+
+=== cell (so → ha) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → en) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → yo) ===
+  lc_rate=0.0000  en_leak=0.0000  n=50
+
+=== cell (ha → so) ===
+  lc_rate=0.3600  en_leak=0.0000  n=50
+
+=== cell (ha → ha) ===
+  lc_rate=0.9800  en_leak=0.0000  n=50
+
+Saved: /root/project/results/lcb_matrix/mix_en_ha_lcb_matrix.json
+
+=== lc_rate matrix ===
+instr\tgt      en      yo      so      ha
+        en   1.000   0.440   0.820   0.760
+        yo   0.000   0.980   0.000   0.020
+        so   0.000   0.000   0.980   0.000
+        ha   0.000   0.000   0.360   0.980
+DONE: mix_en_ha at 10:50:57
+
+==========================================
+ALL DONE at 2026-06-23 10:50:57
+Results in: /root/project/results/lcb_matrix
+==========================================
