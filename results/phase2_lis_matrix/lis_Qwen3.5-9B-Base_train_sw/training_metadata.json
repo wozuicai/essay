@@ -1,8 +1,0 @@
-{
-  "model": "/root/project/models/Qwen3.5-9B-Base",
-  "train_lang": "sw",
-  "method": "standard_lora",
-  "train_samples": 500,
-  "english_ratio": null,
-  "config": "configs/experiments/lis_matrix.yaml"
-}

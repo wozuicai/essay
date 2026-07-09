@@ -66,7 +66,7 @@ def _scratch_dirs() -> tuple[str, str]:
         try:
             os.makedirs(tmpdir, exist_ok=True)
             os.makedirs(triton_cache, exist_ok=True)
-            probe = os.path.join(tmpdir, ".write_test")
+            probe = os.path.join(tmpdir, f".write_test_{os.getpid()}")
             with open(probe, "w", encoding="utf-8") as f:
                 f.write("ok")
             os.remove(probe)
