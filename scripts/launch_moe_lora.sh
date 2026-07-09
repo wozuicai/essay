@@ -3,7 +3,7 @@
 # Soft MoE-LoRA (LA-MoA) 训练 + 评测
 #
 # 架构：K=4 LoRA expert + token-level soft router，所有 target 线性层替换
-# 数据：en+yo+so+ha 全量 concat，2 epoch（同 tag_routing 4-lang）
+# 数据：en+yo+so+ha 全量 concat，1 epoch（同 tag_routing 4-lang）
 #
 # 运行机器：B200 worker（GPU 0-1，前两张空闲）
 # 用法：

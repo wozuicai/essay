@@ -2,7 +2,7 @@
 """
 SSO-LoRA training script.
 
---mode stage1  Train shared LoRA on all 4 languages (2 epochs).
+--mode stage1  Train shared LoRA on all 4 languages (1 epoch).
 --mode stage2  Freeze shared, train lang-specific LoRA with orthogonal penalty (1 epoch).
 --mode merge   Merge shared+lang adapters into a standard HF model.
 """

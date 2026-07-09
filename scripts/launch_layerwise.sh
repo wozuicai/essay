@@ -61,7 +61,7 @@ python scripts/preflight_required.py \
     --langs en,yo,so,ha \
     --max_train_chars "$MAX_TRAIN_CHARS"
 
-# ── Stage 1: 共享底层 LoRA（4-lang mixed, 2 epoch, 底层 0-15）────────────
+# ── Stage 1: 共享底层 LoRA（4-lang mixed, 1 epoch, 底层 0-15）────────────
 if [[ "$STEP" == "stage1" ]]; then
     echo "[$(date -u '+%Y-%m-%d %H:%M:%S UTC')] === Stage 1: Shared bottom LoRA ==="
 

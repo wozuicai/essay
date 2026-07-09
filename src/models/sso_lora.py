@@ -9,7 +9,7 @@ Orthogonality penalty forces shared and lang-specific subspaces apart:
   L_orth = ||A_shared @ A_lang.T||_F^2 + ||B_shared.T @ B_lang||_F^2
 
 Usage:
-  stage1 -- train shared LoRA (all 4 langs, 2 epochs)
+  stage1 -- train shared LoRA (all 4 langs, 1 epoch)
   stage2 -- freeze shared, train lang LoRA with orth penalty (1 epoch per lang)
   merge  -- load shared+lang, merge_and_unload → standard HF model
 """
