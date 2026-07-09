@@ -245,15 +245,17 @@ class MIDTrainer(SFTTrainer):
             T = len(ids)
 
             resp_start = -1
-            if labels_cpu is not None:
+            for i in range(T - slen + 1):
+                if ids[i : i + slen] == sep:
+                    resp_start = i + slen
+                    break
+            if resp_start < 0 and labels_cpu is not None:
                 for i, label_id in enumerate(labels_cpu[b]):
                     if label_id != -100:
-                        resp_start = i
-                        break
-            if resp_start < 0:
-                for i in range(T - slen + 1):
-                    if ids[i : i + slen] == sep:
-                        resp_start = i + slen
+                        # Prompt-completion fallback only. In full-sequence loss
+                        # mode this would be 0, which is not a response boundary.
+                        if i > 0:
+                            resp_start = i
                         break
 
             if resp_start <= 0 or resp_start >= T:
@@ -396,8 +398,8 @@ def main():
         "n_pos2": args.n_pos2,
     }
     meta.update({
-        "trainer_backend": "trl_prompt_completion",
-        "completion_only_loss": True,
+        "trainer_backend": "trl_text_full_sequence",
+        "completion_only_loss": False,
         "packing": False,
     })
     save_training_metadata(args.output_dir, meta)

@@ -29,17 +29,17 @@ python -c "import torch, transformers, trl, peft, datasets; print(torch.cuda.is_
 先做数据长度审计：
 
 ```bash
-python scripts/audit_sft_data.py --data_dir data/processed --langs en,yo,so,ha --model /root/project/models/Qwen3.5-9B-Base --max_length 24000 --max_train_chars 200000
+python scripts/audit_sft_data.py --data_dir data/processed --langs en,yo,so,ha --model /root/project/models/Qwen3.5-9B-Base --max_length 2048 --max_train_chars 200000
 ```
 
 默认运行策略：
 
 ```bash
 export MAX_TRAIN_CHARS=200000
-export MAX_SEQ_LENGTH=24000
+export MAX_SEQ_LENGTH=2048
 ```
 
-所有主实验 launcher 都已对齐到同一组长度默认值。`MAX_TRAIN_CHARS=200000` 会保留当前 yo/so/ha 中除严重异常外的长样本；本地 so 的 659 万字符词典行仍会被过滤。
+所有主实验 launcher 都已对齐到同一组长度默认值。`MAX_SEQ_LENGTH=2048` 恢复旧版训练速度和截断口径；`MAX_TRAIN_CHARS=200000` 会保留当前 yo/so/ha 中除严重异常外的长样本，本地 so 的 659 万字符词典行仍会被过滤。当前训练默认关闭 `completion_only_loss`，整条 `text` 序列都会参与 LM loss。
 
 ## 主实验顺序
 

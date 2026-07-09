@@ -10,7 +10,7 @@ root/project
 
 后续把这个目录内容放到真实 GPU 机器的 `/root/project` 后即可运行。
 
-核心目标是：参考 `world20k_lora_sft/scripts/trl_lora_sft.py`，把项目里多个实验的训练入口统一重构为 TRL + PEFT LoRA 的标准 prompt-completion SFT 路径，同时只保留本轮需要的评测集合。
+核心目标是：参考 `world20k_lora_sft/scripts/trl_lora_sft.py`，把项目里多个实验的训练入口统一重构为 TRL + PEFT LoRA SFT 路径，同时只保留本轮需要的评测集合。当前训练口径已切回旧版可比设置：`MAX_SEQ_LENGTH=2048`，并对整条 `text` 序列计算 LM loss。
 
 ## 训练侧改动
 
@@ -30,13 +30,13 @@ src/data/dataset_loader.py
 
 主要变化：
 
-- 统一把数据转成 TRL `prompt` / `completion` 格式。
-- 默认启用 `completion_only_loss=True`，只对 assistant/completion 侧算 loss。
+- 统一把数据转成 TRL `text` 格式，保留 `### Instruction ... ### Response ...` 整条训练样本。
+- 默认关闭 `completion_only_loss`，prompt 和 response 都参与 LM loss。
 - 默认使用 `truncation_mode=keep_end`，对长样本尽量保留回答侧。
 - 默认 `save_strategy=no`，避免训练中间 checkpoint 产生大文件。
 - 支持 `MAX_SEQ_LENGTH` 环境变量覆盖训练长度。
 - 支持 `MAX_TRAIN_CHARS` 环境变量过滤异常长样本。
-- MID/DSCT 的 hidden-state 位置约束改成优先用 `labels != -100` 定位回答起点，和 completion-only loss 对齐。
+- MID/DSCT 的 hidden-state 位置约束优先用 `### Response:\n` separator 定位回答起点，避免 full-sequence loss 下把第 0 个 token 误判为 response start。
 - MID/DSCT 默认关闭 packing，避免 packed sequence 中多个样本混在一起影响位置约束。
 
 ## 评测侧改动
@@ -109,10 +109,10 @@ ha: p95=1685, p99=5235, max=12749, >200000 共 0 条
 
 ```bash
 export MAX_TRAIN_CHARS=200000
-export MAX_SEQ_LENGTH=24000
+export MAX_SEQ_LENGTH=2048
 ```
 
-所有主实验 launcher 都已对齐到同一组长度默认值。`MAX_TRAIN_CHARS=200000` 只过滤当前 so 数据中 659 万字符的严重异常词典行，尽量保留其他长样本；`MAX_SEQ_LENGTH=24000` 用于减少 token 级截断。
+所有主实验 launcher 都已对齐到同一组长度默认值。`MAX_TRAIN_CHARS=200000` 只过滤当前 so 数据中 659 万字符的严重异常词典行，尽量保留其他长样本；`MAX_SEQ_LENGTH=2048` 用于恢复旧版训练速度和 token 截断口径。
 
 ## Launcher 改动
 
@@ -201,7 +201,7 @@ TRAIN_EVAL_RUNBOOK.md
 建议先跑：
 
 ```bash
-python scripts/audit_sft_data.py --data_dir data/processed --langs en,yo,so,ha --model /root/project/models/Qwen3.5-9B-Base --max_length 24000 --max_train_chars 200000
+python scripts/audit_sft_data.py --data_dir data/processed --langs en,yo,so,ha --model /root/project/models/Qwen3.5-9B-Base --max_length 2048 --max_train_chars 200000
 ```
 
 再按 runbook 里的实验顺序启动 launcher。

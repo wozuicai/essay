@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Dataset utilities for TRL prompt-completion SFT.
+"""Dataset utilities for TRL SFT.
 
-The World20K reference script trains with TRL prompt/completion examples and
-`completion_only_loss=True`.  This module makes the project datasets follow the
-same contract while still accepting the older local JSONL shape:
+The project now keeps the legacy comparability setting: each sample is rendered
+as one `text` string and the whole retained sequence participates in LM loss.
+This module still accepts the refactor-era prompt/completion shapes:
 
 - `messages`: OpenAI-style chat rows, last message must be assistant.
 - `instruction` + `response`: converted to the project SFT prompt template.
-- `text`: split at `### Response:` as a compatibility fallback.
-- `prompt` + `completion`: kept as-is.
+- `text`: kept as one full-sequence training sample.
+- `prompt` + `completion`: concatenated into one full-sequence sample.
 """
 
 from __future__ import annotations
@@ -60,65 +60,79 @@ def prompt_from_instruction(example: dict[str, Any]) -> tuple[str, str]:
     return prompt, response
 
 
+def messages_to_text(messages, thinking_mode: str = "original") -> str:
+    rows = set_last_user_mode(messages, thinking_mode)
+    parts = []
+    for message in rows:
+        role = message.get("role", "")
+        content = message.get("content", "")
+        if role == "user":
+            parts.append(f"### Instruction:\n{content}")
+        elif role == "assistant":
+            parts.append(f"### Response:\n{content}")
+        elif role:
+            parts.append(f"### {role.title()}:\n{content}")
+        else:
+            parts.append(str(content))
+    return "\n\n".join(parts)
+
+
 def prepare_dataset_for_trl(dataset, thinking_mode: str = "original", name: str = "train"):
-    """Return a TRL-ready dataset with exactly `prompt` and `completion` columns."""
+    """Return a TRL-ready dataset with exactly one full-sequence `text` column."""
     columns = set(dataset.column_names)
 
     if {"prompt", "completion"}.issubset(columns):
-        drop = [col for col in dataset.column_names if col not in ("prompt", "completion")]
+        def _map_prompt_completion(batch):
+            return {
+                "text": [
+                    (prompt or "") + (completion or "")
+                    for prompt, completion in zip(batch["prompt"], batch["completion"])
+                ]
+            }
+
+        result = dataset.map(
+            _map_prompt_completion,
+            batched=True,
+            remove_columns=dataset.column_names,
+            desc=f"format_{name}_prompt_completion_text",
+        )
+        return filter_by_char_length(result, name)
+
+    if "text" in columns:
+        drop = [col for col in dataset.column_names if col != "text"]
         result = dataset.remove_columns(drop) if drop else dataset
         return filter_by_char_length(result, name)
 
     if "messages" in columns:
         def _map_messages(batch):
-            prompts, completions = [], []
+            texts = []
             for messages in batch["messages"]:
-                prompt, completion = split_prompt_completion_messages(messages, thinking_mode)
-                prompts.append(prompt)
-                completions.append(completion)
-            return {"prompt": prompts, "completion": completions}
+                texts.append(messages_to_text(messages, thinking_mode))
+            return {"text": texts}
 
         result = dataset.map(
             _map_messages,
             batched=True,
             remove_columns=dataset.column_names,
-            desc=f"format_{name}_messages_prompt_completion",
+            desc=f"format_{name}_messages_text",
         )
         return filter_by_char_length(result, name)
 
     if "instruction" in columns and ({"response", "output", "target"} & columns):
         def _map_instruction(batch):
-            prompts, completions = [], []
+            texts = []
             batch_size = len(batch["instruction"])
             for idx in range(batch_size):
                 row = {col: batch[col][idx] for col in batch.keys()}
                 prompt, completion = prompt_from_instruction(row)
-                prompts.append(prompt)
-                completions.append(completion)
-            return {"prompt": prompts, "completion": completions}
+                texts.append(prompt + completion)
+            return {"text": texts}
 
         result = dataset.map(
             _map_instruction,
             batched=True,
             remove_columns=dataset.column_names,
-            desc=f"format_{name}_instruction_prompt_completion",
-        )
-        return filter_by_char_length(result, name)
-
-    if "text" in columns:
-        def _map_text(batch):
-            prompts, completions = [], []
-            for text in batch["text"]:
-                prompt, completion = split_prompt_completion_text(text)
-                prompts.append(prompt)
-                completions.append(completion)
-            return {"prompt": prompts, "completion": completions}
-
-        result = dataset.map(
-            _map_text,
-            batched=True,
-            remove_columns=dataset.column_names,
-            desc=f"format_{name}_text_prompt_completion",
+            desc=f"format_{name}_instruction_text",
         )
         return filter_by_char_length(result, name)
 
@@ -145,7 +159,7 @@ def filter_by_char_length(dataset, name: str = "train"):
 
     before = len(dataset)
     result = dataset.filter(
-        lambda ex: len((ex.get("prompt") or "")) + len((ex.get("completion") or "")) <= max_chars,
+        lambda ex: len(ex.get("text") or "") <= max_chars,
         desc=f"filter_{name}_max_chars_{max_chars}",
     )
     dropped = before - len(result)

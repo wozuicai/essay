@@ -22,7 +22,7 @@ set -euo pipefail
 export PATH=/home/tiger/.local/bin:$PATH
 export HF_HOME=/root/project/hf_cache
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
-export MAX_SEQ_LENGTH="${MAX_SEQ_LENGTH:-24000}"
+export MAX_SEQ_LENGTH="${MAX_SEQ_LENGTH:-2048}"
 export MAX_TRAIN_CHARS="${MAX_TRAIN_CHARS:-200000}"
 export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-0}"
 export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-0}"

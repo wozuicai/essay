@@ -209,8 +209,8 @@ def main():
         "train_samples": n_samples_meta,
         "english_ratio": args.english_ratio,
         "config": str(args.config),
-        "trainer_backend": "trl_prompt_completion",
-        "completion_only_loss": True,
+        "trainer_backend": "trl_text_full_sequence",
+        "completion_only_loss": False,
         "packing": bool(getattr(sft_cfg, "packing", False)),
     }
     if train_result is not None:

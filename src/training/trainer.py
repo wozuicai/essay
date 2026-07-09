@@ -1,9 +1,9 @@
 """Shared training utilities for all experiment scripts.
 
-The train scripts now follow the World20K TRL LoRA SFT contract:
+The train scripts use TRL LoRA SFT with the legacy-compatible loss contract:
 
-- datasets are prompt/completion rows;
-- TRL masks prompt tokens with `completion_only_loss=True`;
+- datasets are single `text` rows;
+- prompt and response tokens both participate in causal LM loss;
 - long samples use `truncation_mode="keep_end"`;
 - intermediate checkpoints are disabled by default to avoid large files.
 """
@@ -162,18 +162,18 @@ def build_sft_config(
     *,
     no_eval: bool = True,
     packing: Optional[bool] = None,
-    completion_only_loss: bool = True,
+    completion_only_loss: bool = False,
     truncation_mode: str = "keep_end",
 ) -> SFTConfig:
     """
     Build a TRL SFTConfig aligned with `world20k_lora_sft/scripts/trl_lora_sft.py`.
 
-    We intentionally fail fast when the installed TRL lacks prompt-completion
-    loss or keep-end truncation; silently falling back would change the loss.
+    The current default intentionally trains on full `text` samples, matching the
+    older project runs where prompt and response were both scored.
     """
     t = cfg.training
     env_seq_len = os.environ.get("MAX_SEQ_LENGTH", "").strip()
-    seq_len = int(env_seq_len) if env_seq_len else (max_seq_length or t.get("max_seq_length", 24000))
+    seq_len = int(env_seq_len) if env_seq_len else (max_seq_length or t.get("max_seq_length", 2048))
     report_to = _get_report_to()
     sft_params = inspect.signature(SFTConfig.__init__).parameters
     use_packing = strtobool_env("PACKING", True) if packing is None else packing
@@ -217,6 +217,7 @@ def build_sft_config(
         "deepspeed": os.environ.get("DEEPSPEED_CONFIG") or None,
         "max_length": seq_len,
         "max_seq_length": seq_len,
+        "dataset_text_field": "text",
         "packing": use_packing,
         "completion_only_loss": completion_only_loss,
         "truncation_mode": truncation_mode,
@@ -228,10 +229,10 @@ def build_sft_config(
     elif "evaluation_strategy" in sft_params:
         kwargs["evaluation_strategy"] = "no" if no_eval else "steps"
 
-    if "completion_only_loss" not in sft_params:
+    if completion_only_loss and "completion_only_loss" not in sft_params:
         raise RuntimeError(
             "Installed TRL does not expose SFTConfig.completion_only_loss. "
-            "Install/upgrade TRL before running these prompt-completion jobs."
+            "Install/upgrade TRL before running completion-only SFT jobs."
         )
     if "truncation_mode" not in sft_params:
         raise RuntimeError(
@@ -259,6 +260,10 @@ def build_sft_config(
         kwargs.pop("max_seq_length", None)
     if "packing" not in sft_params:
         kwargs.pop("packing", None)
+    if "dataset_text_field" not in sft_params:
+        kwargs.pop("dataset_text_field", None)
+    if "completion_only_loss" not in sft_params:
+        kwargs.pop("completion_only_loss", None)
 
     filtered = _filter_kwargs(SFTConfig, kwargs)
     return SFTConfig(**filtered)
